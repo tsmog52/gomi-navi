@@ -1,11 +1,5 @@
 <!-- resources/views/welcome.blade.php -->
+@viteReactRefresh
+@vite('resources/js/app.jsx')
 
-@extends('layouts.app')
-
-@section('content')
-    <div id="app"></div>
-@endsection
-
-@push('scripts')
-    <script src="{{ mix('js/app.jsx') }}"></script>
-@endpush
+<div id="example"></div>
