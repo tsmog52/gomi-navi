@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item_size_categories extends Model
+class Item_size_category extends Model
 {
     use HasFactory;
 
