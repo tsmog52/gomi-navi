@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class sorting_guides extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'category_id',
+        'instruction'
+    ];
 }
