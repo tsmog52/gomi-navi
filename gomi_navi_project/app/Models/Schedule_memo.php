@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Schedule_memos extends Model
+class Schedule_memo extends Model
 {
     use HasFactory;
 
