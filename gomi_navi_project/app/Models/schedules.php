@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class schedules extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'collection_day',
+        'category_id',
+        'region_id'
+    ];
 }
