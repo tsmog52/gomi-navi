@@ -12,7 +12,7 @@ class RegionsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Region::insert([
+        $regions = [
             [ 'region_name' => '川崎区'],
             [ 'region_name' => '幸区'],
             [ 'region_name' => '中原区'],
@@ -20,6 +20,10 @@ class RegionsTableSeeder extends Seeder
             [ 'region_name' => '宮前区'],
             [ 'region_name' => '多摩区'],
             [ 'region_name' => '麻生区'],
-        ]);
+        ];
+
+        foreach($regions as $region) {
+            Region::create($region);
+        }
     }
 }
