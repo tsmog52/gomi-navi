@@ -1,11 +1,54 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { FaTruck } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa6";
+import { FaSearch } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
+import { IoSettingsSharp } from "react-icons/io5";
 
 const App = () => {
     return (
-        <div>
-            <h1>Hello, Laravel and React!</h1>
-        </div>
+        <>
+            <header className='bg-gray-200 p-4'>
+                <nav>
+                    <ul className='flex space-x-4 justify-end'>
+                        <li><a href=''>ログイン</a></li>
+                        <li><a href=''>会員登録</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <div className='flex justify-center items-center mt-16'>
+                <main className="grid grid-cols-3 gap-16 p-16">
+                    <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
+                        <FaTruck size={60} color={'#272f3f'}/>
+                        <p className='pt-4'>今日のゴミ回収</p>
+                    </div>
+                    <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
+                        <FaSearch size={50} color={'#272f3f'}/>
+                        <p className='pt-4'>ゴミの分別検索</p>
+                    </div>
+                    <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
+                        <FaCalendarAlt size={50} color={'#272f3f'}/>
+                        <p className='pt-4'>カレンダー</p>
+                    </div>
+                    <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
+                        <AiFillDelete size={60} color={'#272f3f'}/>
+                        <p className='pt-4'>ゴミの捨て方</p>
+                    </div>
+                    <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
+                        <FaPhone size={50} color={'#272f3f'}/>
+                        <p className='pt-4'>お問い合わせ</p>
+                    </div>
+                    <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
+                        <IoSettingsSharp size={60} color={'#272f3f'}/>
+                        <p className='pt-4'>設定</p>
+                    </div>
+                </main>
+            </div>
+            {/* <footer className='bg-gray-200 p-4'> */}
+            {/* </footer> */}
+        </>
     );
 };
 
