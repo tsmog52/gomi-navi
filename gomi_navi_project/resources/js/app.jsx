@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { FaTruck } from "react-icons/fa";
+import { createRoot } from 'react-dom/client';
+import { FaTruck, FaSearch, FaCalendarAlt } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
-import { FaSearch } from "react-icons/fa";
-import { FaCalendarAlt } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { IoSettingsSharp } from "react-icons/io5";
 
@@ -18,8 +16,8 @@ const App = () => {
                     </ul>
                 </nav>
             </header>
-            <div className='flex justify-center items-center mt-16'>
-                <main className="grid grid-cols-3 gap-16 p-16">
+            <div className='flex justify-center items-center m-16 '>
+                <main className="grid grid-cols-3 gap-16 items-center mt-10">
                     <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
                         <FaTruck size={60} color={'#272f3f'}/>
                         <p className='pt-4'>今日のゴミ回収</p>
@@ -52,4 +50,6 @@ const App = () => {
     );
 };
 
-ReactDOM.render(<App />, document.getElementById('example'));
+const container = document.getElementById('main');
+const root = createRoot(container);
+root.render(<App />);
