@@ -36,12 +36,6 @@ return new class extends Migration
             $table->foreign('guide_id')->references('id')->on('sorting_guides')->onDelete('cascade');
         });
 
-        //sorting_guides
-        Schema::table('sorting_guides', function (Blueprint $table) {
-            $table->unsignedBigInteger('category_id')->after('id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-        });
-
         //schedule_memos
         Schema::table('schedule_memos', function (Blueprint $table) {
             $table->unsignedBigInteger('schedule_id')->after('id');
@@ -89,12 +83,6 @@ return new class extends Migration
             $table->dropForeign(['category_id']);
             $table->dropForeign(['guide_id']);
             $table->dropColumn(['category_id', 'guide_id']);
-        });
-
-        //sorting_guides
-        Schema::table('sorting_guides', function (Blueprint $table) {
-            $table->dropForeign(['category_id']);
-            $table->dropColumn('category_id');
         });
 
         //schedule_memos
