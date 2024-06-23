@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
-  @vite('resources/js/app.jsx')
+  @vite('resources/js/contact.jsx')
 </head>
 <body>
-  <div id="main"></div>
+  <div id="contact"></div>
 </body>
 </html>
