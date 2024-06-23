@@ -23,30 +23,30 @@ const App = () => {
           <div className='flex justify-center items-center m-16 '>
             <main className="grid grid-cols-3 gap-16 items-center mt-10">
               <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
-              <FaTruck size={60} color={'#272f3f'}/>
+              <FaTruck size={60} color={'#272f3f'} />
               <p className='pt-4'>今日のゴミ回収</p>
             </div>
             <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
-              <a href=''>
-                <FaSearch size={50} color={'#272f3f'}/>
+              <a href='/sorting_search'>
+                <FaSearch size={50} color={'#272f3f'} className="ml-4"/>
                 <p className='pt-4'>ゴミの分別検索</p>
               </a>
             </div>
             <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
-              <a href=''>
-                <FaCalendarAlt size={50} color={'#272f3f'}/>
+              <a href='calender'>
+                <FaCalendarAlt size={50} color={'#272f3f'} className="ml-4"/>
                 <p className='pt-4'>カレンダー</p>
               </a>
             </div>
             <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
-              <a href=''>
-                <AiFillDelete size={60} color={'#272f3f'}/>
+              <a href='/sorting_guide'>
+                <AiFillDelete size={60} color={'#272f3f'} className="ml-4"/>
                 <p className='pt-4'>ゴミの捨て方</p>
               </a>
             </div>
             <div className="w-60 h-40 border-2 border-black flex flex-col items-center justify-center rounded-lg">
               <a href='/contact'>
-                <FaPhone size={50} color={'#272f3f'}/>
+                <FaPhone size={50} color={'#272f3f'} className="ml-4"/>
                 <p className='pt-4'>お問い合わせ</p>
                 </a>
             </div>
