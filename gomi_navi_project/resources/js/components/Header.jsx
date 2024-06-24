@@ -4,16 +4,25 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const Header = () => {
   // signin
-  const [showSignin, setShowSignin] = useState(true);
+  const [showSignin, setShowSignin] = useState(false);
   const showSigninModal = () => {
-    setShowSignin(!showSignin);
+    setShowSignin(prev => !showSignin);
   };
+
+  const closeSigninModal = () => {
+    setShowSignin(prev => !showSignin);
+  }
 
   // signup
   const [showSignup, setShowSignup] = useState(false);
   const showSignupModal = () => {
     setShowSignup(!showSignup);
   };
+
+  const closeSignupModal = () => {
+    setShowSignup(prev => !showSignup);
+  }
+
 
   return (
     <>
@@ -26,7 +35,7 @@ const Header = () => {
                 <>
                   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-                      <button onClick={showSigninModal}>
+                      <button onClick={closeSigninModal}>
                         <AiOutlineClose />
                       </button>
                       <div className='text-center'>
@@ -57,7 +66,7 @@ const Header = () => {
                 <>
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                   <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-                    <button onClick={showSignupModal}>
+                    <button onClick={closeSignupModal}>
                       <AiOutlineClose />
                     </button>
                     <div className='text-center'>
