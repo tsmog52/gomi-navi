@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './resources/views/welcome.blade.php',
-    './resources/js/app.jsx'
+    './resources/js/**/*.{js,jsx,ts,tsx}',
+    'node_modules/preline/dist/*.js',
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins:
+    ['preline/plugin'],
 }
