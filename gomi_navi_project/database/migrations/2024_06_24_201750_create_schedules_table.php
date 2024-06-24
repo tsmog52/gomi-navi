@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('collection_day', 50);
             $table->timestamps();
         });
     }
