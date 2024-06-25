@@ -4,9 +4,9 @@ import useModal from '../hooks/useModal';
 import Modal from './Modal';
 
 const Header = () => {
-//モーダル1(分割代入)
+//モーダル1:ログイン(分割代入)
   const {isOpen: isOpenModal1, openModal: openModal1, closeModal: closeModal1} = useModal();
-  //モーダル2(分割代入)
+  //モーダル2:会員登録(分割代入)
   const {isOpen: isOpenModal2, openModal: openModal2, closeModal: closeModal2} = useModal();
 
   return (
