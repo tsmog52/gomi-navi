@@ -11,13 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //personal_access_tokens
-        // Schema::table('personal_access_tokens', function (Blueprint $table) {
-        //     if (Schema::hasTable('users')) {
-        //         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        //     }
-        // });
-
         //schedules
         Schema::table('schedules', function (Blueprint $table) {
             $table->unsignedBigInteger('category_id')->after('id');
