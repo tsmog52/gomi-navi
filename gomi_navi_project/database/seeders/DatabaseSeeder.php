@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RegionsTableSeeder::class,
             CategoriesTableSeeder::class,
-            SortingGuidesTableSeeder::class
+            SortingGuidesTableSeeder::class,
+            ItemsSeeder::class
         ]);
     }
 }
