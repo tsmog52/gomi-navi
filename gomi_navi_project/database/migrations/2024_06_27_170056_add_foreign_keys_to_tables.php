@@ -11,15 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //schedules
-        Schema::table('schedules', function (Blueprint $table) {
-            $table->unsignedBigInteger('category_id')->after('id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-
-            $table->unsignedBigInteger('region_id')->after('category_id');
-            $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
-        });
-
         //items
         Schema::table('items', function (Blueprint $table) {
             $table->unsignedBigInteger('category_id')->after('id');
@@ -57,19 +48,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //personal_access_tokens
-        // Schema::table('personal_access_tokens', function (Blueprint $table) {
-        //     if (Schema::hasTable('users')) {
-        //         $table->dropForeign(['user_id']);
-        //     }
-        // });
-
-         //schedules
-        Schema::table('schedules', function (Blueprint $table) {
-            $table->dropForeign(['category_id']);
-            $table->dropForeign(['region_id']);
-            $table->dropColumn(['category_id', 'region_id']);
-        });
 
         //items
         Schema::table('items', function (Blueprint $table) {
