@@ -11,6 +11,7 @@ class Schedule extends Model
 
     protected $fillable = [
         'category_id',
-        'region_id'
+        'region_id',
+        'schedule_pattern_id'
     ];
 }
