@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SchedulePattern;
 use Illuminate\Database\Seeder;
 
 
@@ -16,7 +17,8 @@ class DatabaseSeeder extends Seeder
             RegionsTableSeeder::class,
             CategoriesTableSeeder::class,
             SortingGuidesTableSeeder::class,
-            ItemsSeeder::class
+            ItemsSeeder::class,
+            SchedulePattern::class
         ]);
     }
 }
