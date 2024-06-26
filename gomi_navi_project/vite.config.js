@@ -1,5 +1,9 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import { resolve } from 'path';
+import { dirname } from 'path'
+
+const __dirname = dirname(__filename)
 
 export default defineConfig({
     plugins: [
@@ -8,4 +12,7 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    alias: {
+        '@': resolve(__dirname, 'resources/js'),
+    }
 });
