@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import Header from './Header';
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 const Category = () => {
   const [categories, setCategories] = useState([]);
@@ -25,14 +27,32 @@ const Category = () => {
   }, []);
 
   return (
-    <div>
-      <p>カテゴリーです。</p>
-      <ul>
-        {categories.map(category => (
-          <li key={category.id}>{category.category_name}</li>
-        ))}
-      </ul>
+    <>
+      <Header />
+    <div className="w-1/3 h-full overflow-y-auto">
+        <ul>
+          {categories.map(category => (
+            <div key={category.id}>
+              <li
+                  className='text-xl p-4 flex'
+              >
+                <a
+                  href='#'
+                  className='flex '
+                >
+                  {category.category_name}
+                  <MdOutlineKeyboardArrowRight
+                  size={30}
+                    className='flex justify-end'
+                  />
+                </a>
+              </li>
+              <div className='border-b-2'></div>
+            </div>
+          ))}
+        </ul>
     </div>
+    </>
   );
 };
 
