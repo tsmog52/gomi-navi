@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Field, Label, Radio, RadioGroup } from '@headlessui/react';
 import { AiOutlineClose } from "react-icons/ai";
-
+import Button from './Button';
 
 const regions = ['川崎区', '幸区', '中原区', '高津区', '宮前区', '多摩区', '麻生区'];
 
@@ -34,17 +34,9 @@ const [selected, setSelected] = useState(regions[0])
         ))}
           </RadioGroup>
             <p className='text-center font-bold text-xl p-4'>外部カレンダー連携</p>
-            <button
-              className='items-center text-color-white bg-gray-500 w-30 h-15 p-2 rounded-lg text-white ml-32'
-            >
-              Googleと連携する
-            </button>
+            <Button text='Googleと連携する' />
             <p className='text-center font-bold text-xl p-4'>外部リマインダー連携</p>
-            <button
-              className='flex items-center text-color-white justify-center bg-gray-500 w-30 h-15 p-2 rounded-lg text-white ml-32'
-            >
-              LINEと連携する
-            </button>
+            <Button text='LINEと連携する' />
         </div>
       </div>
   </>
