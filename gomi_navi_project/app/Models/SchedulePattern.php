@@ -9,7 +9,10 @@ class SchedulePattern extends Model
 {
     use HasFactory;
 
+    protected $table = 'schedule_patterns';
+
     protected $fillable = [
+        'id',
         'frequency',
         'interval',
         'days_of_week',
