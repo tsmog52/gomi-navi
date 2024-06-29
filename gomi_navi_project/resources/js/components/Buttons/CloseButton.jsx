@@ -8,6 +8,7 @@ const CloseButton = ({ onClose }) => {
         <button onClick={onClose}>
           <AiOutlineClose
             className='ml-32'
+            size={20}
           />
         </button>
     </div>
