@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import Header from './components/Header';
-import ContactCard from './components/ContactCard';
+import ContactCard from './components/Card/ContactCard';
 
 const Contact = () => {
   return (

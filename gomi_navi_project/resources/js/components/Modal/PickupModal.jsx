@@ -1,6 +1,6 @@
 import React from 'react'
 import { AiOutlineClose } from "react-icons/ai";
-import CloseButton from './Buttons/CloseButton';
+import CloseButton from '../Button/CloseButton';
 
 const PickupModal = ({ onClose }) => {
   return (

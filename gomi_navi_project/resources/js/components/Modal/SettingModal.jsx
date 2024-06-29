@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import { Field, Label, Radio, RadioGroup } from '@headlessui/react';
-import { AiOutlineClose } from "react-icons/ai";
-import SocialMediaButton from './Buttons/SocialMediaButton';
-import CloseButton from './Buttons/CloseButton';
+import SocialMediaButton from '../Button/SocialMediaButton';
+import CloseButton from '../Button/CloseButton';
 
 const regions = ['川崎区', '幸区', '中原区', '高津区', '宮前区', '多摩区', '麻生区'];
 

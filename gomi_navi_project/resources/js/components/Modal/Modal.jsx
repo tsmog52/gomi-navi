@@ -1,6 +1,6 @@
 import React from 'react';
-import SocialMediaButton from './Buttons/SocialMediaButton';
-import CloseButton  from './Buttons/CloseButton';
+import SocialMediaButton from '../Button/SocialMediaButton';
+import CloseButton  from '../Button/CloseButton';
 
 const Modal = ({title, linkText, onClose, text }) => {
   return (
