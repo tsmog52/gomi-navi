@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 
 class SortingGuide extends Model
 {
@@ -13,4 +14,7 @@ class SortingGuide extends Model
         'category_id',
         'instruction'
     ];
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 }
