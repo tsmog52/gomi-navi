@@ -1,7 +1,7 @@
 import React from 'react';
 import '/resources/css/app.css';
 import useModal from '../hooks/useModal';
-import Modal from './Modal';
+import Modal from './Modal/Modal';
 
 const Header = () => {
 //モーダル1:ログイン(分割代入)

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Card = ({ text, icon:Icon, link, onClick, size }) => {
+const MainCard = ({ text, icon:Icon, link, onClick, size }) => {
   return (
     <>
       <button
@@ -15,4 +15,4 @@ const Card = ({ text, icon:Icon, link, onClick, size }) => {
   )
 }
 
-export default Card
+export default MainCard
