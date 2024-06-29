@@ -11,9 +11,9 @@ import Card from './components/Card';
 
 const App = () => {
   //モーダル1:今日のゴミ回収(分割代入)
-  const {isOpen: isOpenModal1, openModal: openModal1, closeModal: closeModal1} = useModal();
+  const {isOpen: isOpenModal1, open: openModal1, close: closeModal1} = useModal();
   //モーダル2:設定(分割代入)
-  const {isOpen: isOpenModal2, openModal: openModal2, closeModal: closeModal2} = useModal();
+  const {isOpen: isOpenModal2, open: openModal2, close: closeModal2} = useModal();
 
   return (
     <>
