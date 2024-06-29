@@ -5,9 +5,9 @@ import Modal from './Modal';
 
 const Header = () => {
 //モーダル1:ログイン(分割代入)
-  const {isOpen: isOpenModal1, openModal: openModal1, closeModal: closeModal1} = useModal();
+  const {isOpen: isOpenModal1, open: openModal1, close: closeModal1} = useModal();
   //モーダル2:会員登録(分割代入)
-  const {isOpen: isOpenModal2, openModal: openModal2, closeModal: closeModal2} = useModal();
+  const {isOpen: isOpenModal2, open: openModal2, close: closeModal2} = useModal();
 
   return (
     <>
@@ -16,11 +16,11 @@ const Header = () => {
           <ul className='flex space-x-4 justify-end'>
             <li>
               <button onClick={openModal1}>ログイン</button>
-              {isOpenModal1 && <Modal onClose={closeModal1} title='ログイン' buttonText='Googleでログイン' linkText='会員登録がまだの方はこちら' />}
+              {isOpenModal1 && <Modal onClose={closeModal1} title='ログイン' text='Googleでログイン' linkText='会員登録がまだの方はこちら' />}
             </li>
             <li>
               <button onClick={openModal2}>会員登録</button>
-              {isOpenModal2 && <Modal onClose={closeModal2} title='会員登録' buttonText='Google登録' linkText='ログインはこちら'/>}
+              {isOpenModal2 && <Modal onClose={closeModal2} title='会員登録' text='Google登録' linkText='ログインはこちら'/>}
             </li>
           </ul>
         </nav>
