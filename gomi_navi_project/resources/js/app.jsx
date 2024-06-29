@@ -29,7 +29,7 @@ const App = () => {
                 {isOpenModal1 &&  <PickupModal onClose={closeModal1}/>}
               <MainCard
                 icon={FaSearch}
-                link={'/sorting_search'}
+                link={'/item'}
                 text='ゴミの分別検索'
                 size={50}
               />
