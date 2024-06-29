@@ -14,6 +14,7 @@ class SortingGuide extends Model
         'category_id',
         'instruction'
     ];
+
     public function category() {
         return $this->belongsTo(Category::class);
     }
