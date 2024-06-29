@@ -11,6 +11,7 @@ class Item extends Model
 
     protected $fillable = [
         'item_name',
+        'item_memo',
         'category_id',
         'guide_id'
     ];
