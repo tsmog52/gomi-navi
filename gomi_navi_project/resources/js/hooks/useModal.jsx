@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-//コンポーネント名変えたい
 const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
 
