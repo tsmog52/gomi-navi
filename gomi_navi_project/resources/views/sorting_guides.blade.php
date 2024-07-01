@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
-  @vite('resources/js/sorting_search.jsx')
+  @vite('resources/js/calendar.jsx')
 </head>
 <body>
-  <div id="sorting_search"></div>
+  <div id="calendar"></div>
 </body>
 </html>
