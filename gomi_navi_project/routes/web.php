@@ -2,20 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-
+//お問い合わせ
 Route::view('/contact', 'contact');
-
-
-Route::view('/calender', 'calender');
-
+//カレンダー
+Route::view('/calendar', 'calendar');
+//ゴミの分別検索
 Route::view('/item', 'item');
-
-Route::view('/index', 'categories');
-
-Route::view('/schedule_patterns', 'sorting_guides');
-
-
-
-
-
+//カテゴリー
+Route::view('/category', 'categories');
+//メイン
 Route::view('/', 'app');
