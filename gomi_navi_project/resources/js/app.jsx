@@ -35,13 +35,13 @@ const App = () => {
               />
               <MainCard
                 icon={FaCalendarAlt}
-                link={'/calender'}
+                link={'/calendar'}
                 text='カレンダー'
                 size={50}
               />
               <MainCard
                 icon={AiFillDelete}
-                link={'/index'}
+                link={'/category'}
                 text='ゴミの捨て方'
                 size={60}
               />
