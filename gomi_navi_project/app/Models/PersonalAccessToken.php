@@ -10,9 +10,11 @@ class PersonalAccessToken extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'token',
-        'refresh_token',
-        'expires_at'
+        'user_id', 'token', 'refresh_token', 'expires_at'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
