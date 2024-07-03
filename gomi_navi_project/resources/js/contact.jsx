@@ -17,15 +17,16 @@ const Contact = () => {
           <ContactCard
             css='grid-item  p-4 w-5/6 h-60 ml-32 border-4 rounded-lg'
             title='生活環境事業所'
-            tel='012-345-6789'
+            tel='044-200-2583'
             hours='午前8:00 - 午後4:45'
-            note='午前8時から午後4時45分まで(日曜日、1月1日から3日を除く)'
+            note='※日曜日、1月1日から3日を除く'
           />
           <ContactCard
             css='grid-item  p-4 w-5/6 h-60 border-4 rounded-lg ml-0'
             title='粗大ゴミ受付センター'
-            tel='012-345-6789'
+            tel='0570-044-530'
             hours='午前8:00 - 午後4:45'
+            note='※日曜日、1月1日から3日を除く'
           />
           <ContactCard
             css='grid-item  p-4 w-5/6 h-60 border-4 rounded-lg ml-32'
@@ -36,9 +37,10 @@ const Contact = () => {
           <ContactCard
             css='grid-item  p-4 w-5/6 h-60 border-4 rounded-lg ml-0'
             title='川崎市ホームページ'
-            tel='012-345-6789'
-            hours='午前8:00 - 午後4:45'
-            url='#'
+            tel='044-200-2111（代表）'
+            hours='午前8:30 - 午後5:00'
+            url='https://www.city.kawasaki.jp/'
+            note='※祝休日・12月29 日から1月3日を除く'
             className="ml-0"
           />
         </div>
