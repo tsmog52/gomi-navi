@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
-  @vite('resources/js/item.jsx')
+  @vite('resources/js/Item.jsx')
 </head>
 <body>
   <div id="item"></div>
