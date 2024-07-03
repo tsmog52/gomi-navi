@@ -4,11 +4,11 @@ const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const open = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen(true);
   };
 
   const close = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen(false);
   };
 
   return {
