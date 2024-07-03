@@ -9,9 +9,6 @@ use App\Http\Controllers\SortingGuidesController;
 use App\Http\Controllers\SchedulesController;
 use App\Models\SortingGuide;
 
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');
 
 Route::get('/categories', [CategoryController::class, 'index']);
 
