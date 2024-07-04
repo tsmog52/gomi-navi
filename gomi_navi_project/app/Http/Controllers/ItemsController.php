@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 class ItemsController extends Controller
 {
     public function index() {
-        $items = Item::paginate(8);
+        $items = Item::paginate(9);
         $response = $items->map(function ($item) {
             return [
                 //itemsテーブルからitem_nameカラムを取得
