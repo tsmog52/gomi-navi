@@ -10,8 +10,6 @@ const Header = () => {
   const {isOpen: isOpenModal1, open: openModal1, close: closeModal1} = useModal();
 //モーダル2:会員登録(分割代入)
   const {isOpen: isOpenModal2, open: openModal2, close: closeModal2} = useModal();
-//ricoilで管理したい
-  const [isVisible, setIsVisible] = useState(true);
 
   return (
     <>
@@ -20,7 +18,7 @@ const Header = () => {
           <ul className='flex space-x-4 justify-end'>
             <LogoutButton />
             <li>
-              {isVisible && <AddMemoButton />}
+              <AddMemoButton />
             </li>
             <li>
               <button onClick={openModal1}>ログイン</button>
