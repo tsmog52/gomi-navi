@@ -24,6 +24,6 @@
         "@preline/overlay": "^2.3.0",
         "preline": "^2.3.0",
         "react-icons": "^5.2.1",
-        "react-router-dom": "^6.23.1"
+        "react-router-dom": "^6.24.1"
     }
 }
