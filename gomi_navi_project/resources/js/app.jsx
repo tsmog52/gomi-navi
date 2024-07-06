@@ -16,8 +16,8 @@ const App = () => {
   const {isOpen: isOpenModal2, open: openModal2, close: closeModal2} = useModal();
 
   return (
-    <>
-      <Header />
+      <>
+        <Header />
           <div className='flex justify-center items-center m-16 '>
             <main className="grid grid-cols-3 gap-16 items-center mt-10">
               <MainCard
