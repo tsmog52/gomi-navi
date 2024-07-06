@@ -1,25 +1,21 @@
 import React from 'react';
 import { MdKeyboardDoubleArrowLeft, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardDoubleArrowRight } from "react-icons/md";
 
-const ArrowButton = () => {
+const ArrowButton = ({ doubleArrowLeft,  arrowLeft, arrowRight, doubleArrowRight}) => {
   const ArrowIcons = [
-    { icon: MdKeyboardDoubleArrowLeft, key: 'doubleLeft' },
-    { icon: MdKeyboardArrowLeft, key: 'left' },
-    { icon: MdKeyboardArrowRight, key: 'right' },
-    { icon: MdKeyboardDoubleArrowRight, key: 'doubleRight' }
+    { icon: MdKeyboardDoubleArrowLeft, key: 'doubleLeft', onClick: doubleArrowLeft },
+    { icon: MdKeyboardArrowLeft, key: 'left', onClick: arrowLeft},
+    { icon: MdKeyboardArrowRight, key: 'right', onClick: arrowRight},
+    { icon: MdKeyboardDoubleArrowRight, key: 'doubleRight', onClick: doubleArrowRight}
   ];
-
-  const handleClick = () => {
-    alert('☺︎☺︎☺︎☺︎☺︎☺︎☺︎☺︎☺︎☺︎');
-  }
 
   return (
     <div className='flex items-center justify-center'>
-      <button onClick={handleClick} className='ml-10 flex'>
-        {ArrowIcons.map(({ icon: Icon, key }) => (
+      {ArrowIcons.map(({ icon: Icon, key, onClick }) => (
+        <button className='ml-10 flex' onClick={onClick}>
           <Icon key={key} size={40} className='text-gray-400' />
-        ))}
-      </button>
+        </button>
+      ))}
     </div>
   )
 }
