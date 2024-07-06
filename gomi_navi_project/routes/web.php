@@ -6,6 +6,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use APP\Http\Controllers\ItemController;
 use App\Models\PersonalAccessToken;
 
 // お問い合わせ
@@ -19,6 +20,7 @@ Route::view('/category', 'categories');
 // メイン
 Route::view('/', 'app')->name('home');
 
+Route::get('/items', [ItemController::class, 'index'])->name('item');
 
 // OAuth認証するためのURLにリダイレクトする(カレンダー)
 Route::get('auth/redirect', function() {
