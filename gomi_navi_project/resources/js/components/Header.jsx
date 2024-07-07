@@ -15,18 +15,38 @@ const Header = () => {
     <>
       <header className='bg-gray-200 p-4'>
         <nav>
-          <ul className='flex space-x-4 justify-end'>
-            <LogoutButton />
+          <ul className='flex space-x-4 justify-between'>
+            <li><a href='http://127.0.0.1:8000/'>ロゴ</a></li>
             <li>
-              <AddMemoButton />
-            </li>
-            <li>
-              <button onClick={openModal1}>ログイン</button>
-              {isOpenModal1 && <Modal onClose={closeModal1} title='ログイン' text='Googleでログイン' linkText='会員登録がまだの方はこちら' />}
-            </li>
-            <li>
-              <button onClick={openModal2}>会員登録</button>
-              {isOpenModal2 && <Modal onClose={closeModal2} title='会員登録' text='Google登録' linkText='ログインはこちら'/>}
+              <ul className="flex space-x-4 justify-end">
+                <LogoutButton />
+              <li><AddMemoButton /></li>
+              <li>
+                <button onClick={openModal1}>ログイン</button>
+                {isOpenModal1
+                &&
+                <Modal
+                  onClose={closeModal1}
+                  title='ログイン'
+                  google='Googleでログイン'
+                  line='LINEでログイン'
+                  linkText='会員登録がまだの方はこちら'
+                />
+                }
+              </li>
+              <li>
+                <button onClick={openModal2}>会員登録</button>
+                {isOpenModal2
+                &&
+                <Modal
+                  onClose={closeModal2}
+                  title='会員登録'
+                  google='Googleで登録'
+                  line='LINEで登録'
+                  linkText='ログインはこちら'
+                />}
+              </li>
+              </ul>
             </li>
           </ul>
         </nav>
