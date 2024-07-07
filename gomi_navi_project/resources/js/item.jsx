@@ -29,8 +29,7 @@ const Item = () => {
   useEffect(() => {
     const getItemsData = async (page = 1) => {
       try {
-        const response = await axios.get(`/api/item?page=${page}`);
-        console.log(response.data.data);
+        const response = await axios.get(`/api/items?page=${page}`);
         setItems(response.data.data);
         setPagination({
           current_page: response.data.current_page,
@@ -83,7 +82,6 @@ const Item = () => {
     }
   };
 
-console.log(items);
   return (
     <>
       <Header />
