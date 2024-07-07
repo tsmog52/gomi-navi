@@ -40,4 +40,10 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => 'http://127.0.0.1:8000/auth/callback'
     ],
+
+    'line' => [
+    'client_id' => env('LINE_CLIENT_ID'),
+    'client_secret' => env('LINE_CLIENT_SECRET'),
+    'redirect' => env('LINE_REDIRECT_URI')
+    ],
 ];
