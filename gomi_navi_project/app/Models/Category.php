@@ -18,10 +18,10 @@ class Category extends Model
     ];
 
     public function sortingGuides() {
-        return $this->hasOne(SortingGuide::class);
+        return $this->hasMany(SortingGuide::class);
     }
 
     public function Items() {
-        return $this->hasOne(Item::class);
+        return $this->hasMany(Item::class);
     }
 }
