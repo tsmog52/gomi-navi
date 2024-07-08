@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PersonalAccessToken extends Model
+class SocialPersonalAccessToken extends Model
 {
     use HasFactory;
 
