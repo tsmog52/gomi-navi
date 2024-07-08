@@ -8,6 +8,7 @@ import useModal from './hooks/useModal';
 import SettingModal from './components/Modal/SettingModal';
 import PickupModal from './components/Modal/PickupModal';
 import MainCard from './components/Card/MainCard';
+import Footer from './components/Footer';
 
 const App = () => {
   //モーダル1:今日のゴミ回収(分割代入)
@@ -18,7 +19,7 @@ const App = () => {
   return (
       <>
         <Header />
-          <div className='flex justify-center items-center m-16 '>
+          <div className='flex justify-center items-center m-16'>
             <main className="grid grid-cols-3 gap-16 items-center mt-10">
               <MainCard
                 icon={FaTruck}
@@ -60,6 +61,7 @@ const App = () => {
               {isOpenModal2 &&  <SettingModal onClose={closeModal2}/>}
           </main>
         </div>
+        <Footer />
     </>
   );
 };
