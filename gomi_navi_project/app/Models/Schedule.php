@@ -17,12 +17,19 @@ class Schedule extends Model
         'schedule_pattern_id'
     ];
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function schedulePattern() {
+    public function schedulePattern()
+    {
         return $this->belongsTo(SchedulePattern::class);
+    }
+
+    public function scheduleMemo()
+    {
+        return $this->hasMany(ScheduleMemo::class);
     }
 
 }
