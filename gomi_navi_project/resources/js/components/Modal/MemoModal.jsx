@@ -5,6 +5,7 @@ const MemoModal = ({isOpen, onClose}) => {
   const [inputText, setInputText] = useState('');
   const onChange = (e) => {
     setInputText(e.target.value);
+    console.log(inputText);
   }
   return (
     <>
@@ -12,8 +13,7 @@ const MemoModal = ({isOpen, onClose}) => {
         className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
       >
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-          <form action="" method='post'>
-            @csrf
+          <form action="">
             <div className='text-center'>
               <CloseButton onClose={onClose}/>
                 <input
