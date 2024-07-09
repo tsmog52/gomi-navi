@@ -63,7 +63,7 @@ class SocialAuthController extends Controller
         Auth::login($user);
         //トークンの発行
         $token = $user->createToken('auth_token')->plainTextToken;
-        //セッションフラッシュにトークンを保存
+        //セッションに保存
         session(['auth_token' => $token]);
 
         return redirect('/');
@@ -76,7 +76,7 @@ class SocialAuthController extends Controller
 
     public function handleLineCallback()
     {
-        $lineUser = Socialite::driver('line')->stateless()->user();
+        $lineUser = Socialite::driver('line') ->user();
         // 既存のユーザーの検索または新規作成
         $socialAccount = SocialAccount::updateOrCreate(
             [
@@ -113,10 +113,8 @@ class SocialAuthController extends Controller
 
         //ユーザーログイン
         Auth::login($user);
-
         //トークンの発行
         $token = $user->createToken('auth_token')->plainTextToken;
-
         //セッションに保存
         session(['auth_token' => $token]);
 
