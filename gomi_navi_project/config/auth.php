@@ -34,13 +34,12 @@ return [
     | Supported: "session"
     |
     */
-
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+    'sanctum' => [
+        'driver' => 'sanctum',
+        'provider' => null,
     ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -65,10 +64,10 @@ return [
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+            'driver' => 'database',
+            'table' => 'users',
+        ],
     ],
 
     /*
@@ -89,7 +88,6 @@ return [
     | quickly generating a very large amount of password reset tokens.
     |
     */
-
     'passwords' => [
         'users' => [
             'provider' => 'users',
