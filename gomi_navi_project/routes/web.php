@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\SocialAuthController;
 
 // お問い合わせ
 Route::view('/contact', 'contact');
@@ -18,10 +18,14 @@ Route::view('/', 'app')->name('home');
 
 Route::get('/items', [ItemController::class, 'index'])->name('item');
 
-Route::middleware(['web'])->group(function () {
-    Route::get('auth/redirect', [GoogleAuthController::class, 'redirect']);
-    Route::get('/auth/callback', [GoogleAuthController::class, 'callback']);
-});
+// GoogleAuthのルート
+Route::get('login/google', [SocialAuthController::class, 'redirectToGoogle']);
+Route::get('login/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
+
+// LINEAuthのルート
+Route::get('login/line', [SocialAuthController::class, 'redirectToLine']);
+Route::get('login/line/callback', [SocialAuthController::class, 'handleLineCallback']);
+
 
 //ログアウト処理
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
