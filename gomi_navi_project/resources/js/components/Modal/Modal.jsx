@@ -12,8 +12,8 @@ const Modal = ({title, linkText, onClose, google, line }) => {
             <h2 className="block text-2xl font-bold text-gray-800 dark:text-neutral-200 pb-4">
               {title}
             </h2>
-            <SocialMediaButton text={google} socialLink={"/auth/redirect"}/>
-            <SocialMediaButton text={line} socialLink={"/auth/line/redirect"}/>
+            <SocialMediaButton text={google} socialLink={"/login/google"}/>
+            <SocialMediaButton text={line} socialLink={"/login/line/redirect"}/>
               <p className="mb-4">
                 <a className="text-blue-600 underline hover:text-blue-400" href="#">
                   {linkText}
