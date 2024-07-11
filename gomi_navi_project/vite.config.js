@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import { resolve } from 'path';
-import { dirname } from 'path'
+import { dirname } from 'path';
 
 const __dirname = dirname(__filename)
 
