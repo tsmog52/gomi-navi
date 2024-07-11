@@ -10,15 +10,9 @@ class ScheduleMemo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'schedule_id',
         'user_id',
         'note'
     ];
-
-    public function schedule()
-    {
-        return $this->belongsTo(Schedule::class);
-    }
 
     public function user()
     {
