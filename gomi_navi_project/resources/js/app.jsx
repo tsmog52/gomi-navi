@@ -9,7 +9,38 @@ import SettingModal from './components/Modal/SettingModal';
 import PickupModal from './components/Modal/PickupModal';
 import MainCard from './components/Card/MainCard';
 import Footer from './components/Footer';
-import axios from 'axios';
+
+// AuthStatusコンポーネントの定義
+const AuthStatus = () => {
+  // クッキーから指定した名前のクッキーを取得する関数
+  const getCookie = (name) => {
+    const cookies = document.cookie.split(';')
+    console.log(cookies);
+    const foundCookie = cookies.find(
+      (cookie) => cookie.split('=')[0].trim() === name.trim()
+    )
+    if (foundCookie) {
+      const cookieValue = decodeURIComponent(foundCookie.split('=')[1])
+      return cookieValue
+    }
+    return null
+  };
+  // 発行されたトークンを管理
+  const [authToken, setAuthToken] = useState('');
+  const checkAuthToken = () => {
+    const token = getCookie('auth_token');
+    console.log(token);
+  };
+  checkAuthToken();
+
+
+  return (
+    <div>
+      {authToken ? <p>ログインしている</p> : <p>ログインしていません</p>}
+    </div>
+  );
+};
+
 
 const App = () => {
   // モーダル1:今日のゴミ回収(分割代入)
@@ -17,42 +48,13 @@ const App = () => {
   // モーダル2:設定(分割代入)
   const { isOpen: isOpenModal2, open: openModal2, close: closeModal2 } = useModal();
 
-  // 発行されたAPIトークンを管理
-  const [token, setToken] = useState(null);
-
-  const fetchToken = () => {
-    axios.post('/api/tokens/create')
-      .then(response => {
-        const token = response.data.token;
-        localStorage.setItem('accessToken', token);
-        setToken(token);
-        console.log(token);
-      })
-      .catch(error => {
-        console.log('Error:', error);
-        if (error.response && error.response.status === 401) {
-          console.error('認証に失敗しました。ログインし直してください。');
-        }
-      });
-  };
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem('accessToken');
-    if (storedToken) {
-      setToken(storedToken);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
-    }
-  }, [token]);
+  // ログイン状態の管理
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <>
       <Header />
-      <button onClick={fetchToken}>トークンを取得する</button>
-      {token && (
-        <div>
-          <p>トークン: {token}</p>
-        </div>
-      )}
+      <AuthStatus />
       <div className='flex justify-center items-center m-16'>
         <main className="grid grid-cols-3 gap-16 items-center mt-10">
           <MainCard
@@ -101,3 +103,4 @@ const App = () => {
 };
 
 export default App;
+
