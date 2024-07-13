@@ -1,12 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SchedulePatternsController;
 use App\Http\Controllers\SortingGuidesController;
 use App\Http\Controllers\SchedulesController;
+use App\Http\Controllers\SocialAuthController;
+use App\Http\Controllers\GoogleCalendarController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ScheduleMemoController;
 use App\Models\Item;
 
 //認証不要なルート
@@ -19,13 +22,18 @@ Route::get('/item', function () {
   return Item::paginate();
 });
 
-// API トークンを発行するエンドポイント(ユーザー認証済みかを確認)
-Route::middleware('auth:sanctum')->post('/tokens/create', function (Request $request) {
-  // 認証されたユーザーのみがアクセスできる
-  $user = $request->user();
-  $token = $user->createToken('auth_token')->plainTextToken;
+//認証ルート
+Route::middleware('auth:sanctum')->post('/tokens/create/google', [SocialAuthController::class, 'handleGoogleCallback']);
+Route::middleware('auth:sanctum')->post('/tokens/create/line', [SocialAuthController::class, 'handleLineCallback']);
 
-  return response()->json(['token' => $token]);
-});
+Route::get('/tokens/create', [SocialAuthController::class, 'handleGoogleCallback']);
 
 
+//カレンダーのルート
+Route::post('/calendar/event/add', [GoogleCalendarController::class, 'addEvent']);
+
+Route::post('/logout', [LogoutController::class, 'logout'])
+  ->middleware('auth:sanctum');
+
+//仮のルート(後で認証ルートに変更)
+Route::post('/memos', [ScheduleMemoController::class, 'store']);
