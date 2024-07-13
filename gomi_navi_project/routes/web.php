@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\GoogleCalendarController;
 use App\Http\Controllers\SocialAuthController;
 
 // お問い合わせ
@@ -15,7 +16,7 @@ Route::view('/item', 'item');
 Route::view('/category', 'categories');
 // メイン
 Route::view('/', 'app')->name('home');
-
+//アイテムの別検索
 Route::get('/items', [ItemController::class, 'index'])->name('item');
 
 // GoogleAuthのルート
@@ -26,6 +27,3 @@ Route::get('login/google/callback', [SocialAuthController::class, 'handleGoogleC
 Route::get('login/line', [SocialAuthController::class, 'redirectToLine']);
 Route::get('login/line/callback', [SocialAuthController::class, 'handleLineCallback']);
 
-
-//ログアウト処理
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
