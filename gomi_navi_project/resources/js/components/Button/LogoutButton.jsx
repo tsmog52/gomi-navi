@@ -1,28 +1,33 @@
-import React from 'react'
-import axios from 'axios'
-
-// CSRFトークンの設定
-// axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+import React from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const LogoutButton = () => {
+
+  const deleteCookie = (name) => {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 2000 00:00:00 UTC; path=/;`;
+  };
+
   const handleLogout = async () => {
     try {
-      await axios.post('/logout')
-      //ログアウト後にリダイレクト
+      // ローカルストレージからトークンを削除
+      localStorage.removeItem('accessToken');
+      // クッキーを削除
+      Cookies.remove('auth_token');
+      // API経由でログアウト処理を行う(バックエンドのログアウトAPIのエンドポイントを指定)
+      await axios.post('http://127.0.0.1:8000/api/logout', {}, {
+        withCredentials: true
+      });
+      // ログアウト後のリダイレクト
       window.location.href = '/';
-      console.log('ログイン成功:', response.data);
     } catch (error) {
-      console.log('通信に失敗しました:', error);
+      console.error('Error logging out:', error);
     }
   };
 
   return (
-    <>
-      <button onClick={handleLogout}>
-        ログアウト
-      </button>
-    </>
-  )
-}
+    <button onClick={handleLogout}>ログアウト</button>
+  );
+};
 
-export default LogoutButton
+export default LogoutButton;
