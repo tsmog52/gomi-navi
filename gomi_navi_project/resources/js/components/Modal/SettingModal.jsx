@@ -2,12 +2,25 @@ import React, {useState} from 'react';
 import { Field, Label, Radio, RadioGroup } from '@headlessui/react';
 import SocialMediaButton from '../Button/SocialMediaButton';
 import CloseButton from '../Button/CloseButton';
+import axios from 'axios';
 
 const regions = ['川崎区', '中原区', '高津区', '宮前区', '多摩区', '麻生区', '幸区 '];
 
 const SettingModal = ({ onClose }) => {
 
 const [selected, setSelected] = useState(regions[0])
+
+//カレンダーとの連携
+  const handleAddEvent = async () => {
+      try {
+          const response = await axios.post('/api/calendar/event/add');
+          console.log('Event added:', response.data);
+          alert('イベントが追加されました。');
+      } catch (error) {
+          console.error('Error adding event:', error);
+          alert('イベントの追加中にエラーが発生しました。');
+      }
+  };
 
   return (
   <>
@@ -37,7 +50,8 @@ const [selected, setSelected] = useState(regions[0])
           </div>
           </RadioGroup>
             <p className='text-center font-bold text-xl p-4'>外部カレンダー連携</p>
-            <SocialMediaButton text='Googleと連携する' />
+              <button onClick={handleAddEvent}>カレンダーと連携</button>
+            {/* <SocialMediaButton text='Googleと連携する' /> */}
             <p className='text-center font-bold text-xl p-4'>外部リマインダー連携</p>
             <SocialMediaButton text='LINEと連携する' />
         </div>
