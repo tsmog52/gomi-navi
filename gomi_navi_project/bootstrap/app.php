@@ -17,8 +17,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append(EnsureTokenIsValid::class);
+        //SPA認証
+        $middleware->statefulApi();
 
-        //Sanctumのミドルウェアをエイリアスとして定義
+        //Sanctumのミドルウェアをエイリアスとして定義(APIトークン)
         $middleware->alias([
             'abilities' => CheckAbilities::class,
             'ability' => CheckForAnyAbility::class,
