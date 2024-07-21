@@ -1,29 +1,25 @@
 import React, { useState } from 'react';
 import CloseButton from '../Button/CloseButton';
-import axios from 'axios';
+import { postData } from '../../api';
 
-const MemoModal = ({isOpen, onClose}) => {
+const MemoModal = ({ text, onClose }) => {
   const [inputText, setInputText] = useState('');
-
   const onChange = (e) => {
     setInputText(e.target.value);
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //内容をAPIに送信してDBに保存する
     try {
-      const response = await axios.post('/api/memos', { note: inputText });
-      console.log('保存しました:', response.data);
-      console.log(inputText);
-      //入力欄をクリアにする
-      // setInputText('');
+      const response = await postData(inputText);
+      console.log(response);
+      setInputText('');
+      onClose();
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error.message); // エラーメッセージの出力
     }
+
   }
-
-
   return (
     <>
       <div
@@ -45,7 +41,7 @@ const MemoModal = ({isOpen, onClose}) => {
               type='submit'
               className="bg-gray-600 mt-4 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded border"
             >
-              メモを保存する
+              {text}
             </button>
           </form>
         </div>
