@@ -5,7 +5,6 @@ use Laravel\Sanctum\Http\Middleware\CheckAbilities;
 use Laravel\Sanctum\Http\Middleware\CheckForAnyAbility;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Http\Middleware\EnsureTokenIsValid;
 
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -16,15 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(EnsureTokenIsValid::class);
         //SPA認証
         $middleware->statefulApi();
-
-        //Sanctumのミドルウェアをエイリアスとして定義(APIトークン)
-        $middleware->alias([
-            'abilities' => CheckAbilities::class,
-            'ability' => CheckForAnyAbility::class,
-        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
