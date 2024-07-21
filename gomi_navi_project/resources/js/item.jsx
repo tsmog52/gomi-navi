@@ -8,17 +8,12 @@ import ArrowButton from './components/Button/ArrowButton';
 import InputField from './components/InputField';
 
 const Item = () => {
-    //アイテム取得用
   const [items, setItems] = useState([]);
-  //アコーディオンの開閉用
+  const [allItems, setAllItems] = useState([]);
   const { isAccordion, toggleAccordion } = useAccordion(null);
-  //input欄
   const [inputValue, setInputValue] = useState("");
-    //絞り込み
-  const [filteredValue, setFilteredValue] = useState("");
-  //検索結果
+  const [filteredValue, setFilteredValue] = useState([]);
   const [showDetailSearch, setShowDetailSearch] = useState(false);
-  //ページネーション用
   const [pagination, setPagination] = useState({
     current_page: 1,
     last_page: null,
@@ -31,6 +26,7 @@ const Item = () => {
       try {
         const response = await axios.get(`/api/items?page=${page}`);
         setItems(response.data.data);
+        setAllItems(response.data.data);
         setPagination({
           current_page: response.data.current_page,
           last_page: response.data.last_page,
@@ -86,7 +82,7 @@ const Item = () => {
     <>
       <Header />
       <div className='flex'>
-        <div className='w-2/5'>
+        <div className='w-2/5 h-screen bg-white overflow-auto'>
           <InputField
             value={inputValue}
             onChange={handleChange}
@@ -123,22 +119,22 @@ const Item = () => {
             )}
           </ul>
         </div>
-        <div className='w-3/5 bg-gray-100 flex justify-center items-center'>
-          <div className='max-w-2xl bg-white flex justify-center items-center'>
+        <div className='w-3/5 bg-gray-100'>
+          <div className=' flex items-center justify-center right-panel h-full overflow-auto'>
             {items.map((item, index) => (
               isAccordion === index && (
-                <div className='w-96 h-128 bg-white p-4' key={index}>
+                <div className='w-112 bg-white rounded-lg p-4 mb-4' key={index}>
                   <div className='p-4'>
                     <ul>
                       <li className='text-lg'>
-                        <div className='w-128 border-2 p-2 mb-3'>
+                        <div className='w-96 border-2 p-2 mb-3'>
                           <p className='mr-4'>分類</p>
                           <div className='text-3xl text-center'>
                             {item.category_name}
                           </div>
                         </div>
                         {item.item_memo !== null ? (
-                          <div className='w-128 border-2 p-2'>
+                          <div className='w-96 border-2 p-2'>
                             <p className=' text-2xl font-normal pb-2'>出し方</p>
                             {item.item_memo}
                           </div>
@@ -161,4 +157,3 @@ export default Item;
 const container = document.getElementById('item');
 const root = createRoot(container);
 root.render(<Item />);
-
