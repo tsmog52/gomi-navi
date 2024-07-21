@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '/resources/css/app.css';
 import useModal from '../hooks/useModal';
 import Modal from './Modal/Modal';
 import AddMemoButton from './Button/AddMemoButton';
 import LogoutButton from './Button/LogoutButton';
+import axios from 'axios';
 
 const Header = () => {
 //モーダル1:ログイン(分割代入)
