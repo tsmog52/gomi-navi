@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { FaTruck, FaSearch, FaCalendarAlt } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
 import { AiFillDelete } from "react-icons/ai";
@@ -9,38 +9,10 @@ import SettingModal from './components/Modal/SettingModal';
 import PickupModal from './components/Modal/PickupModal';
 import MainCard from './components/Card/MainCard';
 import Footer from './components/Footer';
+import Cookie from 'js-cookie';
 
-// AuthStatusコンポーネントの定義
-const AuthStatus = () => {
-  // クッキーから指定した名前のクッキーを取得する関数
-  const getCookie = (name) => {
-    const cookies = document.cookie.split(';')
-    console.log(cookies);
-    const foundCookie = cookies.find(
-      (cookie) => cookie.split('=')[0].trim() === name.trim()
-    )
-    if (foundCookie) {
-      const cookieValue = decodeURIComponent(foundCookie.split('=')[1])
-      return cookieValue
-    }
-    return null
-  };
-  // 発行されたトークンを管理
-  const [authToken, setAuthToken] = useState('');
-  const checkAuthToken = () => {
-    const token = getCookie('auth_token');
-    console.log(token);
-  };
-  checkAuthToken();
-
-
-  return (
-    <div>
-      {authToken ? <p>ログインしている</p> : <p>ログインしていません</p>}
-    </div>
-  );
-};
-
+//ログイン回り
+export const AuthContext = createContext();
 
 const App = () => {
   // モーダル1:今日のゴミ回収(分割代入)
@@ -48,13 +20,9 @@ const App = () => {
   // モーダル2:設定(分割代入)
   const { isOpen: isOpenModal2, open: openModal2, close: closeModal2 } = useModal();
 
-  // ログイン状態の管理
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   return (
     <>
       <Header />
-      <AuthStatus />
       <div className='flex justify-center items-center m-16'>
         <main className="grid grid-cols-3 gap-16 items-center mt-10">
           <MainCard
@@ -103,4 +71,3 @@ const App = () => {
 };
 
 export default App;
-
