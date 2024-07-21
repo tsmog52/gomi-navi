@@ -10,6 +10,7 @@ use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\GoogleCalendarController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ScheduleMemoController;
+use Illuminate\Http\Request;
 use App\Models\Item;
 
 //認証不要なルート
@@ -22,18 +23,24 @@ Route::get('/item', function () {
   return Item::paginate();
 });
 
+
+Route::get('/memo', [ScheduleMemoController::class, 'index']);
+
+Route::middleware('auth:sanctum')->group(function () {
+  Route::post('/memo/create', [ScheduleMemoController::class, 'store']);
+  Route::delete('/memo/{id}', [ScheduleMemoController::class, 'destroy']);
+  Route::put('/memo/{id}', [ScheduleMemoController::class, 'update']);
+  Route::get('/memo/{id}', [ScheduleMemoController::class, 'show']);
+});
+
+
+
+//ユーザーのログイン状態チェック用
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//   return $request->user();
+// });
+
+
 //認証ルート
 Route::middleware('auth:sanctum')->post('/tokens/create/google', [SocialAuthController::class, 'handleGoogleCallback']);
 Route::middleware('auth:sanctum')->post('/tokens/create/line', [SocialAuthController::class, 'handleLineCallback']);
-
-Route::get('/tokens/create', [SocialAuthController::class, 'handleGoogleCallback']);
-
-
-//カレンダーのルート
-Route::post('/calendar/event/add', [GoogleCalendarController::class, 'addEvent']);
-
-Route::post('/logout', [LogoutController::class, 'logout'])
-  ->middleware('auth:sanctum');
-
-//仮のルート(後で認証ルートに変更)
-Route::post('/memos', [ScheduleMemoController::class, 'store']);
