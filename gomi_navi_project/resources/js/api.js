@@ -24,8 +24,7 @@ export const getMemos = async () => {
     const response = await axiosInstance.get('/api/memo');
     return response.data;
   } catch (error) {
-    console.error('APIリクエストエラー:', error.response ? error.response.data : error.message);
-    console.error('詳細:', error.response ? error.response.data : 'レスポンスなし');
+    console.error(error.message);
   }
 };
 
@@ -38,14 +37,9 @@ export const postData = async (inputData) => {
   } catch (error) {
     if (error.response) {
       // サーバーがエラー応答を返した場合
-      console.error('Error Response:', error.response.data);
       console.error('Error Status:', error.response.status);
-    } else if (error.request) {
-      // リクエストが送信されたが応答がなかった場合
-      console.error('Error Request:', error.request);
     } else {
-      // リクエストの設定中にエラーが発生した場合
-      console.error('Error Message:', error.message);
+      console.error(error.message);
     }
   }
 };
