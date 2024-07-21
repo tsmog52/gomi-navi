@@ -3,20 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\ScheduleMemo;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
 class ScheduleMemoController extends Controller
 {
+
+    public function index()
+    {
+        $memos = ScheduleMemo::all();
+        return response()->json([
+            'memos' => $memos
+        ], Response::HTTP_OK);
+    }
+
     public function store(Request $request)
     {
         // 認証されたユーザーを取得
         $user = $request->user();
 
+
         // ユーザーが存在しない場合のエラーハンドリング
         if (!$user) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Not found'], 404);
         }
 
         // バリデーションを行い、入力データを取得
@@ -34,5 +44,34 @@ class ScheduleMemoController extends Controller
         return response()->json([
             'scheduleMemo' => $scheduleMemo
         ], Response::HTTP_CREATED);
+    }
+
+    public function destroy($id):JsonResponse
+    {
+            $scheduleMemo = ScheduleMemo::find($id);
+            $scheduleMemo->delete();
+
+            return response()->json(['message' => 'メモが削除されました']);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $scheduleMemo = ScheduleMemo::find($id);
+        if(!$scheduleMemo) {
+            return response()->json(['message' => 'Not found'], 404);
+        }
+        $scheduleMemo->note = $request->input('note');
+        $scheduleMemo->save();
+
+        return response()->json($scheduleMemo, 200);
+    }
+
+    public function show($id)
+    {
+        $scheduleMemo = ScheduleMemo::find($id);
+        if (!$scheduleMemo) {
+            return response()->json(['message' => 'Not found'], 404);
+        }
+        return response()->json($scheduleMemo, 200);
     }
 }
