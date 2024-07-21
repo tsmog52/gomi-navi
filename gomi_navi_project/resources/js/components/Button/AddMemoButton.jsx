@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BsPlusSquare } from "react-icons/bs";
 import useModal from '../../hooks/useModal';
 import MemoModal from '../Modal/MemoModal';
