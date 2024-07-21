@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\GoogleCalendarController;
 use App\Http\Controllers\SocialAuthController;
 
 // お問い合わせ
@@ -18,6 +16,12 @@ Route::view('/category', 'categories');
 Route::view('/', 'app')->name('home');
 //アイテムの別検索
 Route::get('/items', [ItemController::class, 'index'])->name('item');
+
+//CSRFトークンを取得するためのエンドポイント
+Route::get('/sanctum/csrf-cookie', function () {
+  return response()->json();
+});
+
 
 // GoogleAuthのルート
 Route::get('login/google', [SocialAuthController::class, 'redirectToGoogle']);
