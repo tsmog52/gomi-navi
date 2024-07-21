@@ -13,7 +13,7 @@ const Modal = ({title, linkText, onClose, google, line }) => {
               {title}
             </h2>
             <SocialMediaButton text={google} socialLink={"/login/google"}/>
-            <SocialMediaButton text={line} socialLink={"/login/line/redirect"}/>
+            <SocialMediaButton text={line} socialLink={"/login/line"}/>
               <p className="mb-4">
                 <a className="text-blue-600 underline hover:text-blue-400" href="#">
                   {linkText}
