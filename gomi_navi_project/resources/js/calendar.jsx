@@ -2,12 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import axios from 'axios';
 import Header from './components/Header';
+import MemoModal from './components/Modal/MemoModal';
+import { getMemos, updateMemo, deleteMemo, getMemoById } from './api';
 
 const Calendar = () => {
-  //カレンダーapi
+  //カレンダーを取得
   const [calendars, setCalendars] = useState([]);
-  //メモapi
-  const [memo, setMemo] = useState([]);
+  //メモを取得
+  const [memos, setMemos] = useState([]);
+
+  //編集メモの値を取得
+  const [editingMemo, setEditingMemo] = useState(null);
+
+  //編集モーダルのカスタムフック
+  const [isEditing, setIsEditing] = useState(false);
 
   // en→jaへ変更
   const daysOfWeek = {
@@ -37,7 +45,7 @@ const Calendar = () => {
         const sortedData = sortCalendars(response.data);
         setCalendars(sortedData);
       } catch (error) {
-        console.error('通信に失敗しました:', error);
+        console.log(error);
       }
     };
       getCalendarData();
@@ -56,14 +64,52 @@ const Calendar = () => {
   useEffect(() => {
     const getMemoData = async () => {
       try {
-        const response = await axios.get('api/memo');
-        setMemo(response.data);
+        const response = await getMemos();
+        setMemos(response.memos || []);
       } catch (error) {
-        console.log('通信に失敗しました:', error);
+        console.log(error);
       }
     };
-      getMemoData();
+    getMemoData();
   }, []);
+
+    const handleDelete = async(id) => {
+      try {
+        await deleteMemo(id);
+        console.log('削除成功');
+        setMemos(memos.filter(memo => memo.id !== id));
+      } catch (error) {
+        console.log('削除失敗');
+      }
+    };
+
+    const handleEdit = async (id) => {
+      try{
+        const memo = await getMemoById(id);
+        setEditingMemo(memo);
+        setIsEditing(true);
+        console.log(memo);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const handleUpdate = async (updatedMemo) => {
+      try {
+        await updateMemo(updatedMemo);
+        console.log('成功');
+        //メモの再取得・更新後のステート
+        setMemos(memos.map(memo => memo.id === updatedMemo.id ? updatedMemo : memo));
+        handleCloseEdit();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const handleCloseEdit = () => {
+      setIsEditing(false);
+      setEditingMemo(null);
+    };
 
   return (
     <>
@@ -97,9 +143,43 @@ const Calendar = () => {
             </div>
           </div>
         ))}
-        <div className='border-2 mt-4 w-full max-w-xl p-2'>
+        <div className='border-2 mt-4 w-full h-auto max-w-xl p-2'>
           <p>メモ</p>
-          <p>{memo}</p>
+          <ul>
+          {memos.map((memo, id) => (
+            <>
+              <div
+                className="flex items-center justify-between p-2 border-b border-gray-200"
+              >
+                <li key={id} className="flex-grow text-gray-800">
+                  <a href="#" className="hover:underline">{memo.note}</a>
+                </li>
+                <div className="flex space-x-2">
+                  <button
+                    className="text-red-500 hover:text-red-700"
+                    onClick={() =>handleDelete(memo.id)}
+                  >
+                    削除
+                  </button>
+                  <button
+                    className="text-blue-500 hover:text-blue-700"
+                    onClick={() => handleEdit(memo.id)}
+                  >
+                    編集
+                  </button>
+                  {isEditing && (
+                    <MemoModal
+                      text="保存"
+                      onClose={handleCloseEdit}
+                      onSave={handleUpdate}
+                      editingMemo={editingMemo}
+                    />
+                  )}
+                </div>
+              </div>
+            </>
+          ))}
+        </ul>
         </div>
       </div>
     </>
