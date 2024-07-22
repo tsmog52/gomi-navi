@@ -17,6 +17,11 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         //SPA認証
         $middleware->statefulApi();
+        // 暗号化を無効
+        $middleware->encryptCookies(except: [
+            'access_token',
+            'user_id',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
