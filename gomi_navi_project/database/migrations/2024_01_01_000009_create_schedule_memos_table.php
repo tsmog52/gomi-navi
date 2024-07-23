@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sorting_guides', function (Blueprint $table) {
+        Schema::create('schedule_memos', function (Blueprint $table) {
             $table->id();
-            $table->text('instruction');
+            $table->text('note');
             $table->timestamps();
+            $table->foreignId('schedule_id')->constrained('schedules')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sorting_guides');
+        Schema::dropIfExists('schedule_memos');
     }
 };

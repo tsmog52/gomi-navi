@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('token', 100)->unique();
-            $table->string('refresh_token', 100)->unique();
-            $table->timestamp('expires_at');
             $table->timestamps();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+            $table->foreignId('schedule_pattern_id')->constrained('schedule_patterns')->cascadeOnDelete();
+            $table->foreignId('region_id')->constrained('regions')->cascadeOnDelete();
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('personal_access_tokens');
+        Schema::dropIfExists('schedules');
     }
 };

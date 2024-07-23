@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('social_accounts', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('provider', 100);
-            $table->bigInteger('provider_id');
+            $table->string('item_name', 50);
+            $table->text('item_memo')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');
-            //外部キー制約
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('category_id')->nullable()->constrained('categories');
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('social_accounts');
+        Schema::dropIfExists('items');
     }
 };

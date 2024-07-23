@@ -13,12 +13,18 @@ return new class extends Migration
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
+            // https://laravel.com/docs/11.x/migrations#column-method-morphs
             $table->morphs('tokenable');
-            $table->string('token', 64)->unique();
+            // アクセストークンを示す
+            $table->string('token', 255)->unique();
+            // ユーザーまたはクライアントが持つ権限や能力を示す
             $table->text('abilities')->nullable();
+            // 最後にアクセストークンが使用された日時を示す
             $table->timestamp('last_used_at')->nullable();
+            // アクセストークンの有効期限を示す
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
         });
     }
 

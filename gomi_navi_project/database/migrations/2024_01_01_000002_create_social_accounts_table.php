@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('social_accounts', function (Blueprint $table) {
-            $table->string('provider_id', 255)->change();
+        Schema::create('social_accounts', function (Blueprint $table) {
+            $table->id();
+            $table->string('provider', 255);
+            $table->string('provider_id', 255);
+            $table->timestamps();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('social_accounts', function (Blueprint $table) {
-            $table->string('provider_id')->change();
-        });
+        Schema::dropIfExists('social_accounts');
     }
 };
