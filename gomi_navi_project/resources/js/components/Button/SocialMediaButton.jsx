@@ -4,12 +4,14 @@ import React from 'react';
 const SocialMediaButton = ({ text, socialLink }) => {
   const handleClick = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/auth/google/callback');
-      const {token, user_id} = response.data;
-      //クッキーに保存する
-      document.cookie = `token=${token}; path=/`;
-      document.cookie = `user_id=${user_id}; path=/`;
-      window.location.href = 'http://127.0.0.1:8000/';
+      // const response = await axios.get('http://127.0.0.1:8000/auth/google/callback');
+      const response = await axios.get(`http://localhost:8000/${socialLink}`);
+      console.log(response.data);
+      // const {token, user_id} = response.data;
+      // //クッキーに保存する
+      // document.cookie = `token=${token}; path=/`;
+      // document.cookie = `user_id=${user_id}; path=/`;
+      // window.location.href = 'http://127.0.0.1:8000/';
     } catch (error) {
       console.error('Google認証コールバックのエラー:', error);
     }

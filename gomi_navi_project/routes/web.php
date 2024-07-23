@@ -27,7 +27,9 @@ Route::get('/sanctum/csrf-cookie', function () {
 Route::get('login/google', [SocialAuthController::class, 'redirectToGoogle']);
 Route::get('login/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 
-// LINEAuthのルート
-Route::get('login/line', [SocialAuthController::class, 'redirectToLine']);
-Route::get('login/line/callback', [SocialAuthController::class, 'handleLineCallback']);
+Route::get('/login', function () {
+  return view('login');
+});
+Route::get('auth/line', [SocialAuthController::class, 'redirectToLine'])->name('line.login');
+Route::get('auth/line/callback', [SocialAuthController::class, 'handleLineCallback']);
 
