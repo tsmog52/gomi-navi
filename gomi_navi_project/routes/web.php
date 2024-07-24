@@ -16,18 +16,18 @@ Route::view('/category', 'categories');
 Route::view('/', 'app')->name('home');
 //アイテムの別検索
 Route::get('/items', [ItemController::class, 'index'])->name('item');
+//プライバシーポリシー
+Route::view('/privacy', 'privacy');
 
 //CSRFトークンを取得するためのエンドポイント
 Route::get('/sanctum/csrf-cookie', function () {
   return response()->json();
 });
 
-
 // GoogleAuthのルート
-Route::get('login/google', [SocialAuthController::class, 'redirectToGoogle']);
+Route::get('login/google', [SocialAuthController::class, 'redirectToGoogle'])->name('login');
 Route::get('login/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 
 // LINEAuthのルート
-Route::get('login/line', [SocialAuthController::class, 'redirectToLine']);
-Route::get('login/line/callback', [SocialAuthController::class, 'handleLineCallback']);
-
+Route::get('auth/line', [SocialAuthController::class, 'redirectToLine']);
+Route::get('auth/line/callback', [SocialAuthController::class, 'handleLineCallback']);
