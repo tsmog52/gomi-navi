@@ -23,9 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
         Event::listen(function (\SocialiteProviders\Manager\SocialiteWasCalled $event) {
-            // Log::info('SocialiteWasCalled event fired');
             $event->extendSocialite('line', \SocialiteProviders\Line\Provider::class);
         });
     }
