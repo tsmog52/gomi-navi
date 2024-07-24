@@ -18,6 +18,9 @@ Route::view('/', 'app')->name('home');
 Route::get('/items', [ItemController::class, 'index'])->name('item');
 //プライバシーポリシー
 Route::view('/privacy', 'privacy');
+//利用規約
+Route::view('/terms', 'terms');
+
 
 //CSRFトークンを取得するためのエンドポイント
 Route::get('/sanctum/csrf-cookie', function () {
