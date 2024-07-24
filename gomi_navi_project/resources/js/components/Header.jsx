@@ -22,7 +22,12 @@ const Header = () => {
                 <LogoutButton />
               <li><AddMemoButton /></li>
               <li>
-                <button onClick={openModal1}>ログイン</button>
+                <button
+                  onClick={openModal1}
+                  className='text-gray-600 hover:text-gray-400 transition-colors duration-300'
+                >
+                  ログイン
+                </button>
                 {isOpenModal1
                 &&
                 <Modal
@@ -35,7 +40,12 @@ const Header = () => {
                 }
               </li>
               <li>
-                <button onClick={openModal2}>会員登録</button>
+                <button
+                  onClick={openModal2}
+                  className='text-gray-600 hover:text-gray-400 transition-colors duration-300'
+                >
+                  会員登録
+                </button>
                 {isOpenModal2
                 &&
                 <Modal
