@@ -13,6 +13,7 @@ const Item = () => {
   const { isAccordion, toggleAccordion } = useAccordion(null);
   const [inputValue, setInputValue] = useState("");
   const [filteredValue, setFilteredValue] = useState([]);
+  //true:検索結果の表示　false:アイテムリスト
   const [showDetailSearch, setShowDetailSearch] = useState(false);
   const [pagination, setPagination] = useState({
     current_page: 1,
@@ -26,7 +27,6 @@ const Item = () => {
       try {
         const response = await axios.get(`/api/items?page=${page}`);
         setItems(response.data.data);
-        setAllItems(response.data.data);
         setPagination({
           current_page: response.data.current_page,
           last_page: response.data.last_page,
@@ -37,7 +37,18 @@ const Item = () => {
         console.log('通信に失敗しました', error);
       }
     };
+
+    const getAllItemsData = async () => {
+      try {
+        const response = await axios.get('/api/items/all');
+        setAllItems(response.data.data);
+      } catch (error) {
+        console.log('全データの取得に失敗しました');
+      }
+    };
+
     getItemsData(pagination.current_page);
+    getAllItemsData();
   }, [pagination.current_page]);
 
   const handleChange = (e) => {
@@ -45,13 +56,14 @@ const Item = () => {
   };
 
   const handleClick = () => {
-    const filteredItems = items.filter((item) => item.item_name.includes(inputValue));
+    const filteredItems = allItems.filter((item) => item.item_name.includes(inputValue));
     if (filteredItems.length === 0) {
-      alert("検索結果なし");
+      setFilteredValue([]);
+      setShowDetailSearch(true);
       return;
     }
     setFilteredValue(filteredItems);
-    setShowDetailSearch(!showDetailSearch);
+    setShowDetailSearch(true);
   };
 
   const handleNextPage = () => {
@@ -97,15 +109,21 @@ const Item = () => {
           />
           <ul>
             {showDetailSearch ? (
-              filteredValue.map((item, index) => (
-                <li key={index}>
-                  <button onClick={() => toggleAccordion(index)} className='flex justify-between w-full p-4 text-2xl'>
-                    {item.item_name}
-                    <MdOutlineKeyboardArrowRight size={30} className='text-gray-400' />
-                  </button>
-                  <div className='border-b-2'></div>
-                </li>
-              ))
+              filteredValue.length === 0 ? (
+                <div className="p-4 text-center text-lg text-gray-600">
+                  検索結果がありません。<br />再度条件を変更してお試しください。
+                </div>
+              ) : (
+                filteredValue.map((item, index) => (
+                  <li key={index}>
+                    <button onClick={() => toggleAccordion(index)} className='flex justify-between w-full p-4 text-2xl'>
+                      {item.item_name}
+                      <MdOutlineKeyboardArrowRight size={30} className='text-gray-400' />
+                    </button>
+                    <div className='border-b-2'></div>
+                  </li>
+                ))
+              )
             ) : (
               items.map((item, index) => (
                 <li key={index}>
