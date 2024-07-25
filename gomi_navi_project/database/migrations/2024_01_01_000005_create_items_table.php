@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('item_name', 50);
+            $table->text('item_memo')->nullable();
             $table->timestamps();
+            $table->foreignId('category_id')->nullable()->constrained('categories');
         });
     }
 
@@ -26,3 +28,4 @@ return new class extends Migration
         Schema::dropIfExists('items');
     }
 };
+
