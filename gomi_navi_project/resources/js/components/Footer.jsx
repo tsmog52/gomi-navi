@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaGithub } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -22,9 +23,14 @@ const Footer = () => {
             </a>
           </li>
         </ul>
-        <p className='text-sm text-gray-600'>
-          <span className='pr-1'>&copy;</span>2024 gomi-navi
-        </p>
+        <div className='flex'>
+          <p className='text-sm text-gray-600 pr-2'>
+            <span className='pr-1'>&copy;</span>2024 gomi-navi
+          </p>
+          <a href="https://github.com/tsmog52/gomi-navi">
+            <FaGithub  className='text-gray-600 hover:text-gray-400 transition-colors duration-300'/>
+          </a>
+        </div>
       </div>
     </footer>
   )
