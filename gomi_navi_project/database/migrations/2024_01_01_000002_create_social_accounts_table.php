@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('social_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('provider', 100);
-            $table->bigInteger('provider_id');
+            $table->string('provider', 255);
+            $table->string('provider_id', 255);
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');
-            //外部キー制約
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
         });
     }
 
@@ -30,3 +28,4 @@ return new class extends Migration
         Schema::dropIfExists('social_accounts');
     }
 };
+
