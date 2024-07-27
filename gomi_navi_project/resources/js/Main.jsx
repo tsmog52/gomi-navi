@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaTruck, FaSearch, FaCalendarAlt } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
 import { AiFillDelete } from "react-icons/ai";
@@ -10,12 +10,31 @@ import PickupModal from './components/Modal/PickupModal';
 import MainCard from './components/Card/MainCard';
 import Footer from './components/Footer';
 import useAuth from './hooks/useAuth';
+import { getCookie } from './api';
 
 const Main = () => {
   // モーダル1:今日のゴミ回収
   const { isOpen: isOpenModal1, open: openModal1, close: closeModal1 } = useModal();
    // モーダル2:設定
   const { isOpen: isOpenModal2, open: openModal2, close: closeModal2 } = useModal();
+  const [user, setUser] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
+
+  useEffect(() => {
+    const token = getCookie('access_token');
+    const userId = getCookie('user_id');
+
+    console.log('Access Token:', token);
+    console.log('User ID:', userId);
+
+    if (token && userId) {
+      setAccessToken(token);
+      setUser(userId);
+    } else {
+      console.error('取得に失敗しました。');
+    }
+  }, []);
+
 
   useAuth();
 
