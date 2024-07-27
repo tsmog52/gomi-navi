@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import SocialMediaButton from '../Button/SocialMediaButton';
+import SocialMediaButton from '../Button/GoogleButton';
 import CloseButton from '../Button/CloseButton';
 import axios from 'axios';
+import LineButton from '../Button/LineButton';
+import GoogleButton from '../Button/GoogleButton';
 
 const regions = ['川崎区', '中原区', '高津区', '宮前区', '多摩区', '麻生区', '幸区'];
 
@@ -45,15 +47,9 @@ const SettingModal = ({ onClose }) => {
             ))}
           </div>
           <p className='text-center font-bold text-xl p-4'>外部カレンダー連携</p>
-          <button
-            onClick={handleAddEvent}
-            className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 active:bg-green-700"
-          >
-            カレンダーと連携
-          </button>
-          {/* <SocialMediaButton text='Googleと連携する' /> */}
+          <GoogleButton text='Googleと連携する'/>
           <p className='text-center font-bold text-xl p-4'>外部リマインダー連携</p>
-          <SocialMediaButton text='LINEと連携する' />
+          <LineButton text='LINEと連携する' />
         </div>
       </div>
     </>
