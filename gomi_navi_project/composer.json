@@ -12,6 +12,7 @@
         "laravel/socialite": "^5.15",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
+        "linecorp/line-bot-sdk": "^9.9",
         "nesbot/carbon": "^3.6",
         "socialiteproviders/google": "^4.1",
         "socialiteproviders/line": "^4.1"
