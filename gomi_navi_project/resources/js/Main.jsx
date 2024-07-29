@@ -9,16 +9,22 @@ import SettingModal from './components/Modal/SettingModal';
 import PickupModal from './components/Modal/PickupModal';
 import MainCard from './components/Card/MainCard';
 import Footer from './components/Footer';
-import useAuth from './hooks/useAuth';
-import { getCookie } from './api';
 
 const Main = () => {
   // モーダル1:今日のゴミ回収
   const { isOpen: isOpenModal1, open: openModal1, close: closeModal1 } = useModal();
    // モーダル2:設定
   const { isOpen: isOpenModal2, open: openModal2, close: closeModal2 } = useModal();
-  const [user, setUser] = useState(null);
-  const [accessToken, setAccessToken] = useState(null);
+
+  const [user, setUser] = useState('');
+  const [accessToken, setAccessToken] = useState('');
+
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+  };
 
   useEffect(() => {
     const token = getCookie('access_token');
@@ -35,8 +41,6 @@ const Main = () => {
     }
   }, []);
 
-
-  useAuth();
 
   return (
     <>
