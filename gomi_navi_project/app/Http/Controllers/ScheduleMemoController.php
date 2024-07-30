@@ -18,33 +18,53 @@ class ScheduleMemoController extends Controller
         ], Response::HTTP_OK);
     }
 
+    // public function store(Request $request)
+    // {
+    //     // 認証されたユーザーを取得
+    //     $user = $request->user();
+
+
+    //     // ユーザーが存在しない場合のエラーハンドリング
+    //     if (!$user) {
+    //         return response()->json(['error' => 'Not found'], 404);
+    //     }
+
+    //     // バリデーションを行い、入力データを取得
+    //     $inputs = $request->validate([
+    //         'note' => 'required|string',
+    //     ]);
+
+    //     // ScheduleMemoモデルを作成してデータを保存
+    //     $scheduleMemo = new ScheduleMemo();
+    //     $scheduleMemo->note = $inputs['note'];
+    //     $scheduleMemo->user_id = $user->id;
+    //     $scheduleMemo->save();
+
+    //     // 保存したスケジュールメモをレスポンスとして返す
+    //     return response()->json([
+    //         'scheduleMemo' => $scheduleMemo
+    //     ], Response::HTTP_CREATED);
+    // }
     public function store(Request $request)
-    {
-        // 認証されたユーザーを取得
-        $user = $request->user();
+{
+    // バリデーションを行い、入力データを取得
+    $inputs = $request->validate([
+        'note' => 'required|string',
+        'user_id' => 'required|integer|exists:users,id', // ユーザーIDのバリデーション
+    ]);
 
+    // ScheduleMemoモデルを作成してデータを保存
+    $scheduleMemo = new ScheduleMemo();
+    $scheduleMemo->note = $inputs['note'];
+    $scheduleMemo->user_id = $inputs['user_id']; // フロントエンドから送信されたユーザーIDを使用
+    $scheduleMemo->save();
 
-        // ユーザーが存在しない場合のエラーハンドリング
-        if (!$user) {
-            return response()->json(['error' => 'Not found'], 404);
-        }
+    // 保存したスケジュールメモをレスポンスとして返す
+    return response()->json([
+        'scheduleMemo' => $scheduleMemo
+    ], Response::HTTP_CREATED);
+}
 
-        // バリデーションを行い、入力データを取得
-        $inputs = $request->validate([
-            'note' => 'required|string',
-        ]);
-
-        // ScheduleMemoモデルを作成してデータを保存
-        $scheduleMemo = new ScheduleMemo();
-        $scheduleMemo->note = $inputs['note'];
-        $scheduleMemo->user_id = $user->id;
-        $scheduleMemo->save();
-
-        // 保存したスケジュールメモをレスポンスとして返す
-        return response()->json([
-            'scheduleMemo' => $scheduleMemo
-        ], Response::HTTP_CREATED);
-    }
 
     public function destroy($id):JsonResponse
     {

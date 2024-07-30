@@ -2,20 +2,21 @@ import React from 'react';
 import axios from 'axios';
 import BtnBaseImage from '../../../images/btn_base.png';
 
-const LineButton = ({ text }) => {
-  const handleClick = async (e) => {
-    e.preventDefault();
+const LineButton = ({ text, socialLink }) => {
+
+  const handleClick = async () => {
     try {
       const response = await axios.get('http://127.0.0.1:8000/auth/line/callback');
-      const { token, user_id } = response.data;
-      // クッキーに保存する
+      const {token, user_id} = response.data;
+      //クッキーに保存する
       document.cookie = `token=${token}; path=/`;
       document.cookie = `user_id=${user_id}; path=/`;
-      window.location.href = 'http://127.0.0.1:8000/auth/line';
+      window.location.href = 'http://127.0.0.1:8000/';
     } catch (error) {
       console.error('LINE認証コールバックのエラー:', error);
     }
-  };
+    window.location.href = socialLink;
+  }
 
   return (
     <div>
