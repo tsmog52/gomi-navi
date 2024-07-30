@@ -23,25 +23,25 @@ class LineController extends Controller
         return Socialite::driver('line')->redirect();
     }
 
-    public function lineLogin()
-    {
-        $state = Str::random(32);
-        $nonce = Str::random(32);
+    // public function lineLogin()
+    // {
+    //     $state = Str::random(32);
+    //     $nonce = Str::random(32);
 
-        $uri = "https://access.line.me/oauth2/v2.1/authorize?";
-        $response_type = "response_type=code";
-        $client_id = "&client_id=" . config('services.line.client_id');
-        $redirect_uri = "&redirect_uri=" . urlencode(config('services.line.redirect'));
-        $state_uri = "&state=" . $state;
-        $scope = "&scope=openid%20profile";
-        $prompt = "&prompt=consent";
-        $nonce_uri = "&nonce=" . $nonce;
-        $bot_prompt = "&bot_prompt=normal";
+    //     $uri = "https://access.line.me/oauth2/v2.1/authorize?";
+    //     $response_type = "response_type=code";
+    //     $client_id = "&client_id=" . config('services.line.client_id');
+    //     $redirect_uri = "&redirect_uri=" . urlencode(config('services.line.redirect'));
+    //     $state_uri = "&state=" . $state;
+    //     $scope = "&scope=openid%20profile";
+    //     $prompt = "&prompt=consent";
+    //     $nonce_uri = "&nonce=" . $nonce;
+    //     $bot_prompt = "&bot_prompt=normal";
 
-        $uri = $uri . $response_type . $client_id . $redirect_uri . $state_uri . $scope . $prompt . $nonce_uri . $bot_prompt;
+    //     $uri = $uri . $response_type . $client_id . $redirect_uri . $state_uri . $scope . $prompt . $nonce_uri . $bot_prompt;
 
-        return redirect($uri);
-    }
+    //     return redirect($uri);
+    // }
 
     public function getAccessToken(Request $request)
     {
@@ -75,7 +75,7 @@ class LineController extends Controller
             // エラー内容をデバッグ
             throw new \Exception('Access token not found in response: ' . json_encode($json));
         }
-}
+    }
 
     public function getProfile($accessToken)
     {
@@ -97,7 +97,7 @@ class LineController extends Controller
         }
     }
 
-    public function callback(Request $request)
+    public function handleLineCallback(Request $request)
     {
         try {
             // アクセストークンを取得
@@ -106,37 +106,31 @@ class LineController extends Controller
             // プロフィール情報を取得
             $profile = $this->getProfile($tokenData['access_token']);
 
-            // ソーシャルアカウントの作成または更新
-            $socialAccount = SocialAccount::updateOrCreate(
-                [
+            // ソーシャルアカウント 検索
+            $socialAccount = SocialAccount::where('provider_id', $profile->userId)->where('provider', 'line')->first();
+
+            if ($socialAccount) {
+                // ソーシャルアカウント 更新
+                $socialAccount->update([
+                    'line_token' => $tokenData['access_token'],
+                    'line_refresh_token' => $tokenData['refresh_token'] ?? null,
+                ]);
+            } else {
+                // ユーザーが存在しない場合の処理
+                $user = User::create();
+                $socialAccount = SocialAccount::create([
                     'provider_id' => $profile->userId,
                     'provider' => 'line',
-                ],
-                [
                     'line_token' => $tokenData['access_token'],
-                    'line_refresh_token' => $tokenData['refresh_token'] ?? null, // 必要に応じてリフレッシュトークンを取得
-                ]
-            );
-
-            // ソーシャルアカウントに関連付けられたユーザーがいない場合
-            if (!$socialAccount->user) {
-                // ユーザーを新規作成
-                $user = User::create([
-                    // 必要なユーザー情報を設定
+                    'line_refresh_token' => $tokenData['refresh_token'] ?? null,
+                    'user_id' => $user->id,
                 ]);
-
-                // ソーシャルアカウントにユーザーを関連付ける
-                $socialAccount->user_id = $user->id;
-                $socialAccount->save();
-            } else {
-                // 既存のユーザーを取得
-                $user = $socialAccount->user;
             }
 
-            // トークン情報を更新
+            // トークン情報 更新
             SocialPersonalAccessToken::updateOrCreate(
                 [
-                    'user_id' => $user->id,
+                    'user_id' => $socialAccount->user_id,
                 ],
                 [
                     'token' => $tokenData['access_token'],
@@ -146,16 +140,13 @@ class LineController extends Controller
             );
 
             // ユーザーをログイン
-            Auth::login($user);
+            Auth::login($socialAccount->user);
 
             // クッキーにアクセストークンをセット
             $accessTokenCookie = cookie('access_token', $tokenData['access_token'], 1440, null, null, false, false, false, 'Strict');
-            $userIdCookie = cookie('user_id', $user->id, 1440, null, null, false, false, false, 'Strict');
+            $userIdCookie = cookie('user_id', Auth::user()->id, 1440, null, null, false, false, false, 'Strict');
 
-            // JSONレスポンスでトークンとユーザーIDを渡し、フロントエンドにリダイレクト
-            $redirectUrl = 'http://127.0.0.1:8000/';
-
-            return redirect()->to($redirectUrl)
+            return redirect()->to('/')
                 ->withCookie($accessTokenCookie)
                 ->withCookie($userIdCookie);
         } catch (\Exception $e) {
@@ -163,47 +154,45 @@ class LineController extends Controller
         }
     }
 
-    public function sendMessage(string $lineUserId)
-    {
-        $http_client = new CurlHTTPClient(config('services.line.access_token'));
-        $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.message_channel_secret')]);
+    // public function sendMessage(string $lineUserId)
+    // {
+    //     $http_client = new CurlHTTPClient(config('services.line.access_token'));
+    //     $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.message_channel_secret')]);
 
-        $message = "LINE送信テスト";
-        $textMessageBuilder = new TextMessageBuilder($message);
-        $response = $bot->pushMessage($lineUserId, $textMessageBuilder);
+    //     $message = "LINE送信テスト";
+    //     $textMessageBuilder = new TextMessageBuilder($message);
+    //     $response = $bot->pushMessage($lineUserId, $textMessageBuilder);
 
-        if ($response->isSucceeded()) {
-            Log::info('送信成功');
-        } else {
-            Log::error('送信失敗: '. $response->getHTTPStatus(). ' '. $response->getRawBody());
-        }
-    }
-
-    public function webhook(Request $request)
-    {
-    //     $httpClient = new CurlHTTPClient(config('services.line.access_token'));
-    //     $bot = new LINEBot($httpClient, ['channelSecret' => config('services.line.channel_secret')]);
-
-    //     $events = $request->input('events', []);
-
-    //     foreach ($events as $event) {
-    //         if ($event['type'] === 'message') {
-    //             $replyToken = $event['replyToken'];
-    //             $message = "メッセージ受信: " . $event['message']['text'];
-    //             $textMessageBuilder = new TextMessageBuilder($message);
-
-    //             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-
-    //             if (!$response->isSucceeded()) {
-    //                 Log::error('返信失敗: '. $response->getHTTPStatus(). ' '. $response->getRawBody());
-    //             }
-    //         }
+    //     if ($response->isSucceeded()) {
+    //         Log::info('送信成功');
+    //     } else {
+    //         Log::error('送信失敗: ' . $response->getHTTPStatus() . ' ' . $response->getRawBody());
     //     }
-
-    //     return response()->json(['status' => 'ok']);
     // }
 
-        return 'ok';
-    }
+    // public function webhook(Request $request)
+    // {
+    //         $httpClient = new CurlHTTPClient(config('services.line.access_token'));
+    //         $bot = new LINEBot($httpClient, ['channelSecret' => config('services.line.channel_secret')]);
 
+    //         $events = $request->input('events', []);
+
+    //         foreach ($events as $event) {
+    //             if ($event['type'] === 'message') {
+    //                 $replyToken = $event['replyToken'];
+    //                 $message = "メッセージ受信: " . $event['message']['text'];
+    //                 $textMessageBuilder = new TextMessageBuilder($message);
+
+    //                 $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+
+    //                 if (!$response->isSucceeded()) {
+    //                     Log::error('返信失敗: '. $response->getHTTPStatus(). ' '. $response->getRawBody());
+    //                 }
+    //             }
+    //         }
+
+    //         return response()->json(['status' => 'ok']);
+    //     }
+    //     return 'ok';
+    // }
 }

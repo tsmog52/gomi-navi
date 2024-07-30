@@ -81,6 +81,8 @@ class SocialAuthController extends Controller
 
     public function handleLineCallback()
     {
+        $user = Socialite::driver('line')->user();
+
         // try {
         //     $lineUser = Socialite::driver('line')->user();
 
@@ -128,9 +130,5 @@ class SocialAuthController extends Controller
         // } catch (\Exception $e) {
         //     return response()->json(['error' => 'Error in line callback: ' . $e->getMessage()], 500);
         // }
-        $user = Socialite::driver('line')->user();
-
-        dd($user);
     }
-
 }

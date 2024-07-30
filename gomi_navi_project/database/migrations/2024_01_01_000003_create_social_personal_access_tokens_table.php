@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
+        Schema::create('social_personal_access_tokens', function (Blueprint $table) {
             $table->id();
-            $table->morphs('tokenable');
             // アクセストークンを示す
             $table->string('token', 255)->unique();
+            $table->string('refresh_token')->nullable();;
             // ユーザーまたはクライアントが持つ権限や能力を示す
             $table->text('abilities')->nullable();
             // 最後にアクセストークンが使用された日時を示す
@@ -32,7 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('personal_access_tokens');
+        Schema::dropIfExists('social_personal_access_tokens');
     }
 };
 
