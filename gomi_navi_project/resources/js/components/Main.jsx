@@ -1,46 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaTruck, FaSearch, FaCalendarAlt } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
 import { AiFillDelete } from "react-icons/ai";
 import { IoSettingsSharp } from "react-icons/io5";
-import Header from './components/Header';
-import useModal from './hooks/useModal';
-import SettingModal from './components/Modal/SettingModal';
-import PickupModal from './components/Modal/PickupModal';
-import MainCard from './components/Card/MainCard';
-import Footer from './components/Footer';
+import Header from './Header';
+import useModal from '../hooks/useModal';
+import SettingModal from './Modal/SettingModal';
+import PickupModal from './Modal/PickupModal';
+import MainCard from './Card/MainCard';
+import Footer from './Footer';
 
 const Main = () => {
   // モーダル1:今日のゴミ回収
   const { isOpen: isOpenModal1, open: openModal1, close: closeModal1 } = useModal();
    // モーダル2:設定
   const { isOpen: isOpenModal2, open: openModal2, close: closeModal2 } = useModal();
-
-  const [user, setUser] = useState('');
-  const [accessToken, setAccessToken] = useState('');
-
-  const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null;
-  };
-
-  useEffect(() => {
-    const token = getCookie('access_token');
-    const userId = getCookie('user_id');
-
-    console.log('Access Token:', token);
-    console.log('User ID:', userId);
-
-    if (token && userId) {
-      setAccessToken(token);
-      setUser(userId);
-    } else {
-      console.error('取得に失敗しました。');
-    }
-  }, []);
-
 
   return (
     <>
