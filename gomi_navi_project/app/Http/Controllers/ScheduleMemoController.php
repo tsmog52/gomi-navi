@@ -10,53 +10,33 @@ use Illuminate\Http\Request;
 class ScheduleMemoController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $memos = ScheduleMemo::all();
+        //クッキーからuser_idを取得
+        $userId = $request->cookie('user_id');
+
+        if ($userId) {
+            $memos = ScheduleMemo::where('user_id', $userId)->get();
+        }
+
         return response()->json([
             'memos' => $memos
         ], Response::HTTP_OK);
     }
 
-    // public function store(Request $request)
-    // {
-    //     // 認証されたユーザーを取得
-    //     $user = $request->user();
-
-
-    //     // ユーザーが存在しない場合のエラーハンドリング
-    //     if (!$user) {
-    //         return response()->json(['error' => 'Not found'], 404);
-    //     }
-
-    //     // バリデーションを行い、入力データを取得
-    //     $inputs = $request->validate([
-    //         'note' => 'required|string',
-    //     ]);
-
-    //     // ScheduleMemoモデルを作成してデータを保存
-    //     $scheduleMemo = new ScheduleMemo();
-    //     $scheduleMemo->note = $inputs['note'];
-    //     $scheduleMemo->user_id = $user->id;
-    //     $scheduleMemo->save();
-
-    //     // 保存したスケジュールメモをレスポンスとして返す
-    //     return response()->json([
-    //         'scheduleMemo' => $scheduleMemo
-    //     ], Response::HTTP_CREATED);
-    // }
     public function store(Request $request)
 {
     // バリデーションを行い、入力データを取得
     $inputs = $request->validate([
         'note' => 'required|string',
-        'user_id' => 'required|integer|exists:users,id', // ユーザーIDのバリデーション
+        'user_id' => 'required|integer|exists:users,id',
     ]);
 
     // ScheduleMemoモデルを作成してデータを保存
     $scheduleMemo = new ScheduleMemo();
     $scheduleMemo->note = $inputs['note'];
-    $scheduleMemo->user_id = $inputs['user_id']; // フロントエンドから送信されたユーザーIDを使用
+     // フロントエンドから送信されたユーザーIDを使用
+    $scheduleMemo->user_id = $inputs['user_id'];
     $scheduleMemo->save();
 
     // 保存したスケジュールメモをレスポンスとして返す
