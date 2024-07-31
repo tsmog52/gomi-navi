@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import Header from './components/Header';
+import Header from './Header.jsx';
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import useAccordion from './hooks/useAccordion.jsx';
+import useAccordion from '../hooks/useAccordion.jsx';
 
 const Category = () => {
   const [guides, setGuides] = useState([]);

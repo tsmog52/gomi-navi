@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { createRoot } from 'react-dom/client';
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import Header from './components/Header';
-import useAccordion from './hooks/useAccordion';
-import ArrowButton from './components/Button/ArrowButton';
-import InputField from './components/InputField';
+import Header from './Header';
+import useAccordion from '../hooks/useAccordion';
+import ArrowButton from './Button/ArrowButton';
+import InputField from './InputField';
 
 const Item = () => {
   const [items, setItems] = useState([]);
