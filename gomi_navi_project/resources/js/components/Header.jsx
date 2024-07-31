@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useModal from '../hooks/useModal';
 import LoginModal from './Modal/LoginModal';
 import AddMemoButton from './Button/AddMemoButton';
 import LogoutButton from './Button/LogoutButton';
+import Cookies from 'js-cookie';
 
 const Header = () => {
   const {isOpen: isOpenModal1, open: openModal1, close: closeModal1} = useModal();
   const {isOpen: isOpenModal2, open: openModal2, close: closeModal2} = useModal();
+  const {isOpen, open, close} = useModal();
+  //ログイン状態を管理する
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const cookieValue = Cookies.get('user_id');
+
+    if(cookieValue) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <header className='bg-gray-200 p-4'>
       <nav>
         <ul className='flex space-x-4 justify-between'>
           <li><a href='http://127.0.0.1:8000/'>ロゴ</a></li>
-          <li>
+          {isLoggedIn ? (
             <ul className="flex space-x-4 justify-end">
-              <LogoutButton />
-              <li><AddMemoButton /></li>
+              <li><LogoutButton /></li>
+              <li><AddMemoButton  isOpen={isOpen} open={open} close={close}/></li>
+            </ul>
+          ) : (
+            <ul className="flex space-x-4 justify-end">
               <li>
                 <button
                   onClick={openModal1}
@@ -42,7 +57,7 @@ const Header = () => {
                   会員登録
                 </button>
                 {isOpenModal2 && (
-                  <Modal
+                  <LoginModal
                     onClose={closeModal2}
                     title='会員登録'
                     google='Googleで登録'
@@ -52,7 +67,7 @@ const Header = () => {
                 )}
               </li>
             </ul>
-          </li>
+          )}
         </ul>
       </nav>
     </header>
@@ -60,4 +75,3 @@ const Header = () => {
 };
 
 export default Header;
-
