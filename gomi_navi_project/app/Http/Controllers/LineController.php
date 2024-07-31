@@ -152,10 +152,7 @@ class LineController extends Controller
             $accessTokenCookie = cookie('access_token', $tokenData['access_token'], 1440, null, null, false, false, false, 'Strict');
             $userIdCookie = cookie('user_id', $user->id, 1440, null, null, false, false, false, 'Strict');
 
-            // JSONレスポンスでトークンとユーザーIDを渡し、フロントエンドにリダイレクト
-            $redirectUrl = 'http://127.0.0.1:8000/';
-
-            return redirect()->to($redirectUrl)
+            return redirect()->to('/')
                 ->withCookie($accessTokenCookie)
                 ->withCookie($userIdCookie);
         } catch (\Exception $e) {
