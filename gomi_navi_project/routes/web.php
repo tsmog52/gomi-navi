@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\SocialAuthController;
+use App\Http\Controllers\LineController;
+use App\Http\Controllers\GoogleController;
 
 // お問い合わせ
 Route::view('/contact', 'contact');
@@ -28,9 +29,15 @@ Route::get('/sanctum/csrf-cookie', function () {
 });
 
 // GoogleAuthのルート
-Route::get('login/google', [SocialAuthController::class, 'redirectToGoogle'])->name('login');
-Route::get('login/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
+Route::get('login/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 // LINEAuthのルート
-Route::get('auth/line', [SocialAuthController::class, 'redirectToLine']);
-Route::get('auth/line/callback', [SocialAuthController::class, 'handleLineCallback']);
+Route::get('auth/line', [LineController::class, 'redirectToLine']);
+Route::get('auth/line/callback', [LineController::class, 'callback']);
+
+//LINEメッセージ受信用
+Route::post('/line/webhook', [LineController::class, 'webhook']);
+
+//LINEメッセージ送信用
+Route::get('/line/message', [LineController::class, 'message']);
