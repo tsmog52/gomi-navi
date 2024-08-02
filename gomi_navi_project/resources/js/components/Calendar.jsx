@@ -19,9 +19,7 @@ const Calendar = () => {
       if(cookieValue) {
         setIsLoggedIn(true);
       }
-      console.log(cookieValue);
     }, []);
-
 
   const handleDelete = async (id) => {
     try {
