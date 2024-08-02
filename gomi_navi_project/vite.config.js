@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { dirname } from 'path';
 
@@ -7,10 +8,8 @@ const __dirname = dirname(__filename)
 
 export default defineConfig({
     plugins: [
-        laravel({
-            input: ['resources/css/app.css', 'resources/js/app.jsx'],
-            refresh: true,
-        }),
+        laravel(['resources/js/index.jsx']),
+        react(),
     ],
     alias: {
         '@': resolve(__dirname, 'resources/js'),
