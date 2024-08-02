@@ -13,7 +13,6 @@ const Item = () => {
   const { isAccordion, toggleAccordion } = useAccordion(null);
   const [inputValue, setInputValue] = useState("");
   const [filteredValue, setFilteredValue] = useState([]);
-  //true:検索結果の表示　false:アイテムリスト
   const [showDetailSearch, setShowDetailSearch] = useState(false);
   const [pagination, setPagination] = useState({
     current_page: 1,
@@ -86,7 +85,7 @@ const Item = () => {
 
   const handleTwoPagesBack = () => {
     if (pagination.prev_page_url) {
-      setPagination({ ...pagination, current_page: pagination.current_page - 2});
+      setPagination({ ...pagination, current_page: pagination.current_page - 2 });
     }
   };
 
@@ -118,7 +117,12 @@ const Item = () => {
                   <li key={index}>
                     <button onClick={() => toggleAccordion(index)} className='flex justify-between w-full p-4 text-2xl'>
                       {item.item_name}
-                      <MdOutlineKeyboardArrowRight size={30} className='text-gray-400' />
+                      <MdOutlineKeyboardArrowRight
+                        size={30}
+                        className={`transition-transform duration-300 ${
+                          isAccordion === index ? 'rotate-180' : 'rotate-0'
+                        }`}
+                      />
                     </button>
                     <div className='border-b-2'></div>
                   </li>
@@ -129,7 +133,12 @@ const Item = () => {
                 <li key={index}>
                   <button onClick={() => toggleAccordion(index)} className='flex justify-between w-full p-4 text-2xl'>
                     {item.item_name}
-                    <MdOutlineKeyboardArrowRight size={30} className='text-gray-400' />
+                    <MdOutlineKeyboardArrowRight
+                      size={30}
+                      className={`transition-transform duration-300 ${
+                        isAccordion === index ? 'rotate-180' : 'rotate-0'
+                      }`}
+                    />
                   </button>
                   <div className='border-b-2'></div>
                 </li>
@@ -138,22 +147,23 @@ const Item = () => {
           </ul>
         </div>
         <div className='w-3/5 bg-gray-100'>
-          <div className=' flex items-center justify-center right-panel h-full overflow-auto'>
+          <div className='flex items-center justify-center right-panel h-full overflow-auto'>
             {items.map((item, index) => (
               isAccordion === index && (
                 <div className='w-112 bg-white rounded-lg p-4 mb-4' key={index}>
                   <div className='p-4'>
+                    <p className='text-3xl  font-normal pb-4 text-center'>{item.item_name}</p>
                     <ul>
                       <li className='text-lg'>
-                        <div className='w-96 border-2 p-2 mb-3'>
+                        <div className='w-96 border-2 p-1 mb-6'>
                           <p className='mr-4'>分類</p>
                           <div className='text-3xl text-center'>
                             {item.category_name}
                           </div>
                         </div>
                         {item.item_memo !== null ? (
-                          <div className='w-96 border-2 p-2'>
-                            <p className=' text-2xl font-normal pb-2'>出し方</p>
+                          <div className='w-96 border-4 p-2'>
+                            <p className='text-2xl font-normal pb-2'>出し方</p>
                             {item.item_memo}
                           </div>
                         ) : null}
