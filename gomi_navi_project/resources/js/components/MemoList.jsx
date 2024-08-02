@@ -4,11 +4,12 @@ import MemoModal from './Modal/MemoModal';
 import { AiOutlineEllipsis } from "react-icons/ai";
 
 const MemoList = ({ memos, handleDelete, handleEdit, isEditing, editingMemo, setMemos, setIsEditing, setEditingMemo }) => {
-  //モーダル用
+  // モーダル用の状態
   const [showEditDelete, setShowEditDelete] = useState(false);
-  //現在選択されているメモを管理するための状態
+  // 現在選択されているメモを管理するための状態
   const [selectedMemo, setSelectedMemo] = useState(null);
 
+  //メモデータの取得
   useEffect(() => {
     const getMemoData = async () => {
       try {
@@ -21,6 +22,7 @@ const MemoList = ({ memos, handleDelete, handleEdit, isEditing, editingMemo, set
     getMemoData();
   }, [setMemos]);
 
+  //メモの更新処理
   const handleUpdate = async (updatedMemo) => {
     try {
       await updateMemo(updatedMemo);
@@ -31,16 +33,19 @@ const MemoList = ({ memos, handleDelete, handleEdit, isEditing, editingMemo, set
     }
   };
 
+  //編集モーダルを閉じる
   const handleCloseEdit = () => {
     setIsEditing(false);
     setEditingMemo(null);
   };
 
+  //編集・削除メニューを表示
   const showEditDeleteModal = (memo) => {
     setSelectedMemo(memo);
     setShowEditDelete(true);
   }
 
+  //編集・削除メニューを閉じる
   const closeEditDeleteModal = () => {
     setShowEditDelete(false);
     setSelectedMemo(null);

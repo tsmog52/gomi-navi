@@ -8,7 +8,8 @@ import GoogleButton from '../Button/GoogleButton';
 const regions = ['川崎区', '中原区', '高津区', '宮前区', '多摩区', '麻生区', '幸区'];
 
 const SettingModal = ({ onClose }) => {
-  const [selected, setSelected] = useState(regions[0]);
+  //多摩区で登録
+  const [selected, setSelected] = useState(regions[4]);
 
   // カレンダーとの連携
   const handleAddEvent = async () => {
@@ -38,8 +39,8 @@ const SettingModal = ({ onClose }) => {
             {regions.map((region) => (
               <button
                 key={region}
-                className={`w-full p-2 rounded-lg border ${selected === region ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-900'} 
-                hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 active:bg-green-700`}
+                className={`w-full p-2 rounded-lg border ${selected === region ? 'bg-gray-400 text-white font-normal' : 'bg-gray-100 text-gray-900'}
+                hover:bg-gray-400  focus:outline-none focus:ring-2 focus:ring-gray-400 active:bg-gray-400`}
                 onClick={() => setSelected(region)}
               >
                 {region}
