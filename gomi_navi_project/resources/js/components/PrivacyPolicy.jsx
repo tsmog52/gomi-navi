@@ -61,7 +61,4 @@ const PrivacyPolicy = () => {
 
 export default PrivacyPolicy;
 
-const container = document.getElementById('privacy');
-const root = createRoot(container);
-root.render(<PrivacyPolicy />);
 

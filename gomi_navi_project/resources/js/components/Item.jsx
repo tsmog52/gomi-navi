@@ -181,7 +181,3 @@ const Item = () => {
 };
 
 export default Item;
-
-const container = document.getElementById('item');
-const root = createRoot(container);
-root.render(<Item />);

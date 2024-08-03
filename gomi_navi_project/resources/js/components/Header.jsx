@@ -3,32 +3,25 @@ import useModal from '../hooks/useModal';
 import LoginModal from './Modal/LoginModal';
 import AddMemoButton from './Button/AddMemoButton';
 import LogoutButton from './Button/LogoutButton';
-import Cookies from 'js-cookie';
+import { useRecoilValue } from 'recoil';
+import { loginState } from '../states/loginState';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const {isOpen: isOpenModal1, open: openModal1, close: closeModal1} = useModal();
   const {isOpen: isOpenModal2, open: openModal2, close: closeModal2} = useModal();
   const {isOpen, open, close} = useModal();
-  //ログイン状態を管理する
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const cookieValue = Cookies.get('user_id');
-
-    if(cookieValue) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  const isLoggedIn = useRecoilValue(loginState);
 
   return (
     <header className='bg-gray-200 p-4'>
       <nav>
         <ul className='flex space-x-4 justify-between'>
-          <li><a href='http://127.0.0.1:8000/'>ロゴ</a></li>
+          <li><Link to='/'>ロゴ</Link></li>
           {isLoggedIn ? (
             <ul className="flex space-x-4 justify-end">
-              <li><LogoutButton /></li>
               <li><AddMemoButton  isOpen={isOpen} open={open} close={close}/></li>
+              <li><LogoutButton /></li>
             </ul>
           ) : (
             <ul className="flex space-x-4 justify-end">

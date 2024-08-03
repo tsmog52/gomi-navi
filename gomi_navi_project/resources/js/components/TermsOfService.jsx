@@ -135,6 +135,3 @@ const TermsOfService = () => {
 
 export default TermsOfService
 
-const container = document.getElementById('terms');
-const root = createRoot(container);
-root.render(<TermsOfService />);

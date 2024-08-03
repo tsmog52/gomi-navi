@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import CloseButton from '../Button/CloseButton';
-import { postMemo, getCookie, updateMemo } from '../../api';
+import { postMemo, updateMemo } from '../../api';
+import { useRecoilState } from 'recoil';
+import { inputMemoState } from '../../states/inputMemoState';
 
 const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
-  const [inputText, setInputText] = useState('');
-  const [user, setUser] = useState(null);
-  const [accessToken, setAccessToken] = useState(null);
+  const [memo, setMemo] = useRecoilState(inputMemoState);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -13,19 +13,9 @@ const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
   },[]);
 
   useEffect(() => {
-    const token = getCookie('access_token');
-    const userId = getCookie('user_id');
-
-    if (token && userId) {
-      setAccessToken(token);
-      setUser(userId);
-    } else {
-      console.error('Failed to retrieve token or userId from cookies');
-    }
-
     // 初期入力テキストの設定
     if (editingMemo) {
-      setInputText(editingMemo.note);
+      setMemo(prevMemo => ({...prevMemo, note: editingMemo.note}));
     }
   }, [editingMemo]);
 
@@ -36,7 +26,6 @@ const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user || !accessToken) {
-      console.error('ユーザーかアクセストークンがnull');
       return;
     }
     try {

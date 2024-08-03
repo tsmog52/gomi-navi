@@ -49,6 +49,3 @@ const Contact = () => {
 };
 export default Contact
 
-const container = document.getElementById('contact');
-const root = createRoot(container);
-root.render(<Contact />);
