@@ -32,7 +32,11 @@ const Category = () => {
               <li key={index}>
                 <button onClick={() => toggleAccordion(index)} className='flex justify-between w-full p-4 text-2xl'>
                   {guide.category_name}
-                  <MdOutlineKeyboardArrowRight size={30} />
+                  <MdOutlineKeyboardArrowRight size={30}
+                    className={`transition-transform duration-300 ${
+                      isAccordion === index ? 'rotate-180' : 'rotate-0'
+                    }`}
+                  />
                 </button>
                 <div className='border-b-2'></div>
               </li>
