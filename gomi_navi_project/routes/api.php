@@ -34,6 +34,6 @@ Route::delete('/memo/{id}', [ScheduleMemoController::class, 'destroy']);
 Route::put('/memo/{id}', [ScheduleMemoController::class, 'update']);
 Route::get('/memo/{id}', [ScheduleMemoController::class, 'show']);
 
-
-Route::middleware('auth:sanctum')->get('/sanctum/csrf-cookie', [CsrfTokenController::class, 'getCsrfCookie']);
+//保留
+// Route::middleware('auth:sanctum')->get('/sanctum/csrf-cookie', [CsrfTokenController::class, 'getCsrfCookie']);
 
