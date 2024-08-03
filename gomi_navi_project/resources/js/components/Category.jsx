@@ -67,5 +67,3 @@ const Category = () => {
 };
 export default Category;
 
-const root = createRoot(document.getElementById('category'));
-root.render(<Category />);
