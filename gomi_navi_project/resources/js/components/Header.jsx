@@ -14,7 +14,6 @@ const Header = () => {
 
   useEffect(() => {
     const cookieValue = Cookies.get('user_id');
-
     if(cookieValue) {
       setIsLoggedIn(true);
     }
@@ -30,7 +29,7 @@ const Header = () => {
               <li><LogoutButton /></li>
               <li><AddMemoButton  isOpen={isOpen} open={open} close={close}/></li>
             </ul>
-          ) : (
+            ) : (
             <ul className="flex space-x-4 justify-end">
               <li>
                 <button
