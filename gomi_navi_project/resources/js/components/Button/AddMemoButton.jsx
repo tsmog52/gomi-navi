@@ -1,10 +1,8 @@
 import React from 'react'
 import { BsPlusSquare } from "react-icons/bs";
-import useModal from '../../hooks/useModal';
 import MemoModal from '../Modal/MemoModal';
 
-const AddMemoButton = () => {
-  const {isOpen, open, close} = useModal();
+const AddMemoButton = ({ isOpen, open, close}) => {
 
   return (
     <div>
