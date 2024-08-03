@@ -5,29 +5,28 @@ import { postMemo, getCookie, updateMemo } from '../../api';
 const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
   const [inputText, setInputText] = useState('');
   const [user, setUser] = useState(null);
-  const [accessToken, setAccessToken] = useState(null);
   const inputRef = useRef(null);
 
+  //入力欄のフォーカス
   useEffect(() => {
-    inputRef.current.focus()
-  },[]);
+    inputRef.current.focus();
+  }, []);
 
   useEffect(() => {
     const token = getCookie('access_token');
     const userId = getCookie('user_id');
 
     if (token && userId) {
-      setAccessToken(token);
       setUser(userId);
     } else {
-      console.error('Failed to retrieve token or userId from cookies');
+      console.error('クッキーからtokenかuserIdの取得に失敗しました');
     }
 
     // 初期入力テキストの設定
     if (editingMemo) {
       setInputText(editingMemo.note);
     }
-  }, [editingMemo]);
+  }, []);
 
   const onChange = (e) => {
     setInputText(e.target.value);
@@ -35,27 +34,21 @@ const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user || !accessToken) {
-      console.error('ユーザーかアクセストークンがnull');
+    if (!user) {
+      console.error('ユーザーがnullです');
       return;
     }
     try {
       let updatedMemo;
-      if(editingMemo) {
-        //編集
-        updatedMemo = await updateMemo(
-          { id: editingMemo.id, note: inputText, user_id: user },
-          accessToken
-        );
+      if (editingMemo) {
+        // 編集
+        updatedMemo = await updateMemo({ id: editingMemo.id, note: inputText, user_id: user });
       } else {
-        //新規作成
-        updatedMemo = await postMemo(
-          { note: inputText, user_id: user },
-          accessToken
-        );
+        // 新規作成
+        updatedMemo = await postMemo({ note: inputText, user_id: user });
       }
       setInputText('');
-      onSave(updatedMemo); // 引数にupdatedMemoを渡す
+      // onSave(updatedMemo); // 引数にupdatedMemoを渡す(更新の通知)
       onClose();
     } catch (error) {
       console.error('Error:', error.message);
@@ -68,7 +61,7 @@ const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
           <form onSubmit={handleSubmit}>
             <div className='text-center'>
-              <CloseButton onClose={onClose}/>
+              <CloseButton onClose={onClose} />
               <input
                 type="text"
                 onChange={onChange}
@@ -94,5 +87,4 @@ const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
 }
 
 export default MemoModal;
-
 
