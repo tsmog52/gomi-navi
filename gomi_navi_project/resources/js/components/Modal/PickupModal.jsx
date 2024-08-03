@@ -1,10 +1,8 @@
 import React from 'react'
-import { AiOutlineClose } from "react-icons/ai";
 import CloseButton from '../Button/CloseButton';
 
 const PickupModal = ({ onClose }) => {
 
-  //Q. DBで管理したほうかいいのか
   const date = new Date();
   const day = date.getDay();
   const daysOfWeek = {
