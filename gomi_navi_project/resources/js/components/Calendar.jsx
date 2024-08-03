@@ -5,20 +5,24 @@ import CalendarDisplay from './CalendarDisplay';
 import MemoList from './MemoList';
 import { getMemoById, deleteMemo } from '../api';
 import Cookies from 'js-cookie';
+import { useRecoilValue } from 'recoil';
+import { loginState } from '../states/loginState';
 
 const Calendar = () => {
   const [memos, setMemos] = useState([]);
   const [editingMemo, setEditingMemo] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-    //ログイン状態を管理する
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    //ログイン状態をrecoilで管理する
+    const isLoggedIn = useRecoilValue(loginState);
+    console.log(isLoggedIn);
 
+    // stateでログイン状態を管理
     useEffect(() => {
       const cookieValue = Cookies.get('user_id');
 
-      if(cookieValue) {
-        setIsLoggedIn(true);
-      }
+      // if(cookieValue) {
+      //   setIsLoggedIn(true);
+      // }
     }, []);
 
   const handleDelete = async (id) => {
@@ -29,7 +33,6 @@ const Calendar = () => {
       console.log('削除失敗');
     }
   };
-
 
 
   const handleEdit = async (id) => {
