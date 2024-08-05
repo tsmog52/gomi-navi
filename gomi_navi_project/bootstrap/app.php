@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Foundation\Application;
-use Laravel\Sanctum\Http\Middleware\CheckAbilities;
-use Laravel\Sanctum\Http\Middleware\CheckForAnyAbility;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
@@ -22,6 +20,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'access_token',
             'user_id',
         ]);
+        // $middleware->validateCsrfTokens(except: [
+        //     'http://localhost:8000/line/*'
+        // ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
