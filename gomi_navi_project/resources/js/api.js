@@ -26,7 +26,6 @@ export const getCookie = (name) => {
 // メモの取得
 export const getMemos = async () => {
   try {
-    await fetchCsrfCookie();
     const response = await axiosInstance.get('/api/memo');
     return response.data;
   } catch (error) {
@@ -37,14 +36,11 @@ export const getMemos = async () => {
 // メモの作成
 export const postMemo = async (inputData) => {
   try {
+    await fetchCsrfCookie();
     const response = await axiosInstance.post('/api/memo/create', inputData);
     return response.data;
   } catch (error) {
-    if (error.response) {
-      console.error('Error Status:', error.response.status);
-    } else {
-      console.error(error.message);
-    }
+    console.error(error.message);
   }
 };
 
@@ -73,7 +69,6 @@ export const deleteMemo = async (id) => {
 // 特定のメモの取得
 export const getMemoById = async (id) => {
   try {
-    await fetchCsrfCookie();
     const response = await axiosInstance.get(`/api/memo/${id}`);
     return response.data;
   } catch (error) {
