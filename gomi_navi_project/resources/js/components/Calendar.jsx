@@ -32,6 +32,18 @@ const Calendar = () => {
     }
   };
 
+  const handleSave = (savedMemo) => {
+    setMemos((prevMemos) => {
+      if (isEditing) {
+        return prevMemos.map((memo) => (memo.id === savedMemo.id ? savedMemo : memo));
+      } else {
+        return [...prevMemos, savedMemo];
+      }
+    });
+    setIsEditing(false);
+    setEditingMemo(null);
+  };
+
   return (
     <>
       <Header />
@@ -45,6 +57,7 @@ const Calendar = () => {
           isEditing={isEditing}
           setIsEditing={setIsEditing}
           editingMemo={editingMemo}
+          onSave={handleSave}
           setEditingMemo={setEditingMemo}
         />
       )}
