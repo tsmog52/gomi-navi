@@ -1,21 +1,23 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CloseButton from '../Button/CloseButton';
-import { postMemo, updateMemo } from '../../api';
-import { useRecoilState } from 'recoil';
-import { inputMemoState } from '../../states/inputMemoState';
+import { postMemo, updateMemo, getMemos } from '../../api';
+import { loginState } from '../../states/loginState';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { memoState } from '../../states/memoState';
 
 const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
-  const [memo, setMemo] = useRecoilState(inputMemoState);
+  const [inputText, setInputText] = useState('');
+  const user = useRecoilValue(loginState);
   const inputRef = useRef(null);
+  const [memos, setMemos] = useRecoilState(memoState);
 
   useEffect(() => {
-    inputRef.current.focus()
-  },[]);
+    inputRef.current.focus();
+  }, []);
 
   useEffect(() => {
-    // 初期入力テキストの設定
     if (editingMemo) {
-      setMemo(prevMemo => ({...prevMemo, note: editingMemo.note}));
+      setInputText(editingMemo.note);
     }
   }, [editingMemo]);
 
@@ -25,39 +27,44 @@ const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user || !accessToken) {
-      return;
-    }
+    console.log('Payload:', editingMemo ? { id: editingMemo.id, note: inputText, user_id: user } : { note: inputText, user_id: user });
+
     try {
-      let updatedMemo;
-      if(editingMemo) {
-        //編集
-        updatedMemo = await updateMemo(
-          { id: editingMemo.id, note: inputText, user_id: user },
-          accessToken
-        );
+      const memoData = { note: inputText, user_id: user };
+      let savedMemo;
+
+      if (editingMemo) {
+        savedMemo = await updateMemo({ id: editingMemo.id, ...memoData });
       } else {
-        //新規作成
-        updatedMemo = await postMemo(
-          { note: inputText, user_id: user },
-          accessToken
-        );
+        savedMemo = await postMemo(memoData);
       }
+
+      // 成功した場合にメモリストを更新
+      if (savedMemo) {
+        const response = await getMemos();
+        setMemos(response.memos || []);
+      }
+
       setInputText('');
-      onSave(updatedMemo); // 引数にupdatedMemoを渡す
+      onSave(savedMemo);
       onClose();
     } catch (error) {
       console.error('Error:', error.message);
+      if (error.response && error.response.data && error.response.data.errors) {
+        console.log("Validation Errors:", error.response.data.errors);
+      }
     }
-  }
+  };
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30"
+      >
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
           <form onSubmit={handleSubmit}>
             <div className='text-center'>
-              <CloseButton onClose={onClose}/>
+              <CloseButton onClose={onClose} />
               <input
                 type="text"
                 onChange={onChange}
@@ -83,5 +90,4 @@ const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
 }
 
 export default MemoModal;
-
 
