@@ -5,7 +5,13 @@ module.exports = {
     'node_modules/preline/dist/*.js',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        // カスタムカラーを追加
+        'primary-font': '#8f9faa',
+        'background': '#e0efff',
+      },
+    },
   },
   plugins:
     ['preline/plugin'],
