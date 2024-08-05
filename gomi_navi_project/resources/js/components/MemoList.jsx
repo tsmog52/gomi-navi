@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { getMemos, updateMemo } from '../api';
 import MemoModal from './Modal/MemoModal';
 import { AiOutlineEllipsis } from "react-icons/ai";
+import { useRecoilState } from 'recoil';
+import { memoState } from '../states/memoState';
 
-const MemoList = ({ memos, handleDelete, handleEdit, isEditing, editingMemo, setMemos, setIsEditing, setEditingMemo }) => {
+  const MemoList = ({ handleDelete, handleEdit, isEditing, editingMemo, setIsEditing, setEditingMemo, onSave }) => {
   // モーダル用の状態
   const [showEditDelete, setShowEditDelete] = useState(false);
   // 現在選択されているメモを管理するための状態
   const [selectedMemo, setSelectedMemo] = useState(null);
+  const [memos, setMemos] = useRecoilState(memoState);
 
   //メモデータの取得
   useEffect(() => {
@@ -23,15 +26,15 @@ const MemoList = ({ memos, handleDelete, handleEdit, isEditing, editingMemo, set
   }, [setMemos]);
 
   //メモの更新処理
-  const handleUpdate = async (updatedMemo) => {
-    try {
-      await updateMemo(updatedMemo);
-      setMemos(memos.map(memo => memo.id === updatedMemo.id ? updatedMemo : memo));
-      handleCloseEdit();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleUpdate = async (updatedMemo) => {
+  //   try {
+  //     await updateMemo(updatedMemo);
+  //     setMemos(memos.map(memo => memo.id === updatedMemo.id ? updatedMemo : memo));
+  //     handleCloseEdit();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   //編集モーダルを閉じる
   const handleCloseEdit = () => {
@@ -104,7 +107,7 @@ const MemoList = ({ memos, handleDelete, handleEdit, isEditing, editingMemo, set
         <MemoModal
           text="保存"
           onClose={handleCloseEdit}
-          onSave={handleUpdate}
+          onSave={onSave}
           editingMemo={editingMemo}
         />
       )}
@@ -113,5 +116,4 @@ const MemoList = ({ memos, handleDelete, handleEdit, isEditing, editingMemo, set
 }
 
 export default MemoList;
-
 
