@@ -35,8 +35,9 @@ class ScheduleMemoController extends Controller
     // ScheduleMemoモデルを作成してデータを保存
     $scheduleMemo = new ScheduleMemo();
     $scheduleMemo->note = $inputs['note'];
-     // フロントエンドから送信されたユーザーIDを使用
-    $scheduleMemo->user_id = $inputs['user_id'];
+     // フロントエンドから送信されたユーザーIDを使用(整数にキャスト)
+    $scheduleMemo->user_id = (int) $inputs['user_id'];
+
     $scheduleMemo->save();
 
     // 保存したスケジュールメモをレスポンスとして返す
@@ -44,7 +45,6 @@ class ScheduleMemoController extends Controller
         'scheduleMemo' => $scheduleMemo
     ], Response::HTTP_CREATED);
 }
-
 
     public function destroy($id):JsonResponse
     {
