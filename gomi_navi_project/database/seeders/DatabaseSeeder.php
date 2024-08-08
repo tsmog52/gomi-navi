@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             SortingGuidesTableSeeder::class,
             ItemsSeeder::class,
             SchedulePatternsSeeder::class,
-            MemoSeeder::class,
         ]);
     }
 }
