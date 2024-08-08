@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('schedule_memos', function (Blueprint $table) {
             $table->id();
             $table->text('note');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
