@@ -1,9 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\GoogleController;
+
+// HTTPSを強制する設定
+if (env('APP_ENV') == 'production') {
+  \Illuminate\Support\Facades\URL::forceScheme('https');
+}
 
 //CSRFトークンを取得するためのエンドポイント
 Route::get('/sanctum/csrf-cookie', function () {
