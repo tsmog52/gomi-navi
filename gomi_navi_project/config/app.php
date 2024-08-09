@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'url' => env('APP_URL', 'https://gomi-navi.net'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
