@@ -4,11 +4,14 @@ import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { dirname } from 'path';
 
-const __dirname = dirname(__filename)
+const __dirname = dirname(__filename);
 
 export default defineConfig({
     plugins: [
-        laravel(['resources/js/index.jsx']),
+        laravel([
+            'resources/js/index.jsx',
+            'resources/css/app.css',  // ここにCSSファイルを追加
+        ]),
         react(),
     ],
     alias: {
