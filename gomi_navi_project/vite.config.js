@@ -16,5 +16,8 @@ export default defineConfig({
     ],
     alias: {
         '@': resolve(__dirname, 'resources/js'),
-    }
+    },
+    server: {
+        https: true,
+    },
 });
