@@ -10,7 +10,7 @@ export default defineConfig({
     plugins: [
         laravel([
             'resources/js/index.jsx',
-            'resources/css/app.css',  // ここにCSSファイルを追加
+            'resources/css/app.css',
         ]),
         react(),
     ],
