@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-const GoogleButton = ({ text }) => {
+const GoogleButton = ({ text, socialLink }) => {
   const navigate = useNavigate();
 
   const handleClick = async () => {
