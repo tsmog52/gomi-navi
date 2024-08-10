@@ -14,6 +14,7 @@ const GoogleButton = ({ text }) => {
     } catch (error) {
       console.error('Google認証コールバックのエラー:', error);
     }
+    window.location.href = socialLink;
   }
 
   return (
