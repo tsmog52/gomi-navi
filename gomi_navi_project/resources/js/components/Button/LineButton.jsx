@@ -17,6 +17,7 @@ const LineButton = ({ text, socialLink }) => {
     } catch (error) {
       console.error('LINE認証コールバックのエラー:', error);
     }
+    window.location.href = socialLink;
   };
 
   return (
