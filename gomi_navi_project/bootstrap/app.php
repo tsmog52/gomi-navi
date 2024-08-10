@@ -3,7 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-
+use Illuminate\Http\Middleware\TrustProxies; // 追加
+use Illuminate\Http\Request; // 追加
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -20,9 +21,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'access_token',
             'user_id',
         ]);
-        // $middleware->validateCsrfTokens(except: [
-        //     'http://localhost:8000/line/*'
-        // ]);
+        // TrustProxies ミドルウェアの設定
+        $middleware->web(append: [
+            TrustProxies::class,
+        ]);
+        $middleware->trustProxies(at: '*', headers: Request::HEADER_X_FORWARDED_AWS_ELB);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
