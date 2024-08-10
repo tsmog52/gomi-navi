@@ -1,21 +1,19 @@
-import axios from 'axios';
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-//CSRFの初期化
-const GoogleButton = ({ text, socialLink }) => {
+const GoogleButton = ({ text }) => {
+  const navigate = useNavigate();
 
   const handleClick = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/auth/google/callback');
-      const {token, user_id} = response.data;
-      //クッキーに保存する
+      const response = await axios.get('https://gomi-navi/auth/google/callback');
+      const { token, user_id } = response.data;
+      // クッキーに保存する
       document.cookie = `token=${token}; path=/`;
       document.cookie = `user_id=${user_id}; path=/`;
-      window.location.href = 'http://127.0.0.1:8000/';
+      navigate('/');
     } catch (error) {
       console.error('Google認証コールバックのエラー:', error);
     }
-    window.location.href = socialLink;
   }
 
   return (
