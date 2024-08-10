@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaGithub } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -7,20 +8,20 @@ const Footer = () => {
       <div className='container mx-auto flex flex-col items-center'>
         <ul className='flex space-x-4 mb-2'>
           <li>
-            <a
-              href="https://gomi-navi.net/terms"
+            <Link
+            to="/terms"
               className='text-gray-600 hover:text-gray-400 transition-colors duration-300'
             >
               利用規約
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="https://gomi-navi.net/privacy"
+            <Link
+              to="/privacy"
               className='text-gray-600 hover:text-gray-400 transition-colors duration-300'
             >
               プライバシーポリシー
-            </a>
+            </Link>
           </li>
         </ul>
         <div className='flex'>
