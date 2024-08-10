@@ -8,7 +8,7 @@ const Footer = () => {
         <ul className='flex space-x-4 mb-2'>
           <li>
             <a
-              href="http://127.0.0.1:8000/terms"
+              href="https://gomi-navi.net/terms"
               className='text-gray-600 hover:text-gray-400 transition-colors duration-300'
             >
               利用規約
@@ -16,7 +16,7 @@ const Footer = () => {
           </li>
           <li>
             <a
-              href="http://127.0.0.1:8000/privacy"
+              href="https://gomi-navi.net/privacy"
               className='text-gray-600 hover:text-gray-400 transition-colors duration-300'
             >
               プライバシーポリシー
