@@ -29,8 +29,13 @@ class SchedulePatternsSeeder extends Seeder
             [
                 'frequency' => 'WEEKLY',
                 'days_of_week' => 'FR'
+            ],
+            [
+                'frequency' => 'MONTHLY',
+                'days_of_week' => 'FR',
+                'week_of_month'=> ['1', '3']
             ]
-            ];
+        ];
 
             foreach($schedule_patterns as $schedule_pattern) {
                 SchedulePattern::create($schedule_pattern);
