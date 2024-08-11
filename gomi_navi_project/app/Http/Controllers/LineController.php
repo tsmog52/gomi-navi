@@ -97,69 +97,126 @@ class LineController extends Controller
         }
     }
 
+    // public function callback(Request $request)
+    // {
+    //     try {
+    //         // アクセストークンを取得
+    //         $tokenData = $this->getAccessToken($request);
+
+    //         // プロフィール情報を取得
+    //         $profile = $this->getProfile($tokenData['access_token']);
+
+    //         // ソーシャルアカウントの作成または更新
+    //         $socialAccount = SocialAccount::updateOrCreate(
+    //             [
+    //                 'provider_id' => $profile->userId,
+    //                 'provider' => 'line',
+    //             ],
+    //             [
+    //                 'line_token' => $tokenData['access_token'],
+    //                 'line_refresh_token' => $tokenData['refresh_token'] ?? null,
+    //             ]
+    //         );
+
+    //         // ソーシャルアカウントに関連付けられたユーザーがいない場合
+    //         if (!$socialAccount->user) {
+    //             // ユーザーを新規作成
+    //             $user = User::create([
+    //                 // 必要なユーザー情報を設定
+    //             ]);
+
+    //             // ソーシャルアカウントにユーザーを関連付ける
+    //             $socialAccount->user_id = $user->id;
+    //             $socialAccount->save();
+    //         } else {
+    //             // 既存のユーザーを取得
+    //             $user = $socialAccount->user;
+    //         }
+
+    //         // トークン情報を更新
+    //         PersonalAccessToken::updateOrCreate(
+    //             [
+    //                 'user_id' => $user->id,
+    //             ],
+    //             [
+    //                 'token' => $tokenData['access_token'],
+    //                 'refresh_token' => $tokenData['refresh_token'] ?? null,
+    //                 'expires_at' => Carbon::now()->addSeconds($tokenData['expires_in']),
+    //             ]
+    //         );
+
+    //         // ユーザーをログイン
+    //         Auth::login($user);
+
+    //         // クッキーにアクセストークンをセット
+    //         $accessTokenCookie = cookie('access_token', $tokenData['access_token'], 1440, null, null, false, false, false, 'Strict');
+    //         $userIdCookie = cookie('user_id', $user->id, 1440, null, null, false, false, false, 'Strict');
+
+    //         return redirect()->to('/')
+    //             ->withCookie($accessTokenCookie)
+    //             ->withCookie($userIdCookie);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+    //     }
+    // }
     public function callback(Request $request)
-    {
-        try {
-            // アクセストークンを取得
-            $tokenData = $this->getAccessToken($request);
+{
+    try {
+        // アクセストークンを取得
+        $tokenData = $this->getAccessToken($request);
 
-            // プロフィール情報を取得
-            $profile = $this->getProfile($tokenData['access_token']);
+        // プロフィール情報を取得
+        $profile = $this->getProfile($tokenData['access_token']);
 
-            // ソーシャルアカウントの作成または更新
-            $socialAccount = SocialAccount::updateOrCreate(
-                [
-                    'provider_id' => $profile->userId,
-                    'provider' => 'line',
-                ],
-                [
-                    'line_token' => $tokenData['access_token'],
-                     // 必要に応じてリフレッシュトークンを取得
-                    'line_refresh_token' => $tokenData['refresh_token'] ?? null,
-                ]
-            );
+        // ソーシャルアカウントの取得または作成（ユーザー関連付け前）
+        $socialAccount = SocialAccount::firstOrCreate(
+            [
+                'provider_id' => $profile->userId,
+                'provider' => 'line',
+            ]
+        );
 
-            // ソーシャルアカウントに関連付けられたユーザーがいない場合
-            if (!$socialAccount->user) {
-                // ユーザーを新規作成
-                $user = User::create([
-                    // 必要なユーザー情報を設定
-                ]);
+        // ソーシャルアカウントに関連付けられたユーザーがいない場合
+        if (!$socialAccount->user) {
+            // ユーザーを新規作成
+            $user = User::create([
+                // 必要なユーザー情報を設定
+            ]);
 
-                // ソーシャルアカウントにユーザーを関連付ける
-                $socialAccount->user_id = $user->id;
-                $socialAccount->save();
-            } else {
-                // 既存のユーザーを取得
-                $user = $socialAccount->user;
-            }
-
-            // トークン情報を更新
-            PersonalAccessToken::updateOrCreate(
-                [
-                    'user_id' => $user->id,
-                ],
-                [
-                    'token' => $tokenData['access_token'],
-                    'refresh_token' => $tokenData['refresh_token'] ?? null,
-                    'expires_at' => Carbon::now()->addSeconds($tokenData['expires_in']),
-                ]
-            );
-
-            // ユーザーをログイン
-            Auth::login($user);
-
-            // クッキーにアクセストークンをセット
-            $accessTokenCookie = cookie('access_token', $tokenData['access_token'], 1440, null, null, false, false, false, 'Strict');
-            $userIdCookie = cookie('user_id', $user->id, 1440, null, null, false, false, false, 'Strict');
-
-            return redirect()->to('/')
-                ->withCookie($accessTokenCookie)
-                ->withCookie($userIdCookie);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+            // 新規作成したユーザーをソーシャルアカウントに関連付ける
+            $socialAccount->user_id = $user->id;
+            $socialAccount->save();
+        } else {
+            // 既存のユーザーを取得
+            $user = $socialAccount->user;
         }
+
+        // トークン情報を更新
+        PersonalAccessToken::updateOrCreate(
+            [
+                'user_id' => $user->id,
+            ],
+            [
+                'token' => $tokenData['access_token'],
+                'refresh_token' => $tokenData['refresh_token'] ?? null,
+                'expires_at' => Carbon::now()->addSeconds($tokenData['expires_in']),
+            ]
+        );
+
+        // ユーザーをログイン
+        Auth::login($user);
+
+        // クッキーにアクセストークンをセット
+        $accessTokenCookie = cookie('access_token', $tokenData['access_token'], 1440, null, null, false, false, false, 'Strict');
+        $userIdCookie = cookie('user_id', $user->id, 1440, null, null, false, false, false, 'Strict');
+
+        return redirect()->to('/')
+            ->withCookie($accessTokenCookie)
+            ->withCookie($userIdCookie);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
     }
+}
 
     public function sendMessage(string $lineUserId)
     {
