@@ -5,7 +5,7 @@ const CalendarDisplay = () => {
   //カレンダーを取得
   const [calendars, setCalendars] = useState([]);
 
-      // en→jaへ変更
+  // en→jaへ変更
   const daysOfWeek = {
     'MO': '月', 'TU': '火', 'WE': '水', 'TH': '木', 'FR': '金', 'SA': '土', 'SU': '日'
   };
