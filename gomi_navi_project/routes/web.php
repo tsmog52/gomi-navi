@@ -5,11 +5,6 @@ use App\Http\Controllers\LineController;
 use App\Http\Controllers\GoogleController;
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 
-// HTTPSを強制する設定
-if (env('APP_ENV') == 'production') {
-  \Illuminate\Support\Facades\URL::forceScheme('https');
-}
-
 //CSRFトークンを取得するためのエンドポイント
 Route::get('/sanctum/csrf-cookie', function () {
   return response()->json();
