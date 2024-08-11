@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\SocialAccount;
 use App\Models\User;
-use App\Models\SocialPersonalAccessToken;
+use App\Models\PersonalAccessToken;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 
@@ -44,7 +44,7 @@ class GoogleController extends Controller
             $socialAccount->user_id = $user->id;
             $socialAccount->save();
 
-            $personalAccessToken = SocialPersonalAccessToken::updateOrCreate(
+            $personalAccessToken = PersonalAccessToken::updateOrCreate(
                 [
                     'user_id' => $user->id,
                 ],
