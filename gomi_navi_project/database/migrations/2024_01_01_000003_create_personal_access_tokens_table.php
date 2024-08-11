@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
-            // アクセストークンを示す
             $table->string('token', 255)->unique();
-            // ユーザーまたはクライアントが持つ権限や能力を示す
             $table->text('refresh_token')->nullable();
-            // アクセストークンの有効期限を示す
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
