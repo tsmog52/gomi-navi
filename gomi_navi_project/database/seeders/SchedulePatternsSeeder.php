@@ -33,7 +33,7 @@ class SchedulePatternsSeeder extends Seeder
             [
                 'frequency' => 'MONTHLY',
                 'days_of_week' => 'FR',
-                'week_of_month'=> ['1', '3']
+                'week_of_month'=> '1,3'
             ]
         ];
 
