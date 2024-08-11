@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\SocialAccount;
 use Carbon\Carbon;
-use App\Models\SocialPersonalAccessToken;
+use App\Models\PersonalAccessToken;
 use Laravel\Socialite\Facades\Socialite;
 use LINE\LINEBot;
 use Illuminate\Support\Facades\Log;
@@ -114,7 +114,8 @@ class LineController extends Controller
                 ],
                 [
                     'line_token' => $tokenData['access_token'],
-                    'line_refresh_token' => $tokenData['refresh_token'] ?? null, // 必要に応じてリフレッシュトークンを取得
+                     // 必要に応じてリフレッシュトークンを取得
+                    'line_refresh_token' => $tokenData['refresh_token'] ?? null,
                 ]
             );
 
@@ -134,7 +135,7 @@ class LineController extends Controller
             }
 
             // トークン情報を更新
-            SocialPersonalAccessToken::updateOrCreate(
+            PersonalAccessToken::updateOrCreate(
                 [
                     'user_id' => $user->id,
                 ],
