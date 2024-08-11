@@ -24,7 +24,7 @@ Route::get('auth/line', [LineController::class, 'redirectToLine']);
 Route::get('auth/line/callback', [LineController::class, 'callback']);
 
 //LINEメッセージ受信用
-Route::post('/webhook', [LineController::class, 'webhook'])
+Route::post('/line/webhook', [LineController::class, 'webhook'])
     ->withoutMiddleware(ValidateCsrfToken::class);
 
 //LINEメッセージ送信用
