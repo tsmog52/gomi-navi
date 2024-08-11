@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('provider', 255);
             $table->string('provider_id', 255);
             $table->timestamps();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
         });
     }
 
