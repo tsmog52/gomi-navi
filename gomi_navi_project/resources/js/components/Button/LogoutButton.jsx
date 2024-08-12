@@ -44,46 +44,23 @@ const LogoutButton = () => {
 
   const handleLogout = async () => {
     try {
-      // CSRFトークンを取得
-      const csrfToken = Cookies.get('XSRF-TOKEN');
-      if (!csrfToken) {
-        throw new Error('CSRF token is missing');
-      }
+      // メタタグからCSRFトークンを取得
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
 
       // クッキーを削除
       Cookies.remove('auth_token');
       Cookies.remove('user_id');
-      
+
       // API経由でログアウト処理を行う
       await axios.post('/api/logout', {}, {
-        withCredentials: true,
-        headers: {
-          'X-CSRF-TOKEN': csrfToken
-        }
+        withCredentials: true
       });
-      
+
       // ログアウト後のリダイレクト
       navigate('/');
     } catch (error) {
-      // エラーログの詳細な出力
-      if (error.response) {
-        // サーバーがステータスコードを返した場合
-        console.error('Error logging out:', {
-          status: error.response.status,
-          data: error.response.data,
-          headers: error.response.headers
-        });
-      } else if (error.request) {
-        // リクエストが送信されたが、応答がなかった場合
-        console.error('Error logging out: No response received', {
-          request: error.request
-        });
-      } else {
-        // リクエストの設定で問題があった場合
-        console.error('Error logging out: Request setup issue', {
-          message: error.message
-        });
-      }
+      console.error('Error logging out:', error);
     }
   };
 
