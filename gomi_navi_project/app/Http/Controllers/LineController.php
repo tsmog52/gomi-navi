@@ -159,25 +159,30 @@ class LineController extends Controller
         }
     }
 
-    public function sendMessage(string $lineUserId)
-    {
-        $http_client = new CurlHTTPClient(config('services.line.access_token'));
-        $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.message_channel_secret')]);
-
-        $message = "LINE送信テスト";
-        $textMessageBuilder = new TextMessageBuilder($message);
-        $response = $bot->pushMessage($lineUserId, $textMessageBuilder);
-
-        if ($response->isSucceeded()) {
-            Log::info('送信成功');
-        } else {
-            Log::error('送信失敗: '. $response->getHTTPStatus(). ' '. $response->getRawBody());
-        }
-    }
-
     public function webhook(Request $request)
     {
-        return 'ok';
-    }
+        // LINEから送られた内容を$inputsに代入
+        $inputs=$request->all();
 
+        // そこからtypeをとりだし、$message_typeに代入
+        $message_type=$inputs['events'][0]['type'];
+
+        // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
+        if($message_type=='message') {
+
+            // replyTokenを取得
+            $reply_token=$inputs['events'][0]['replyToken'];
+
+            // LINEBOTSDKの設定
+            $http_client = new CurlHTTPClient(env('LINE_MESSAGING_ACCESS_TOKEN'));
+            $bot = new LINEBot($http_client, ['channelSecret' => env('LINE_MESSAGING_CHANNEL_SECRET')]);
+
+            // 送信するメッセージの設定
+            $reply_message='メッセージありがとうございます';
+
+            // ユーザーにメッセージを返す
+            $reply=$bot->replyText($reply_token, $reply_message);
+            return response()->json(['status' => 'success'], 200);
+        }
+    }
 }
