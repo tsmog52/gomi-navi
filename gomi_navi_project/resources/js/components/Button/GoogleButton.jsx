@@ -5,7 +5,7 @@ const GoogleButton = ({ text, socialLink }) => {
 
   const handleClick = async () => {
     try {
-      const response = await axios.get('https://gomi-navi/login/google/callback');
+      const response = await axios.get('');
       const { token, user_id } = response.data;
       // クッキーに保存する
       document.cookie = `token=${token}; path=/`;
