@@ -177,44 +177,7 @@ class LineController extends Controller
 
     public function webhook(Request $request)
     {
-        // // LINEから送られた内容を$inputsに代入
-        // $inputs = $request->all();
-
-        // // eventsが存在しない場合の処理
-        // if (!isset($inputs['events'][0])) {
-        //     return response()->json(['status' => 'no events found'], 400);
-        // }
-
-        // // そこからtypeをとりだし、$message_typeに代入
-        // $message_type = $inputs['events'][0]['type'];
-
-        // // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
-        // if ($message_type == 'message') {
-        //     // replyTokenを取得
-        //     $reply_token = $inputs['events'][0]['replyToken'];
-
-        //     // LINEBOT SDKの設定
-        //     $http_client = new CurlHTTPClient(env('LINE_MESSAGING_ACCESS_TOKEN'));
-        //     $bot = new LINEBot($http_client, ['channelSecret' => env('LINE_MESSAGING_CHANNEL_SECRET')]);
-
-        //     // 送信するメッセージの設定
-        //     $reply_message = 'メッセージありがとうございます';
-
-        //     // ユーザーにメッセージを返す
-        //     $response = $bot->replyText($reply_token, $reply_message);
-
-        //     if ($response->isSucceeded()) {
-        //         Log::info('返信成功');
-        //         return response()->json(['status' => 'success'], 200);
-        //     } else {
-        //         Log::error('返信失敗: '. $response->getHTTPStatus(). ' '. $response->getRawBody());
-        //         return response()->json(['status' => 'failed'], 500);
-        //     }
-        // }
-
-        // // メッセージ以外の場合の処理
-        // return response()->json(['status' => 'no action'], 200);
         return 'ok';
     }
-}
 
+}
