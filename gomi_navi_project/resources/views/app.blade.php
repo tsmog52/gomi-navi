@@ -7,6 +7,7 @@
   @viteReactRefresh
   @vite(['resources/js/index.jsx', 'resources/css/app.css'])
   <title>gomi-navi</title>
+  <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
 </head>
 <body>
   <div id="index"></div>
