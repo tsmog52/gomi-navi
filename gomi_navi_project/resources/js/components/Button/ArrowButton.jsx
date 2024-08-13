@@ -10,10 +10,10 @@ const ArrowButton = ({ doubleArrowLeft,  arrowLeft, arrowRight, doubleArrowRight
   ];
 
   return (
-    <div className='flex items-center justify-center'>
+    <div className='flex items-center'>
       {ArrowIcons.map(({ icon: Icon, key, onClick }) => (
         <button className='ml-10 flex' onClick={onClick}>
-          <Icon key={key} size={40} className='text-gray-400' />
+          <Icon key={key} size={40} className='text-gray-400 ml-5' />
         </button>
       ))}
     </div>
