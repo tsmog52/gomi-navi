@@ -47,10 +47,11 @@ const SettingModal = ({ onClose }) => {
               </button>
             ))}
           </div>
-          <p className='text-center font-bold text-xl p-4'>外部カレンダー連携</p>
-          <GoogleButton text='Googleと連携する'/>
           <p className='text-center font-bold text-xl p-4'>外部リマインダー連携</p>
-          <LineButton text='LINEと連携する' />
+          <LineButton
+            text='LINEと連携する'
+            socialLink={"/auth/line"}
+          />
         </div>
       </div>
     </>
