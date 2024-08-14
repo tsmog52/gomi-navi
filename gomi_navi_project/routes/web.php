@@ -18,11 +18,9 @@ Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallb
 Route::get('auth/line', [LineController::class, 'redirectToLine']);
 Route::get('auth/line/callback', [LineController::class, 'callback']);
 
-//LINEメッセージ受信用
+//LINEメッセージ受信・送信用
 Route::post('/line/webhook', [LineController::class, 'webhook'])
     ->withoutMiddleware(ValidateCsrfToken::class);
-
-//LINEメッセージ送信用
 Route::get('/line/message', [LineController::class, 'message']);
 
 //どのURLでも1つのページでレンダリングされるようにする
