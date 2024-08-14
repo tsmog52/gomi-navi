@@ -14,7 +14,7 @@ const Contact = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <div className="flex flex-grow justify-center">
-        <div className="w-1/3 border-2 border-contact-bgc p-8  bg-contact-bgc">
+        <div className="w-1/3 p-8">
           <p className="text-center text-4xl font-bold p-4">お問い合わせ一覧</p>
           <p className="text-xl p-4 text-center">
             ごみの分別や収集に関するお問い合わせは、
@@ -32,7 +32,6 @@ const Contact = () => {
               </p>
               {expanded === 0 && (
                 <ContactCard
-                  css="p-4 w-full border-2 rounded-lg"
                   title="生活環境事業所"
                   tel="044-200-2583"
                   hours="午前8:00 - 午後4:45"
@@ -50,7 +49,6 @@ const Contact = () => {
               </p>
               {expanded === 1 && (
                 <ContactCard
-                  css="p-4 w-full border-2 rounded-lg"
                   title="粗大ゴミ受付センター"
                   tel="0570-044-530"
                   hours="午前8:00 - 午後4:45"
@@ -68,7 +66,6 @@ const Contact = () => {
               </p>
               {expanded === 2 && (
                 <ContactCard
-                  css="p-4 w-full border-2 rounded-lg"
                   title="ごみ・リサイクル関連施設"
                   tel="012-345-6789"
                   hours="午前8:00 - 午後4:45"
@@ -85,7 +82,6 @@ const Contact = () => {
               </p>
               {expanded === 3 && (
                 <ContactCard
-                  css="p-4 w-full border-2 rounded-lg"
                   title="川崎市ホームページ"
                   tel="044-200-2111（代表）"
                   hours="午前8:30 - 午後5:00"
