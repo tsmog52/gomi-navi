@@ -1,22 +1,12 @@
 import React from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import BtnBaseImage from '../../../images/btn_base.png';
 
 const LineButton = ({ text, socialLink }) => {
   const navigate = useNavigate();
 
-  const handleClick = async () => {
-    try {
-      const response = await axios.get('https://gomi-navi.net/auth/line/callback');
-      const { token, user_id } = response.data;
-      // クッキーに保存する
-      document.cookie = `token=${token}; path=/`;
-      document.cookie = `user_id=${user_id}; path=/`;
-      navigate('/');
-    } catch (error) {
-      console.error('LINE認証コールバックのエラー:', error);
-    }
+  const handleClick = () => {
+    // LINEの認証URLにリダイレクト
     window.location.href = socialLink;
   };
 
@@ -38,3 +28,4 @@ const LineButton = ({ text, socialLink }) => {
 };
 
 export default LineButton;
+
