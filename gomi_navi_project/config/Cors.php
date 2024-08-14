@@ -14,9 +14,9 @@ return [
     | To learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
     |
     */
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
-    'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    'allowed_origins' => ['https://gomi-navi.net'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'line/webhook'],
+    'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    'allowed_origins' => ['https://gomi-navi.net', 'http://localhost'],
     'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
     'exposed_headers' => [],
