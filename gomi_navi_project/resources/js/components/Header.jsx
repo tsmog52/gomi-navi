@@ -6,7 +6,7 @@ import LogoutButton from './Button/LogoutButton';
 import { useRecoilValue } from 'recoil';
 import { loginState } from '../states/loginState';
 import { Link } from 'react-router-dom';
-import Logo from '../../images/Logo.svg'; // SVGファイルをインポート
+import Logo from '../../images/Logo.svg';
 
 const Header = () => {
   const {isOpen: isOpenModal1, open: openModal1, close: closeModal1} = useModal();
@@ -28,7 +28,7 @@ const Header = () => {
             </Link>
           </li>
           {isLoggedIn ? (
-            <ul className="flex space-x-4 justify-end">
+            <ul className="flex items-center justify-between space-x-4 justify-end">
               <li><AddMemoButton  isOpen={isOpen} open={open} close={close}/></li>
               <li><LogoutButton /></li>
             </ul>
