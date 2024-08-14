@@ -9,11 +9,14 @@ use App\Models\SocialAccount;
 use Carbon\Carbon;
 use App\Models\PersonalAccessToken;
 use Laravel\Socialite\Facades\Socialite;
-use LINE\LINEBot;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use LINE\LINEBot;
+use LINE\LINEBot\Event\FollowEvent;
+use LINE\LINEBot\Event\UnfollowEvent;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
+
 
 class LineController extends Controller
 {
@@ -113,7 +116,8 @@ class LineController extends Controller
                 ],
                 [
                     'line_token' => $tokenData['access_token'],
-                    'line_refresh_token' => $tokenData['refresh_token'] ?? null, // 必要に応じてリフレッシュトークンを取得
+                    // 必要に応じてリフレッシュトークンを取得
+                    'line_refresh_token' => $tokenData['refresh_token'] ?? null
                 ]
             );
 
@@ -150,6 +154,8 @@ class LineController extends Controller
             // クッキーにアクセストークンをセット
             $accessTokenCookie = cookie('access_token', $tokenData['access_token'], 1440, null, null, false, false, false, 'Strict');
             $userIdCookie = cookie('user_id', $user->id, 1440, null, null, false, false, false, 'Strict');
+            // dd($accessTokenCookie);
+            // dd($userIdCookie);
 
             return redirect()->to('/')
                 ->withCookie($accessTokenCookie)
@@ -161,28 +167,39 @@ class LineController extends Controller
 
     public function webhook(Request $request)
     {
-        // LINEから送られた内容を$inputsに代入
-        $inputs=$request->all();
+        $channel_secret = env('LINE_MESSAGING_CHANNEL_SECRET');
+        $access_token = env('LINE_MESSAGING_ACCESS_TOKEN');
 
-        // そこからtypeをとりだし、$message_typeに代入
-        $message_type=$inputs['events'][0]['type'];
+        // LINE Botのインスタンス作成
+        $client = new CurlHTTPClient($access_token);
+        $bot = new LINEBot($client, ['channelSecret' => $channel_secret]);
 
-        // メッセージが送られた場合、$message_typeは'message'となる。その場合処理実行。
-        if($message_type=='message') {
+        // リクエストの内容を取得
+        $request_body = $request->getContent();
+    }
 
-            // replyTokenを取得
-            $reply_token=$inputs['events'][0]['replyToken'];
+    public function message()
+    {
+        $channel_secret = env('LINE_MESSAGING_CHANNEL_SECRET');
+        $access_token = env('LINE_MESSAGING_ACCESS_TOKEN');
 
-            // LINEBOTSDKの設定
-            $http_client = new CurlHTTPClient(env('LINE_MESSAGING_ACCESS_TOKEN'));
-            $bot = new LINEBot($http_client, ['channelSecret' => env('LINE_MESSAGING_CHANNEL_SECRET')]);
+        // LINE Botのインスタンス作成
+        $client = new CurlHTTPClient($access_token);
+        $bot = new LINEBot($client, ['channelSecret' => $channel_secret]);
 
-            // 送信するメッセージの設定
-            $reply_message='メッセージありがとうございます';
+        // メッセージの設定
+        $message = 'こんにちは';
 
-            // ユーザーにメッセージを返す
-            $reply=$bot->replyText($reply_token, $reply_message);
-            return response()->json(['status' => 'success'], 200);
+        // メッセージの送信
+        $textMessageBuilder = new TextMessageBuilder($message);
+
+        // providerがLINEのユーザーを全て取得
+        $line_users = SocialAccount::where('provider', 'line')->get();
+
+        // 各ユーザーにメッセージを送信
+        foreach($line_users as $line_user) {
+            // provider_id(line_id)を使用してメッセージを送信
+            $bot->pushMessage($line_user->provider_id, $textMessageBuilder);
         }
     }
 }
