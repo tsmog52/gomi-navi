@@ -16,6 +16,7 @@ const Calendar = () => {
     try {
       await deleteMemo(id);
       setMemos(memos.filter(memo => memo.id !== id));
+      window.location.href = '/calendar'
     } catch (error) {
       console.log('削除失敗');
     }
