@@ -14,7 +14,7 @@ const Contact = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <div className="flex flex-grow justify-center">
-        <div className="w-1/3 p-8">
+        <div className="p-8">
           <p className="text-center text-4xl font-bold p-4">お問い合わせ一覧</p>
           <p className="text-xl p-4 text-center">
             ごみの分別や収集に関するお問い合わせは、
