@@ -162,7 +162,7 @@ const Item = () => {
                           </div>
                         </div>
                         {item.item_memo !== null ? (
-                          <div className='w-96 border-4 p-2'>
+                          <div className='w-96 border-2 p-2'>
                             <p className='text-2xl font-normal pb-2'>出し方</p>
                             {item.item_memo}
                           </div>
