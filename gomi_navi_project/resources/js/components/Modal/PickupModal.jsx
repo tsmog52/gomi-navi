@@ -4,7 +4,6 @@ import CloseButton from '../Button/CloseButton';
 
 const PickupModal = ({ onClose }) => {
 
-  //Q. DBで管理したほうかいいのか
   const date = new Date();
   const day = date.getDay();
   const daysOfWeek = {
@@ -23,26 +22,30 @@ const PickupModal = ({ onClose }) => {
       <div
         className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
       >
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-          <CloseButton onClose={onClose}/>
+        <div className="bg-white p-4 sm:p-8 rounded-lg shadow-lg max-w-xs sm:max-w-md w-full">
+          <CloseButton onClose={onClose} />
           <div className='text-center'>
             <p
               className='text-gray-800 dark:text-neutral-200 pb-4'
             >
               今日の回収は
               <span
-              className='text-2xl font-bold text-gray-600'
+                className='text-xl sm:text-2xl font-bold text-gray-600'
               >
                 {dayOfWeek}
               </span>
               です。
             </p>
-            <p className='pb-2'>収集当日の朝8時までに出してください。<br /><span className='text-red-500'>祝日も回収します。</span></p>
+            <p className='text-sm sm:text-base pb-2'>
+              収集当日の朝8時までに出してください。<br />
+              <span className='text-red-500'>祝日も回収します。</span>
+            </p>
           </div>
         </div>
       </div>
     </>
   )
+
 }
 
 export default PickupModal
