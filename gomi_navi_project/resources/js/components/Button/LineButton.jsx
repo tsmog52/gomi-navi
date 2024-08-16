@@ -11,21 +11,20 @@ const LineButton = ({ text, socialLink }) => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <button
         onClick={handleClick}
-        className="w-[384px] h-[42px] border border-gray-300 rounded-lg bg-transparent flex items-center justify-center gap-2 cursor-pointer mb-4 hover:bg-gray-100"
+        className="w-full sm:w-auto sm:min-w-[300px] md:min-w-[384px] h-[50px] px-6 py-3 border border-gray-300 rounded-lg bg-transparent flex items-center justify-center gap-2 cursor-pointer mb-4 hover:bg-gray-100"
       >
         <img
           src={BtnBaseImage}
           alt="LINEでログイン"
           className="w-6 h-auto object-contain"
         />
-        <span className="text-sm text-gray-800">{text}</span>
+        <span className="text-base text-gray-800">{text}</span>
       </button>
     </div>
   );
 };
 
 export default LineButton;
-
