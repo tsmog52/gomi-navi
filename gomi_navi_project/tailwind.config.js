@@ -9,7 +9,8 @@ module.exports = {
       colors: {
         // カスタムカラーを追加
         'primary-font': '#8f9faa',
-        'background': '#e0efff',
+        '25': '6.25rem',
+        'contact-bgc': '#f8f7f6',
       },
     },
   },
