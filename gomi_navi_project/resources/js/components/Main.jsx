@@ -24,7 +24,7 @@ const Main = () => {
     <>
       <Header />
       <div className='flex justify-center items-center m-4 md:m-16'>
-        <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-16 items-center mt-10">
+        <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-16 items-center sm:mt-10">
           <MainCard
             icon={FaTruck}
             text='今日のゴミ回収'
@@ -65,9 +65,10 @@ const Main = () => {
           {isOpenModal2 && <SettingModal onClose={closeModal2} />}
         </main>
       </div>
-      <Footer />
+      <Footer className="hidden sm:block" />
     </>
   );
 };
 
 export default Main;
+
