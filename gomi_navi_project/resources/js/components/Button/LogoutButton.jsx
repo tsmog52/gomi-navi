@@ -22,7 +22,7 @@ const LogoutButton = () => {
       });
 
       // ログアウト後のリダイレクト
-      navigate('/');
+      window.location.href = '/'
     } catch (error) {
       // エラーログの詳細な出力
       if (error.response) {
