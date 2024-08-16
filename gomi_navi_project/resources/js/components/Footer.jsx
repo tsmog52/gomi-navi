@@ -2,9 +2,9 @@ import React from 'react'
 import { FaGithub } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 
-const Footer = () => {
+const Footer = ({ className }) => {
   return (
-    <footer className='bg-gray-200 p-4 mt-auto'>
+    <footer className={`bg-gray-200 p-4 mt-auto ${className}`}>
       <div className='container mx-auto flex flex-col items-center'>
         <ul className='flex space-x-4 mb-2'>
           <li>
