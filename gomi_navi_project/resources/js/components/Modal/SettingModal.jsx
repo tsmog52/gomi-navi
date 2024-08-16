@@ -26,20 +26,20 @@ const SettingModal = ({ onClose }) => {
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <div className="bg-white p-4 sm:p-8 rounded-lg shadow-lg max-w-xs sm:max-w-md w-full">
           <div className='flex justify-between items-center'>
-            <h2 className="block text-2xl font-bold text-gray-800 dark:text-neutral-200">
+            <h2 className="block text-xl sm:text-2xl font-bold text-gray-800 dark:text-neutral-200">
               設定
             </h2>
             <CloseButton onClose={onClose} />
           </div>
           <div className="border-b-2 my-4"></div>
-          <p className='pt-4 text-center font-bold text-xl'>地域を設定する</p>
+          <p className='pt-4 text-center font-bold text-lg sm:text-xl'>地域を設定する</p>
           <div className="mt-4 grid grid-cols-2 gap-2 p-2">
             {regions.map((region) => (
               <button
                 key={region}
-                className={`w-full p-2 rounded-lg border ${selected === region ? 'bg-gray-400 text-white font-normal' : 'bg-gray-100 text-gray-900'}
+                className={`w-full p-2 sm:p-3 rounded-lg border ${selected === region ? 'bg-gray-400 text-white font-normal' : 'bg-gray-100 text-gray-900'}
                 hover:bg-gray-400  focus:outline-none focus:ring-2 focus:ring-gray-400 active:bg-gray-400`}
                 onClick={() => setSelected(region)}
               >
@@ -47,7 +47,7 @@ const SettingModal = ({ onClose }) => {
               </button>
             ))}
           </div>
-          <p className='text-center font-bold text-xl p-4'>外部リマインダー連携</p>
+          <p className='text-center font-bold text-lg sm:text-xl p-4'>外部リマインダー連携</p>
           <LineButton
             text='LINEと連携する'
             socialLink={"/auth/line"}
@@ -58,4 +58,4 @@ const SettingModal = ({ onClose }) => {
   );
 }
 
-export default SettingModal;
+export default SettingModal
