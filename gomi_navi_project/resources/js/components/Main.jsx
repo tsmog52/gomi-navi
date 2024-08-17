@@ -1,7 +1,5 @@
 import React from 'react';
-import { FaTruck, FaSearch, FaCalendarAlt } from "react-icons/fa";
-import { FaPhone } from "react-icons/fa6";
-import { AiFillDelete } from "react-icons/ai";
+import { FaTruck, FaSearch, FaCalendarAlt, FaPhoneAlt, FaTrash } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
 import Header from './Header';
 import useModal from '../hooks/useModal';
@@ -24,7 +22,7 @@ const Main = () => {
     <>
       <Header />
       <div className='flex justify-center items-center m-4 md:m-16'>
-        <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-16 items-center sm:mt-10">
+        <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4 md:gap-16 items-center mt-3 sm:mt-10">
           <MainCard
             icon={FaTruck}
             text='今日のゴミ回収'
@@ -45,13 +43,13 @@ const Main = () => {
             size={50}
           />
           <MainCard
-            icon={AiFillDelete}
+            icon={FaTrash}
             link={'/category'}
             text='ゴミの捨て方'
             size={60}
           />
           <MainCard
-            icon={FaPhone}
+            icon={FaPhoneAlt}
             link={'/contact'}
             text='お問い合わせ'
             size={50}
@@ -65,7 +63,7 @@ const Main = () => {
           {isOpenModal2 && <SettingModal onClose={closeModal2} />}
         </main>
       </div>
-      <Footer className="hidden sm:block" />
+      <Footer />
     </>
   );
 };
