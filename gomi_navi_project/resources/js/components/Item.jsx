@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { createRoot } from 'react-dom/client';
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import Header from './Header';
 import useAccordion from '../hooks/useAccordion';
