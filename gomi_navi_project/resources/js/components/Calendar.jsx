@@ -5,6 +5,7 @@ import MemoList from './MemoList';
 import { getMemoById, deleteMemo } from '../api';
 import { useRecoilValue } from 'recoil';
 import { loginState } from '../states/loginState';
+import Footer from './Footer';
 
 const Calendar = () => {
   const [memos, setMemos] = useState([]);
@@ -62,6 +63,7 @@ const Calendar = () => {
           setEditingMemo={setEditingMemo}
         />
       )}
+      <Footer />
     </>
   );
 };
