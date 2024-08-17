@@ -8,6 +8,7 @@ import { loginState } from '../states/loginState';
 import { Link } from 'react-router-dom';
 import Logo from '../../images/Logo.svg';
 
+
 const Header = () => {
   const {isOpen: isOpenModal1, open: openModal1, close: closeModal1} = useModal();
   const {isOpen: isOpenModal2, open: openModal2, close: closeModal2} = useModal();
@@ -23,7 +24,7 @@ const Header = () => {
               <img
                 src={Logo}
                 alt="ロゴ"
-                className="w-40"
+                className="w-32 sm:w-40"
               />
             </Link>
           </li>
@@ -37,7 +38,7 @@ const Header = () => {
               <li>
                 <button
                   onClick={openModal1}
-                  className='text-gray-600 hover:text-gray-400 transition-colors duration-300'
+                  className='text-gray-600 hover:text-gray-400 transition-colors duration-300 text-sm sm:text-base'
                 >
                   ログイン
                 </button>
@@ -54,7 +55,7 @@ const Header = () => {
               <li>
                 <button
                   onClick={openModal2}
-                  className='text-gray-600 hover:text-gray-400 transition-colors duration-300'
+                  className='text-gray-600 hover:text-gray-400 transition-colors duration-300 text-sm sm:text-base'
                 >
                   会員登録
                 </button>
