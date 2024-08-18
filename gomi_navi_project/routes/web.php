@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LineController;
 use App\Http\Controllers\GoogleController;
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
+use App\Http\Controllers\LineBotController;
 
 //CSRFトークンを取得するためのエンドポイント
 Route::get('/sanctum/csrf-cookie', function () {
@@ -19,9 +20,8 @@ Route::get('auth/line', [LineController::class, 'redirectToLine']);
 Route::get('auth/line/callback', [LineController::class, 'callback']);
 
 //LINEメッセージ受信・送信用
-Route::post('/line/webhook', [LineController::class, 'webhook'])
+Route::post('/line/webhook', [LineBotController::class, 'reply'])
     ->withoutMiddleware(ValidateCsrfToken::class);
-Route::get('/line/message', [LineController::class, 'message']);
 
 //どのURLでも1つのページでレンダリングされるようにする
 Route::get('/{any}', function () {
