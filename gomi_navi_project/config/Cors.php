@@ -16,7 +16,7 @@ return [
     */
     'paths' => ['api/*', 'sanctum/csrf-cookie', 'line/webhook'],
     'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://gomi-navi.net'],
     'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
     'exposed_headers' => [],
