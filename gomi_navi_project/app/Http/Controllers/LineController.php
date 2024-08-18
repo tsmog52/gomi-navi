@@ -11,12 +11,6 @@ use App\Models\PersonalAccessToken;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use LINE\LINEBot;
-use LINE\LINEBot\Event\FollowEvent;
-use LINE\LINEBot\Event\UnfollowEvent;
-use LINE\LINEBot\HTTPClient\CurlHTTPClient;
-use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
-
 
 class LineController extends Controller
 {
@@ -162,44 +156,6 @@ class LineController extends Controller
                 ->withCookie($userIdCookie);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
-        }
-    }
-
-    public function webhook(Request $request)
-    {
-        $channel_secret = env('LINE_MESSAGING_CHANNEL_SECRET');
-        $access_token = env('LINE_MESSAGING_ACCESS_TOKEN');
-
-        // LINE Botのインスタンス作成
-        $client = new CurlHTTPClient($access_token);
-        $bot = new LINEBot($client, ['channelSecret' => $channel_secret]);
-
-        // リクエストの内容を取得
-        $request_body = $request->getContent();
-    }
-
-    public function message()
-    {
-        $channel_secret = env('LINE_MESSAGING_CHANNEL_SECRET');
-        $access_token = env('LINE_MESSAGING_ACCESS_TOKEN');
-
-        // LINE Botのインスタンス作成
-        $client = new CurlHTTPClient($access_token);
-        $bot = new LINEBot($client, ['channelSecret' => $channel_secret]);
-
-        // メッセージの設定
-        $message = 'こんにちは';
-
-        // メッセージの送信
-        $textMessageBuilder = new TextMessageBuilder($message);
-
-        // providerがLINEのユーザーを全て取得
-        $line_users = SocialAccount::where('provider', 'line')->get();
-
-        // 各ユーザーにメッセージを送信
-        foreach($line_users as $line_user) {
-            // provider_id(line_id)を使用してメッセージを送信
-            $bot->pushMessage($line_user->provider_id, $textMessageBuilder);
         }
     }
 }
