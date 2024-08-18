@@ -22,8 +22,8 @@ return [
         'redirect' => env('LINE_LOGIN_REDIRECT_URI'),
 
         // Message
-        'channel_secret' => env('LINE_MESSAGING_CHANNEL_SECRET'),
-        'access_token' => env('LINE_MESSAGING_ACCESS_TOKEN'),
+        'channel_token' => env('LINE_MESSAGING_ACCESS_TOKEN'),
+        'messenger_secret' => env('LINE_MESSAGING_CHANNEL_SECRET'),
     ],
 
     'postmark' => [
