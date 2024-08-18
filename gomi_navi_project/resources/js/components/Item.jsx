@@ -5,6 +5,7 @@ import Header from './Header';
 import useAccordion from '../hooks/useAccordion';
 import ArrowButton from './Button/ArrowButton';
 import InputField from './InputField';
+import Footer from './Footer';
 
 const Item = () => {
   const [items, setItems] = useState([]);
@@ -91,8 +92,8 @@ const Item = () => {
   return (
     <>
       <Header />
-      <div className='flex'>
-        <div className='w-2/5 h-screen bg-white overflow-auto'>
+      <div className='w-full sm:flex'>
+        <div className='w-full sm:w-2/5'>
           <InputField
             value={inputValue}
             onChange={handleChange}
@@ -114,7 +115,10 @@ const Item = () => {
               ) : (
                 filteredValue.map((item, index) => (
                   <li key={index}>
-                    <button onClick={() => toggleAccordion(index)} className='flex justify-between w-full p-4 text-2xl'>
+                    <button
+                      onClick={() => toggleAccordion(index)}
+                      className='flex justify-between w-full p-4 text-2xl'
+                    >
                       {item.item_name}
                       <MdOutlineKeyboardArrowRight
                         size={30}
@@ -124,13 +128,32 @@ const Item = () => {
                       />
                     </button>
                     <div className='border-b-2'></div>
+                    {isAccordion === index && (
+                      <div className='block sm:hidden p-4'>
+                        <div className='w-96 border-2 p-1 mb-6'>
+                          <p className='mr-4'>分類</p>
+                          <div className='text-3xl text-center'>
+                            {item.category_name}
+                          </div>
+                        </div>
+                        {item.item_memo !== null ? (
+                          <div className='w-96 border-2 p-2'>
+                            <p className='text-2xl font-normal pb-2'>出し方</p>
+                            {item.item_memo}
+                          </div>
+                        ) : null}
+                      </div>
+                    )}
                   </li>
                 ))
               )
             ) : (
               items.map((item, index) => (
                 <li key={index}>
-                  <button onClick={() => toggleAccordion(index)} className='flex justify-between w-full p-4 text-2xl'>
+                  <button
+                    onClick={() => toggleAccordion(index)}
+                    className='flex justify-between w-full p-4 text-2xl'
+                  >
                     {item.item_name}
                     <MdOutlineKeyboardArrowRight
                       size={30}
@@ -140,18 +163,34 @@ const Item = () => {
                     />
                   </button>
                   <div className='border-b-2'></div>
+                  {isAccordion === index && (
+                    <div className='block sm:hidden p-4 bg-white flex flex-col items-center'>
+                      <div className='w-72 sm:w-96 border-2 p-1 sm:mb-6 mb-3'>
+                        <p className='mr-4'>分類</p>
+                        <div className='text-lg sm:text-3xl text-center'>
+                          {item.category_name}
+                        </div>
+                      </div>
+                      {item.item_memo !== null ? (
+                        <div className='w-72 sm:w-96 border-2 p-2'>
+                          <p className='text-lg sm:text-2xl font-normal pb-2'>出し方</p>
+                          {item.item_memo}
+                        </div>
+                      ) : null}
+                    </div>
+                  )}
                 </li>
               ))
             )}
           </ul>
         </div>
-        <div className='w-3/5 bg-gray-100'>
+        <div className='sm:w-3/5 sm:block flex justify-center items-center'>
           <div className='flex items-center justify-center right-panel h-full overflow-auto'>
             {items.map((item, index) => (
               isAccordion === index && (
                 <div className='w-112 bg-white rounded-lg p-4 mb-4' key={index}>
                   <div className='p-4'>
-                    <p className='text-3xl  font-normal pb-4 text-center'>{item.item_name}</p>
+                    <p className='text-lg sm:text-3xl font-normal pb-4 text-center'>{item.item_name}</p>
                     <ul>
                       <li className='text-lg'>
                         <div className='w-96 border-2 p-1 mb-6'>
@@ -175,6 +214,7 @@ const Item = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
