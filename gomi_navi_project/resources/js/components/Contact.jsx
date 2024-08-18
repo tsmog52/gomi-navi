@@ -14,19 +14,19 @@ const Contact = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <div className="flex flex-grow justify-center">
-        <div className="p-8">
-          <p className="text-center text-4xl font-bold p-4">お問い合わせ一覧</p>
-          <p className="text-xl p-4 text-center">
+        <div className="p-4 sm:p-8">
+          <p className="text-center text-lg sm:text-4xl font-bold sm:p-4">お問い合わせ一覧</p>
+          <p className="text-sm sm:text-xl p-4 sm:text-center">
             ごみの分別や収集に関するお問い合わせは、
             <br />
-            <span className="pl-14">生活環境事業所へお問い合わせください。</span>
+            <span className="sm:pl-14">生活環境事業所へお問い合わせください。</span>
           </p>
 
           <div className="flex flex-col items-center">
             <div>
               <p
                 onClick={() => handleClick(0)}
-                className="cursor-pointer p-4 text-lg font-semibold text-gray-600 hover:text-gray-400 transition-colors duration-300 hover:underline"
+                className="cursor-pointer p-4 sm:text-lg font-semibold text-gray-600 hover:text-gray-400 transition-colors duration-300 hover:underline"
               >
                 生活環境事業所
               </p>
@@ -43,7 +43,7 @@ const Contact = () => {
             <div>
               <p
                 onClick={() => handleClick(1)}
-                className="cursor-pointer p-4 text-lg font-semibold text-gray-600 hover:text-gray-400 transition-colors duration-300 hover:underline"
+                className="cursor-pointer p-4 sm:text-lg font-semibold text-gray-600 hover:text-gray-400 transition-colors duration-300 hover:underline"
               >
                 粗大ゴミ受付センター
               </p>
@@ -60,7 +60,7 @@ const Contact = () => {
             <div>
               <p
                 onClick={() => handleClick(2)}
-                className="cursor-pointer p-4 text-lg font-semibold text-gray-600 hover:text-gray-400 transition-colors duration-300 hover:underline"
+                className="cursor-pointer p-4 sm:text-lg font-semibold text-gray-600 hover:text-gray-400 transition-colors duration-300 hover:underline"
               >
                 ごみ・リサイクル関連施設
               </p>
@@ -76,7 +76,7 @@ const Contact = () => {
             <div>
               <p
                 onClick={() => handleClick(3)}
-                className="cursor-pointer p-4 text-lg font-semibold text-gray-600 hover:text-gray-400 transition-colors duration-300 hover:underline"
+                className="cursor-pointer p-4 sm:text-lg font-semibold text-gray-600 hover:text-gray-400 transition-colors duration-300 hover:underline"
               >
                 川崎市ホームページ
               </p>
