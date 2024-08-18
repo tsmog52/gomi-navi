@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 const CalendarDisplay = () => {
   //カレンダーを取得
   const [calendars, setCalendars] = useState([]);
@@ -54,27 +55,27 @@ const CalendarDisplay = () => {
       <div className='flex flex-col items-center p-4'>
         {/* daysOrderのday:key label:value */}
         {Object.entries(daysOfWeek).map(([day, label]) => (
-          <div key={day} className='flex items-center w-full max-w-xl border-b-2 p-2'>
+          <div key={day} className='flex items-center w-full max-w-xl border-b-2 sm:p-2 p-1'>
             <div className='relative mx-4'>
-              <div className='w-12 h-12 rounded-full bg-gray-300'></div>
-              <p className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl'>{label}</p>
+              <div className='w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-gray-300'></div>
+              <p className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:text-2xl'>{label}</p>
             </div>
             <div className='flex flex-col'>
               {/* FRはgridを適用 */}
               {day === 'FR' ? (
                 <div>
-                  <div className='grid grid-cols-2 gap-2'>
+                  <div className='sm:grid sm:grid-cols-2 gap-2'>
                     {renderCalendarsForDay(day).map((calendar, index) => (
-                      <span key={index} className='text-2xl pl-6'>{calendar}</span>
+                      <span key={index} className='block sm:text-2xl pl-6'>{calendar}</span>
                     ))}
                   </div>
-                  <p className='text-red-500 text-xl'>
+                  <p className='text-red-500 sm:text-xl text-sm'>
                     ※小物金属・使用済み乾電池は第1・3週のみ回収
                   </p>
                 </div>
               ) : (
                 renderCalendarsForDay(day).map((calendar, index) => (
-                  <span key={index} className='text-2xl pl-6'>{calendar}</span>
+                  <span key={index} className='sm:text-2xl pl-6'>{calendar}</span>
                 ))
               )}
             </div>
