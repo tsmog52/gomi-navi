@@ -30,5 +30,3 @@ const MainCard = ({ text, icon: Icon, link, onClick }) => {
 }
 
 export default MainCard;
-
-
