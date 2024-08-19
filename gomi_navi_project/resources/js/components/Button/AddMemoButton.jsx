@@ -28,7 +28,6 @@ const AddMemoButton = () => {
     try {
       // メモの保存が成功した場合、メモリストを再取得して更新
       const response = await getMemos();
-      console.log('Fetched memos on save:', response); // responseの内容をログに出力して確認
       setMemos(response.memos || []);
     } catch (error) {
       console.error('Error fetching memos:', error.message);
