@@ -14,7 +14,7 @@ const ArrowButton = ({ doubleArrowLeft, arrowLeft, arrowRight, doubleArrowRight 
       {ArrowIcons.map(({ icon: Icon, key, onClick }) => (
         <button
           key={key}
-          className='flex items-center justify-center p-2 mx-2 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-10 hover:text-gray-600 transition-colors duration-300'
+          className='flex items-center justify-center p-2 mx-2 md:mx-4 md:mx-6 lg:mx-8 xl:mx-10 hover:text-gray-600 transition-colors duration-300'
           onClick={onClick}
         >
           <Icon size={30} className='text-gray-400' />

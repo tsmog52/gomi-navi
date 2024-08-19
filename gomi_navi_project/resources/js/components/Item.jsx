@@ -92,8 +92,8 @@ const Item = () => {
   return (
     <>
       <Header />
-      <div className='w-full sm:flex'>
-        <div className='w-full sm:w-2/5'>
+      <div className='w-full md:flex'>
+        <div className='w-full md:w-2/5'>
           <InputField
             value={inputValue}
             onChange={handleChange}
@@ -129,7 +129,7 @@ const Item = () => {
                     </button>
                     <div className='border-b-2'></div>
                     {isAccordion === index && (
-                      <div className='block sm:hidden p-4'>
+                      <div className='block md:hidden p-4'>
                         <div className='w-96 border-2 p-1 mb-6'>
                           <p className='mr-4'>分類</p>
                           <div className='text-3xl text-center'>
@@ -164,16 +164,16 @@ const Item = () => {
                   </button>
                   <div className='border-b-2'></div>
                   {isAccordion === index && (
-                    <div className='block sm:hidden p-4 bg-white flex flex-col items-center'>
-                      <div className='w-72 sm:w-96 border-2 p-1 sm:mb-6 mb-3'>
+                    <div className='block md:hidden p-4 bg-white flex flex-col items-center'>
+                      <div className='w-72 md:w-96 border-2 p-1 md:mb-6 mb-3'>
                         <p className='mr-4'>分類</p>
-                        <div className='text-lg sm:text-3xl text-center'>
+                        <div className='text-lg md:text-3xl text-center'>
                           {item.category_name}
                         </div>
                       </div>
                       {item.item_memo !== null ? (
-                        <div className='w-72 sm:w-96 border-2 p-2'>
-                          <p className='text-lg sm:text-2xl font-normal pb-2'>出し方</p>
+                        <div className='w-72 md:w-96 border-2 p-2'>
+                          <p className='text-lg md:text-2xl font-normal pb-2'>出し方</p>
                           {item.item_memo}
                         </div>
                       ) : null}
@@ -184,13 +184,13 @@ const Item = () => {
             )}
           </ul>
         </div>
-        <div className='sm:w-3/5 sm:block flex justify-center items-center'>
+        <div className='hidden md:w-3/5 md:block flex justify-center items-center'>
           <div className='flex items-center justify-center right-panel h-full overflow-auto'>
             {items.map((item, index) => (
               isAccordion === index && (
                 <div className='w-112 bg-white rounded-lg p-4 mb-4' key={index}>
                   <div className='p-4'>
-                    <p className='text-lg sm:text-3xl font-normal pb-4 text-center'>{item.item_name}</p>
+                    <p className='text-lg md:text-3xl font-normal pb-4 text-center'>{item.item_name}</p>
                     <ul>
                       <li className='text-lg'>
                         <div className='w-96 border-2 p-1 mb-6'>
@@ -220,3 +220,5 @@ const Item = () => {
 };
 
 export default Item;
+
+

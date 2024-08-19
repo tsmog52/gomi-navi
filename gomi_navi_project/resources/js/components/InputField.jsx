@@ -3,13 +3,13 @@ import { IoSearch } from "react-icons/io5";
 
 const InputField = ({ value, onChange, placeholder, onClick }) => {
   return (
-    <div className='relative w-10/12 sm:w-96 m-4 sm:m-5 ml-4 sm:ml-12'>
+    <div className='relative w-10/12 md:w-96 m-4 md:m-5 ml-4 md:ml-12'>
       <input
         type='text'
         value={value}
         placeholder={placeholder}
         onChange={onChange}
-        className='p-2 border-2 rounded pr-14 w-full'
+        className='p-1 border-2 rounded pr-14 w-full'
       />
       <button
         onClick={onClick}

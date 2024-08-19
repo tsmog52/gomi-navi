@@ -24,8 +24,8 @@ const Category = () => {
   return (
     <>
       <Header />
-      <div className='w-full sm:flex'>
-        <div className='w-full sm:w-2/5'>
+      <div className='w-full md:flex'>
+        <div className='w-full md:w-2/5'>
           <ul>
             {guides.map((guide, index) => (
               <li key={index}>
@@ -34,11 +34,16 @@ const Category = () => {
                   className='flex justify-between w-full p-4 text-2xl'
                 >
                   {guide.category_name}
-                  <MdOutlineKeyboardArrowRight size={30} />
+                  <MdOutlineKeyboardArrowRight
+                    size={30}
+                    className={`transition-transform duration-300 ${
+                      isAccordion === index ? 'rotate-90' : 'rotate-0'
+                    }`}
+                  />
                 </button>
                 <div className='border-b-2'></div>
                 {isAccordion === index && (
-                  <div className='block sm:hidden p-4'>
+                  <div className='block md:hidden p-4'>
                     <div className='border-2 p-2'>
                       <p className='text-2xl font-normal pb-2'>出し方</p>
                       {guide.instructions}
@@ -49,12 +54,12 @@ const Category = () => {
             ))}
           </ul>
         </div>
-        <div className='hidden sm:w-3/5 sm:flex bg-gray-100 h-screen justify-center items-center'>
-          <div className='sm:w-96 bg-white flex justify-center items-center'>
+        <div className='hidden md:w-3/5 md:flex bg-gray-100 h-screen justify-center items-center'>
+          <div className='md:w-96 bg-white flex justify-center items-center'>
             {guides.map((guide, index) => (
               isAccordion === index && (
               <div className='w-112 h-128 bg-white rounded-lg p-4'>
-                <div key={index} className='flex justify-center items-center p-4 '>
+                <div key={index} className='flex justify-center items-center p-4'>
                   <ul>
                     <li className='text-lg'>
                       <div className='w-96 p-2 mb-3 text-center text-3xl font-normal p-3'>
@@ -78,4 +83,5 @@ const Category = () => {
 };
 
 export default Category;
+
 

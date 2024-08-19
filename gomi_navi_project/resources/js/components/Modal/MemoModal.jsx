@@ -61,7 +61,7 @@ const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
       <div
         className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30"
       >
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md sm:w-full">
+        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md :w-full">
           <form onSubmit={handleSubmit}>
             <div className='text-center'>
               <CloseButton onClose={onClose} />
