@@ -14,6 +14,7 @@ const LoginModal = ({title, onClose, google, line }) => {
               {title}
             </h2>
             {/* <GoogleButton text={google} socialLink={"/login/google"}/> */}
+            <p className='pb-2'>連携することでLINEアカウントで<br />リマインダー通知を受け取ることができます。</p>
             <LineButton text={line} socialLink={"/auth/line"}/>
           </div>
         </div>
