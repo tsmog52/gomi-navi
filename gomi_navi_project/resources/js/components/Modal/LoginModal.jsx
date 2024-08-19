@@ -3,7 +3,7 @@ import CloseButton  from '../Button/CloseButton';
 // import GoogleButton from '../Button/GoogleButton';
 import LineButton from '../Button/LineButton';
 
-const LoginModal = ({title, linkText, onClose, google, line }) => {
+const LoginModal = ({title, onClose, google, line }) => {
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -15,11 +15,6 @@ const LoginModal = ({title, linkText, onClose, google, line }) => {
             </h2>
             {/* <GoogleButton text={google} socialLink={"/login/google"}/> */}
             <LineButton text={line} socialLink={"/auth/line"}/>
-              <p className="mb-4">
-                <a className="text-blue-600 underline hover:text-blue-400" href="#">
-                  {linkText}
-                </a>
-                </p>
           </div>
         </div>
       </div>
