@@ -9,7 +9,6 @@ use App\Models\SocialAccount;
 use Carbon\Carbon;
 use App\Models\PersonalAccessToken;
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class LineController extends Controller
