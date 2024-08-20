@@ -18,7 +18,7 @@ export default defineConfig({
         '@': resolve(__dirname, 'resources/js'),
     },
     server: {
-        https: true,
+        https: false,
     },
     base: '/build/'
 });
