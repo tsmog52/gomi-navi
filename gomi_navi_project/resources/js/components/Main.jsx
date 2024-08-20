@@ -22,7 +22,7 @@ const Main = () => {
     <>
       <Header />
       <div className='flex justify-center items-center m-4 md:m-16'>
-        <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4 md:gap-16 items-center mt-3 sm:mt-10">
+        <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-16 items-center mt-3 sm:mt-10">
           <MainCard
             icon={FaTruck}
             text='今日のゴミ回収'

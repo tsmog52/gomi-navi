@@ -4,7 +4,7 @@ const MainCard = ({ text, icon: Icon, link, onClick }) => {
   return (
     <>
       <button
-        className="relative border-2 border-black sm:rounded-lg w-64 h-16 sm:w-60 sm:h-40
+        className="relative border-2 border-black sm:rounded-lg w-64 h-16 sm:w-72 sm:h-48
                               flex items-center justify-between sm:justify-center px-4 sm:mt-4 sm:flex-col"
         onClick={onClick}
       >
