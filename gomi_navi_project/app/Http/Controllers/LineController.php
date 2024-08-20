@@ -93,6 +93,38 @@ class LineController extends Controller
         }
     }
 
+    public function refreshAccessToken($refreshToken)
+{
+    $headers = ['Content-Type: application/x-www-form-urlencoded'];
+    $post_data = [
+        'grant_type'    => 'refresh_token',
+        'refresh_token' => $refreshToken,
+        'client_id'     => config('services.line.client_id'),
+        'client_secret' => config('services.line.client_secret'),
+    ];
+    $url = 'https://api.line.me/oauth2/v2.1/token';
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($post_data));
+
+    $res = curl_exec($curl);
+    curl_close($curl);
+
+    $json = json_decode($res, true);
+
+    if (isset($json['access_token'])) {
+        return $json;
+    } else {
+        throw new \Exception('Unable to refresh access token: ' . json_encode($json));
+    }
+}
+
+
     public function callback(Request $request)
     {
         try {
