@@ -18,3 +18,6 @@ gomi-naviは、「ゴミの捨て忘れを防止したい」という想いか�
 | **データベース** | -MySQL:8.0.35   |
 | **インフラ**    | - AWS (Route53 / Certificate Manager / VPC / EC2 / RDS MySQL)<br>- Apache |
 | **デザイン** | - miro<br>-Figma    |
+
+
+## 今後の展望
