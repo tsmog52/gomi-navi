@@ -47,7 +47,10 @@ const LogoutButton = () => {
   };
 
   return (
-    <button onClick={handleLogout}>ログアウト</button>
+    <button
+      onClick={handleLogout}
+      className='bg-white p-2 text-green-600  rounded-3xl hover:text-white hover:bg-green-500 transition-colors duration-300 text-sm sm:text-base '
+    >ログアウト</button>
   );
 };
 
