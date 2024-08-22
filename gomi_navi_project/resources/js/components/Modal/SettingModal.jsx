@@ -57,7 +57,7 @@ const SettingModal = ({onClose }) => {
           </div>
           <button
             onClick={handleSave}
-            className='w-full h-[40px] px-4 py-2 sm:h-[50px] sm:px-6 sm:py-3 sm:w-auto sm:min-w-[250px] md:min-w-[380px] text-white rounded-lg bg-blue-500 bg-transparent flex items-center justify-center gap-2 cursor-pointer m-2 hover:bg-blue-600 mt-2'
+            className='w-full h-[40px] px-4 py-2 sm:h-[50px] sm:px-6 sm:py-3 sm:w-auto sm:min-w-[250px] md:min-w-[380px] text-white rounded-lg bg-blue-500 flex items-center justify-center gap-2 cursor-pointer m-2 hover:bg-blue-600 mt-2'
           >
             地域を保存
           </button>
