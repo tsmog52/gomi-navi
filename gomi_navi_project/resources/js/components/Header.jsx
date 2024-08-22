@@ -14,7 +14,7 @@ const Header = () => {
   const isLoggedIn = useRecoilValue(loginState);
 
   return (
-    <header className='small-header bg-gray-200 p-2'>
+    <header className='small-header bg-green-500 p-2'>
       <nav className='flex justify-between items-center'>
         <Link to='/'>
           <img
@@ -31,7 +31,7 @@ const Header = () => {
         ) : (
           <button
             onClick={openModal1}
-            className='text-gray-600 hover:text-gray-400 transition-colors duration-300 text-sm sm:text-base'
+            className='bg-white p-2 text-green-600  rounded-3xl hover:text-white hover:bg-green-500 transition-colors duration-300 text-sm sm:text-base '
           >
             ログイン
           </button>
