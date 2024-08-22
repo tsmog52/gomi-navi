@@ -3,15 +3,33 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import CloseButton from '../Button/CloseButton';
 import LineButton from '../Button/LineButton';
+import AlertModal from './AlertModal';
+import { LuMapPin } from "react-icons/lu";
 
-
-const SettingModal = ({ onClose }) => {
+const SettingModal = ({onClose }) => {
   const regions = ['川崎区', '中原区', '高津区', '宮前区', '多摩区', '麻生区', '幸区'];
   //多摩区で登録
   const [selected, setSelected] = useState(regions[4]);
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleSave = () => {
+     // 少し遅延させてモーダルを閉じる
+    onClose();
+    setTimeout(() => {
+      setShowAlert(true);
+    }, 1000);
+  };
+  console.log(showAlert);
+
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
 
   return (
     <>
+      {showAlert && (
+        <AlertModal text='設定を変更しました' onClose={closeAlert} />
+      )}
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
         <div className="bg-white p-4 md:p-8 rounded-lg shadow-lg max-w-xs md:max-w-md w-full">
           <div className='flex justify-between items-center'>
@@ -21,7 +39,10 @@ const SettingModal = ({ onClose }) => {
             <CloseButton onClose={onClose} />
           </div>
           <div className="border-b-2 md:my-4"></div>
-          <p className='text-base pt-2 text-center font-bold text-lg md:text-xl'>地域を設定する</p>
+          <div className='flex items-center justify-center pt-2'>
+            <LuMapPin size={24} className='m-1'/>
+            <p className='md:text-xl pt-1 text-center font-bold text-lg md:text-xl'>地域を設定する</p>
+          </div>
           <div className="grid grid-cols-2 gap-2 p-2">
             {regions.map((region) => (
               <button
@@ -34,8 +55,14 @@ const SettingModal = ({ onClose }) => {
               </button>
             ))}
           </div>
+          <button
+            onClick={handleSave}
+            className='w-full h-[40px] px-4 py-2 sm:h-[50px] sm:px-6 sm:py-3 sm:w-auto sm:min-w-[250px] md:min-w-[380px] text-white rounded-lg bg-blue-500 bg-transparent flex items-center justify-center gap-2 cursor-pointer m-2 hover:bg-blue-600 mt-2'
+          >
+            地域を保存
+          </button>
           <div className='hidden md:block'>
-            <p className='text-base text-center font-bold text-lg md:text-xl p-2 md:p-4'>外部リマインダー連携</p>
+            <p className='text-center font-bold text-lg md:text-xl p-2 md:p-2'>外部リマインダー連携</p>
             <LineButton
               text='LINEと連携する'
               socialLink={"/auth/line"}
