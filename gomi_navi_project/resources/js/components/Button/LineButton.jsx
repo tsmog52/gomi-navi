@@ -1,9 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import BtnBaseImage from '../../../images/btn_base.png';
+import { FaRegBell } from "react-icons/fa6";
 
 const LineButton = ({ text, socialLink }) => {
-  const navigate = useNavigate();
 
   const handleClick = () => {
     // LINEの認証URLにリダイレクト
@@ -11,17 +9,15 @@ const LineButton = ({ text, socialLink }) => {
   };
 
   return (
-    <div className="w-full">
+    <div className='w-full flex items-center justify-center'>
       <button
         onClick={handleClick}
-        className="w-full h-[40px] px-4 py-2 sm:h-[50px] sm:px-6 sm:py-3 sm:w-auto sm:min-w-[300px] md:min-w-[384px] border border-gray-300 rounded-lg bg-transparent flex items-center justify-center gap-2 cursor-pointer mb-4 hover:bg-gray-100"
+        className='w-full h-[40px] px-4 py-2 sm:h-[50px] sm:px-6 sm:py-3 sm:w-auto sm:min-w-[300px] md:min-w-[384px] rounded-lg bg-green-500 bg-transparent flex items-center justify-center gap-2 cursor-pointer mb-4 hover:bg-green-600'
       >
-        <img
-          src={BtnBaseImage}
-          alt="LINEでログイン"
-          className="w-5 h-auto sm:w-6 object-contain"
+        <FaRegBell
+          className='text-white'
         />
-        <span className="text-sm sm:text-base text-gray-800">{text}</span>
+        <span className='text-sm sm:text-base text-white'>{text}</span>
       </button>
     </div>
   );
