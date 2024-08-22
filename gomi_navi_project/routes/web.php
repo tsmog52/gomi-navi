@@ -17,7 +17,7 @@ Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallb
 
 // LINEAuthのルート
 Route::get('auth/line', [LineController::class, 'redirectToLine']);
-Route::get('auth/line/callback', [LineController::class, 'callback']);
+Route::get('auth/line', [LineController::class, 'callback']);
 
 //LINEメッセージ受信・送信用
 Route::post('/line/webhook', [LineBotController::class, 'reply'])
