@@ -6,6 +6,7 @@ import useAccordion from '../hooks/useAccordion';
 import ArrowButton from './Button/ArrowButton';
 import InputField from './InputField';
 import Footer from './Footer';
+import ItemFilter from './ItemFilter';
 
 const Item = () => {
   const [items, setItems] = useState([]);
@@ -100,12 +101,7 @@ const Item = () => {
             placeholder="検索"
             onClick={handleClick}
           />
-          <ArrowButton
-            doubleArrowLeft={handleTwoPagesBack}
-            arrowLeft={handlePrevPage}
-            arrowRight={handleNextPage}
-            doubleArrowRight={handleTwoPagesAhead}
-          />
+          <ItemFilter />
           <ul>
             {showDetailSearch ? (
               filteredValue.length === 0 ? (
@@ -114,37 +110,41 @@ const Item = () => {
                 </div>
               ) : (
                 filteredValue.map((item, index) => (
-                  <li key={index}>
-                    <button
-                      onClick={() => toggleAccordion(index)}
-                      className='flex justify-between w-full p-4 text-2xl'
-                    >
-                      {item.item_name}
-                      <MdOutlineKeyboardArrowRight
-                        size={30}
-                        className={`transition-transform duration-300 ${
-                          isAccordion === index ? 'rotate-180' : 'rotate-0'
-                        }`}
-                      />
-                    </button>
+                  <>
                     <div className='border-b-2'></div>
-                    {isAccordion === index && (
-                      <div className='block md:hidden p-4'>
-                        <div className='w-96 border-2 p-1 mb-6'>
-                          <p className='mr-4'>分類</p>
-                          <div className='text-3xl text-center'>
-                            {item.category_name}
+                    <li key={index}>
+                      <button
+                        onClick={() => toggleAccordion(index)}
+                        className='flex justify-between w-full p-4 text-2xl'
+                      >
+                        {item.item_name}
+                        <MdOutlineKeyboardArrowRight
+                          size={30}
+                          className={`transition-transform duration-300 ${
+                            isAccordion === index ? 'rotate-180' : 'rotate-0'
+                          }`}
+                        />
+                      </button>
+                      {/* モバイル版 */}
+                      <div className='border-b-2'></div>
+                      {isAccordion === index && (
+                        <div className='block md:hidden p-4'>
+                          <div className='w-96 border-2 p-1 mb-6'>
+                            <p className='mr-4 text-xl '>分類</p>
+                            <div className='text-3xl text-center'>
+                              {item.category_name}
+                            </div>
                           </div>
+                          {item.item_memo !== null ? (
+                            <div className='w-96'>
+                              <p className='text-2xl font-normal pb-2'>出し方</p>
+                              {item.item_memo}
+                            </div>
+                          ) : null}
                         </div>
-                        {item.item_memo !== null ? (
-                          <div className='w-96 border-2 p-2'>
-                            <p className='text-2xl font-normal pb-2'>出し方</p>
-                            {item.item_memo}
-                          </div>
-                        ) : null}
-                      </div>
-                    )}
-                  </li>
+                      )}
+                    </li>
+                  </>
                 ))
               )
             ) : (
@@ -164,18 +164,20 @@ const Item = () => {
                   </button>
                   <div className='border-b-2'></div>
                   {isAccordion === index && (
-                    <div className='block md:hidden p-4 bg-white flex flex-col items-center'>
-                      <div className='w-72 md:w-96 border-2 p-1 md:mb-6 mb-3'>
-                        <p className='mr-4'>分類</p>
-                        <div className='text-lg md:text-3xl text-center'>
+                    <div className='block md:hidden p-4 bg-white'>
+                      <div className='md:w-96 md:mb-6 mb-3'>
+                        <p className='font-bold text-xl pb-2'>分類</p>
+                        <div className='text-lg md:text-3xl pl-4'>
                           {item.category_name}
                         </div>
                       </div>
                       {item.item_memo !== null ? (
-                        <div className='w-72 md:w-96 border-2 p-2'>
-                          <p className='text-lg md:text-2xl font-normal pb-2'>出し方</p>
-                          {item.item_memo}
-                        </div>
+                        <>
+                          <p className='text-xl pb-2 font-bold'>出し方</p>
+                          <div className='text-lg md:text-3xl pl-4'>
+                            {item.item_memo}
+                          </div>
+                        </>
                       ) : null}
                     </div>
                   )}
@@ -184,6 +186,7 @@ const Item = () => {
             )}
           </ul>
         </div>
+        {/* PC版 */}
         <div className='hidden md:w-3/5 md:block flex justify-center items-center'>
           <div className='flex items-center justify-center right-panel h-full overflow-auto'>
             {items.map((item, index) => (
