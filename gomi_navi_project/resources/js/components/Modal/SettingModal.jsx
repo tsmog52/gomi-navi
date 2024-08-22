@@ -68,9 +68,9 @@ const SettingModal = ({onClose }) => {
               socialLink={"/auth/line"}
             />
           </div>
-          <div className='md:hidden'>
+          <div>
             <ul className='flex flex-col mb-2 pt-2'>
-              <li className='border-t border-gray-300 py-2 flex items-center justify-between'>
+              <li className='border-t border-gray-300 py-2 flex items-center justify-between md:hidden'>
                 <Link
                   to="/auth/line"
                   className='text-gray-600 hover:text-gray-400 transition-colors duration-300 text-lg font-medium'
