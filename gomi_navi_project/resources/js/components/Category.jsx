@@ -56,7 +56,7 @@ const Category = () => {
             ))}
           </ul>
         </div>
-        <div className='hidden md:w-3/5 md:flex bg-gray-100 h-screen justify-center items-center'>
+        <div className='hidden md:w-3/5 md:flex bg-gray-100 justify-center items-center'>
           <div className='md:w-96 bg-white flex justify-center items-center'>
             {guides.map((guide, index) => (
               isAccordion === index && (
