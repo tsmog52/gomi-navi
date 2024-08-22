@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { BsPlusSquare } from "react-icons/bs";
 import useModal from '../../hooks/useModal';
 import MemoModal from '../Modal/MemoModal';
 import { getMemos } from '../../api'; // APIからメモリストを取得する関数
@@ -40,7 +39,6 @@ const AddMemoButton = () => {
         onClick={open}
         className='bg-white p-2 text-green-600  rounded-3xl hover:text-white hover:bg-green-500 transition-colors duration-300 text-sm sm:text-base '
       >
-        <BsPlusSquare size={20} />
         メモを追加
         {isOpen &&
           <MemoModal
