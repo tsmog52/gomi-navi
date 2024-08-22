@@ -60,10 +60,8 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
           className="bg-white p-8 rounded-lg shadow-lg sm::max-w-2xl sm:max-h-[250px]"
         >
           <form onSubmit={handleSubmit}>
-            <div className='text-center flex'>
-              <p className='text-lg'>{title}</p>
               <CloseButton onClose={onClose} />
-            </div>
+              <p className='text-center text-lg text-black'>{title}</p>
             <input
               type="text"
               onChange={onChange}
@@ -75,7 +73,7 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
             <div className='flex justify-center mt-4'>
               <button
                 type='submit'
-                className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-2 rounded border mx-auto"
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-2 rounded border mx-auto text-white"
               >
                 {text}
               </button>
