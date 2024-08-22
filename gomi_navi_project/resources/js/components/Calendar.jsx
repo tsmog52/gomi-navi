@@ -28,7 +28,6 @@ const Calendar = () => {
       const memo = await getMemoById(id);
       setEditingMemo(memo);
       setIsEditing(true);
-      console.log(memo);
     } catch (error) {
       console.log(error);
     }
