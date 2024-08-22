@@ -4,7 +4,7 @@ const MainCard = ({ text, icon: Icon, link, onClick }) => {
   return (
     <>
       <button
-        className="relative border-2 border-black sm:rounded-lg w-64 h-16 sm:w-60 sm:h-40
+        className="relative border-2 border-black sm:rounded-lg w-80 h-20 sm:w-60 sm:h-40
                               flex items-center justify-between sm:justify-center px-4 sm:mt-4 sm:flex-col"
         onClick={onClick}
       >
@@ -18,7 +18,7 @@ const MainCard = ({ text, icon: Icon, link, onClick }) => {
           </div>
           <div className="w-2/3 flex items-center justify-center sm:w-full sm:justify-center">
             <p
-              className="text-center text-x font-bold sm:text-lg sm:pt-4 sm:font-medium"
+              className="text-center text-xl font-bold sm:text-lg sm:pt-4 sm:font-x"
             >
               {text}
             </p>
