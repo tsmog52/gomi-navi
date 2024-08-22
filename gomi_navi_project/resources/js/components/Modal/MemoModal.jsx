@@ -5,7 +5,7 @@ import { loginState } from '../../states/loginState';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { memoState } from '../../states/memoState';
 
-const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
+const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
   const [inputText, setInputText] = useState('');
   const user = useRecoilValue(loginState);
   const inputRef = useRef(null);
@@ -27,8 +27,6 @@ const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Payload:', editingMemo ? { id: editingMemo.id, note: inputText, user_id: user } : { note: inputText, user_id: user });
-
     try {
       const memoData = { note: inputText, user_id: user };
       let savedMemo;
@@ -50,9 +48,6 @@ const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
       onClose();
     } catch (error) {
       console.error('Error:', error.message);
-      if (error.response && error.response.data && error.response.data.errors) {
-        console.log("Validation Errors:", error.response.data.errors);
-      }
     }
   };
 
@@ -64,6 +59,7 @@ const MemoModal = ({ text, onClose, onSave, editingMemo }) => {
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md :w-full">
           <form onSubmit={handleSubmit}>
             <div className='text-center'>
+              <p>{title}</p>
               <CloseButton onClose={onClose} />
               <input
                 type="text"
