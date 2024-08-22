@@ -17,7 +17,6 @@ const Main = () => {
   const { isOpen: isOpenModal2, open: openModal2, close: closeModal2 } = useModal();
   const isLoggedIn = useRecoilValue(loginState);
 
-
   return (
     <>
       <Header />
