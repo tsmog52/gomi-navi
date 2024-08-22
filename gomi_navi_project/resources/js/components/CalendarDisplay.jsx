@@ -55,10 +55,10 @@ const CalendarDisplay = () => {
       <div className='flex flex-col items-center p-4'>
         {/* daysOrderのday:key label:value */}
         {Object.entries(daysOfWeek).map(([day, label]) => (
-          <div key={day} className='flex items-center w-full max-w-xl border-b-2 sm:p-2 p-1'>
+          <div key={day} className='p-4 flex items-center w-full max-w-xl border-b-2'>
             <div className='relative mx-4'>
-              <div className='w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-gray-300'></div>
-              <p className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:text-2xl'>{label}</p>
+              <div className='w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-500'></div>
+              <p className='text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:text-2xl'>{label}</p>
             </div>
             <div className='flex flex-col'>
               {/* FRはgridを適用 */}
@@ -66,7 +66,7 @@ const CalendarDisplay = () => {
                 <div>
                   <div className='sm:grid sm:grid-cols-2 gap-2'>
                     {renderCalendarsForDay(day).map((calendar, index) => (
-                      <span key={index} className='block sm:text-2xl pl-6'>{calendar}</span>
+                      <span key={index} className='block text-xl sm:text-2xl pl-6'>{calendar}</span>
                     ))}
                   </div>
                   <p className='text-red-500 sm:text-xl text-sm'>
@@ -75,7 +75,7 @@ const CalendarDisplay = () => {
                 </div>
               ) : (
                 renderCalendarsForDay(day).map((calendar, index) => (
-                  <span key={index} className='sm:text-2xl pl-6'>{calendar}</span>
+                  <span key={index} className='text-2xl sm:text-3xl pl-6'>{calendar}</span>
                 ))
               )}
             </div>
