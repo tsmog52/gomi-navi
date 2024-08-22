@@ -217,6 +217,16 @@ const Item = () => {
           </div>
         </div>
       </div>
+      <div className='md:w-2/5'>
+        <ArrowButton
+          nextPage={handleNextPage}
+          twoPagesAhead={handleTwoPagesAhead}
+          prevPage={handlePrevPage}
+          twoPagesBack={handleTwoPagesBack}
+          currentPage={pagination.current_page}
+          totalPages={pagination.last_page}
+        />
+      </div>
       <Footer />
     </>
   );
