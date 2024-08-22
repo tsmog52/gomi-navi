@@ -1,28 +1,39 @@
 import React from 'react';
 import { MdKeyboardDoubleArrowLeft, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardDoubleArrowRight } from "react-icons/md";
 
-const ArrowButton = ({ doubleArrowLeft, arrowLeft, arrowRight, doubleArrowRight }) => {
-  const ArrowIcons = [
-    { icon: MdKeyboardDoubleArrowLeft, key: 'doubleLeft', onClick: doubleArrowLeft },
-    { icon: MdKeyboardArrowLeft, key: 'left', onClick: arrowLeft },
-    { icon: MdKeyboardArrowRight, key: 'right', onClick: arrowRight },
-    { icon: MdKeyboardDoubleArrowRight, key: 'doubleRight', onClick: doubleArrowRight }
-  ];
+const ArrowButton = ({ twoPagesBack, prevPage, nextPage, twoPagesAhead, currentPage, totalPages }) => {
 
   return (
     <div className='flex items-center justify-center'>
-      {ArrowIcons.map(({ icon: Icon, key, onClick }) => (
-        <button
-          key={key}
-          className='flex items-center justify-center p-2 mx-2 md:mx-4 md:mx-6 lg:mx-8 xl:mx-10 hover:text-gray-600 transition-colors duration-300'
-          onClick={onClick}
-        >
-          <Icon size={30} className='text-gray-400' />
-        </button>
-      ))}
+      <button
+        className='m-3 flex items-center justify-center border bg-white rounded-full p-2 mx-2'
+        onClick={twoPagesBack}
+      >
+        <MdKeyboardDoubleArrowLeft size={30} className='text-gray-600' />
+      </button>
+      <button
+        className='m-3 flex items-center justify-center border bg-white rounded-full p-2 mx-2'
+        onClick={prevPage}
+      >
+        <MdKeyboardArrowLeft size={30} className='text-gray-600' />
+      </button>
+      <span className='text-gray-600 border bg-white rounded-full px-5 py-3 mx-'>{`${currentPage} / ${totalPages}`}</span>
+      <button
+        className='m-3 flex items-center justify-center border bg-white rounded-full p-2 mx-2'
+        onClick={nextPage}
+      >
+        <MdKeyboardArrowRight size={30} className='text-gray-600' />
+      </button>
+      <button
+        className='m-3 flex items-center justify-center border bg-white rounded-full p-2 mx-2'
+        onClick={twoPagesAhead}
+      >
+        <MdKeyboardDoubleArrowRight size={30} className='text-gray-600' />
+      </button>
     </div>
   );
 }
 
 export default ArrowButton;
+
 
