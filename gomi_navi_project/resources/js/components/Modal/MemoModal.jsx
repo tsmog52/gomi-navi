@@ -57,21 +57,21 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
         className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30"
       >
         <div
-          className="bg-white p-8 rounded-lg shadow-lg sm::max-w-2xl sm:max-h-[80vh] sm:w-full sm:h-auto"
+          className="bg-white p-8 rounded-lg shadow-lg sm::max-w-2xl sm:max-h-[250px]"
         >
           <form onSubmit={handleSubmit}>
             <div className='text-center flex'>
               <p className='text-lg'>{title}</p>
               <CloseButton onClose={onClose} />
-              <input
-                type="text"
-                onChange={onChange}
-                value={inputText}
-                placeholder='タイトルを入力してください'
-                className='border-2 p-2 w-60 mt-2'
-                ref={inputRef}
-              />
             </div>
+            <input
+              type="text"
+              onChange={onChange}
+              value={inputText}
+              placeholder='タイトルを入力してください'
+              className='block border-2 p-2 w-60 mt-2'
+              ref={inputRef}
+              />
             <div className='flex justify-center mt-4'>
               <button
                 type='submit'
