@@ -36,13 +36,18 @@ const AddMemoButton = () => {
 
   return (
     <div>
-      <button onClick={open}>
+      <button
+        onClick={open}
+        className='bg-white p-2 text-green-600  rounded-3xl hover:text-white hover:bg-green-500 transition-colors duration-300 text-sm sm:text-base '
+      >
         <BsPlusSquare size={20} />
+        メモを追加
         {isOpen &&
           <MemoModal
             isOpen={isOpen}
             onClose={close}
             onSave={onSave}
+            title="新しいメモを作成する"
             text="メモを作成"
           />}
       </button>
