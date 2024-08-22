@@ -44,9 +44,11 @@ const Category = () => {
                 <div className='border-b-2'></div>
                 {isAccordion === index && (
                   <div className='block md:hidden p-4'>
-                    <div className='border-2 p-2'>
-                      <p className='text-2xl font-normal pb-2'>出し方</p>
-                      {guide.instructions}
+                    <div className='md:border-2 p-2'>
+                      <p className='text-3xl pb-2'>出し方</p>
+                      <div className='text-2xl pl-4'>
+                        {guide.instructions}
+                      </div>
                     </div>
                   </div>
                 )}
@@ -58,16 +60,18 @@ const Category = () => {
           <div className='md:w-96 bg-white flex justify-center items-center'>
             {guides.map((guide, index) => (
               isAccordion === index && (
-              <div className='w-112 h-128 bg-white rounded-lg p-4'>
-                <div key={index} className='flex justify-center items-center p-4'>
+              <div key={index} className='w-112 h-128 bg-white rounded-lg p-4'>
+                <div className='flex justify-center items-center p-4'>
                   <ul>
-                    <li className='text-lg'>
+                    <li>
                       <div className='w-96 p-2 mb-3 text-center text-3xl font-normal p-3'>
                         {guide.category_name}
                       </div>
                       <div className='border-2 p-2'>
-                        <p className='text-2xl font-normal pb-2'>出し方</p>
-                        {guide.instructions}
+                        <p className='text-3xl pb-2'>出し方</p>
+                        <div className='text-xl pl-4'>
+                          {guide.instructions}
+                        </div>
                       </div>
                     </li>
                   </ul>
@@ -83,5 +87,4 @@ const Category = () => {
 };
 
 export default Category;
-
 
