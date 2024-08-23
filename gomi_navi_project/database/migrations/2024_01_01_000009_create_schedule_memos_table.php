@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('schedule_memos', function (Blueprint $table) {
             $table->id();
+            $table->text('title');
             $table->text('note');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
