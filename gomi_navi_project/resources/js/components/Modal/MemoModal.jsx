@@ -53,17 +53,17 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
 
   return (
     <>
-      <div
+      < div
         className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30"
       >
         <div
-          className="w-96 bg-white rounded-lg shadow-lg"
+          className="w-96 sm:w-[640px] h-[250px] sm:[500px] bg-white rounded-lg shadow-lg"
         >
-          <form onSubmit={handleSubmit}>
+          {/* <form onSubmit={handleSubmit}>
               <CloseButton
                 onClose={onClose}
               />
-              <p className='text-center text-lg text-black'>{title}</p>
+              <h2 className='text-center text-lg text-black'>{title}</h2>
             <input
               type="text"
               onChange={onChange}
@@ -80,12 +80,33 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
                 {text}
               </button>
             </div>
-          </form>
-        </div>
+          </form> */}
+          <form onSubmit={handleSubmit} className="p-6">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-semibold text-black">{title}</h2>
+            <CloseButton onClose={onClose} />
+          </div>
+          <input
+            type="text"
+            onChange={onChange}
+            value={inputText}
+            placeholder="タイトルを入力してください"
+            className="block w-full p-3 mt-4 border rounded-md focus:ring-2 focus:ring-blue-500"
+            ref={inputRef}
+          />
+          <div className="flex justify-end mt-6">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-300"
+            >
+              {text}
+            </button>
+          </div>
+        </form>
       </div>
+    </div>
     </>
   );
 }
 
 export default MemoModal;
-
