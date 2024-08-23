@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import CloseButton from '../Button/CloseButton';
 import { postMemo, updateMemo, getMemos } from '../../api';
 import { loginState } from '../../states/loginState';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { memoState } from '../../states/memoState';
+import { AiOutlineClose } from "react-icons/ai";
+
 
 const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
   const [inputText, setInputText] = useState('');
@@ -81,8 +82,8 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
               </button>
             </div>
           </form> */}
-          <form onSubmit={handleSubmit} className="p-6">
-            <CloseButton onClose={onClose} className='text-black flex justify-end' />
+          <form onSubmit={handleSubmit}>
+            <AiOutlineClose onClose={onClose}/>
             <h2 className="md:text-xl font-semibold text-gray-800">{title}</h2>
           <input
             type="text"
