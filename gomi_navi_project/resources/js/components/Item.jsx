@@ -90,6 +90,11 @@ const Item = () => {
     }
   };
 
+  const handleItemsFetched = (items) => {
+    setFilteredValue(items);
+    setShowDetailSearch(true);
+  };
+
   return (
     <>
       <Header />
@@ -101,7 +106,7 @@ const Item = () => {
             placeholder="検索"
             onClick={handleClick}
           />
-          <ItemFilter />
+          <ItemFilter  onItemsFetched={handleItemsFetched}/>
           <ul>
             {showDetailSearch ? (
               filteredValue.length === 0 ? (
