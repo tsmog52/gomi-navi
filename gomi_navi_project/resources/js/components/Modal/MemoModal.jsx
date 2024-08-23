@@ -83,7 +83,7 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
           </form> */}
           <form onSubmit={handleSubmit} className="p-6">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold text-black">{title}</h2>
+            <h2 className="md:text-xl font-semibold text-black">{title}</h2>
             <CloseButton onClose={onClose} className='text-black' />
           </div>
           <input
