@@ -45,7 +45,7 @@ const AddMemoButton = () => {
             isOpen={isOpen}
             onClose={close}
             onSave={onSave}
-            title="新しいメモを作成する"
+            title="新しいメモを作成"
             text="メモを作成"
           />}
       </button>
