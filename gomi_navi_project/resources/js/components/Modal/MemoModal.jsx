@@ -7,6 +7,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 
 const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
+  const [inputTitle, setInputTitle] = useState('');
   const [inputText, setInputText] = useState('');
   const user = useRecoilValue(loginState);
   const inputRef = useRef(null);
@@ -22,14 +23,18 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
     }
   }, [editingMemo]);
 
-  const onChange = (e) => {
+  const onChangeTitle = (e) => {
+    setInputTitle(e.target.value);
+  }
+
+  const onChangeText = (e) => {
     setInputText(e.target.value);
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const memoData = { note: inputText, user_id: user };
+      const memoData = { title: inputTitle, note: inputText, user_id: user };
       let savedMemo;
 
       if (editingMemo) {
@@ -54,43 +59,44 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
 
   return (
     <>
-      < div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black"
-      >
-        <div
-          className="bg-white p-4 sm:p-8 rounded-lg shadow-lg max-w-xs sm:max-w-md w-full"
-        >
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="bg-white p-4 sm:p-8 rounded-lg shadow-lg max-w-xs sm:max-w-md w-full">
+          <div className='block text-black flex justify-end'>
+            <AiOutlineClose
+              onClick={onClose}
+              size={20}
+            />
+          </div>
           <form onSubmit={handleSubmit}>
-            <AiOutlineClose onClick={onClose}/>
-            <h2 className="md:text-xl font-semibold text-gray-800">{title}</h2>
-            <p>タイトル</p>
+            <h2 className="text-gray-400 text-lg sm:text-xl font-semibold text-gray-800 text-center">{title}</h2>
+            <p className='text-gray-600 font-bold block flex justify-start'>タイトル</p>
             <input
               type="text"
-              onChange={onChange}
-              value={inputText}
+              onChange={onChangeTitle}
+              value={inputTitle}
               placeholder="タイトルを入力してください"
-              className="block w-full p-3 mt-4 border rounded-md focus:ring-2 focus:ring-blue-500"
+              className="block w-full p-3 mt-2 border rounded-md text-gray-600"
               ref={inputRef}
             />
-            <p>メモの内容</p>
+            <p className='text-gray-600 font-bold block flex justify-start pt-2'>メモの内容</p>
             <textarea
               type="text"
-              onChange={onChange}
+              onChange={onChangeText}
               value={inputText}
               placeholder="内容を入力してください"
-              className="block w-full p-3 mt-4 border rounded-md focus:ring-2"
+              className="block w-full p-3 mt-2 border rounded-md text-gray-600"
             />
-          <div className="flex justify-center mt-6">
-            <button
-              type="submit"
-              className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md transition duration-300"
-            >
-              {text}
-            </button>
-          </div>
-        </form>
+            <div className="flex justify-center mt-6">
+              <button
+                type="submit"
+                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md transition duration-300"
+              >
+                {text}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
     </>
   );
 }
