@@ -55,13 +55,13 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
   return (
     <>
       < div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black"
       >
         <div
           className="bg-white p-4 sm:p-8 rounded-lg shadow-lg max-w-xs sm:max-w-md w-full"
         >
           <form onSubmit={handleSubmit}>
-            <AiOutlineClose onClose={onClose}/>
+            <AiOutlineClose onClick={onClose}/>
             <h2 className="md:text-xl font-semibold text-gray-800">{title}</h2>
             <p>タイトル</p>
             <input
