@@ -5,7 +5,6 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { memoState } from '../../states/memoState';
 import { AiOutlineClose } from "react-icons/ai";
 
-
 const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
   const [inputTitle, setInputTitle] = useState('');
   const [inputNote, setInputNote] = useState('');
@@ -35,7 +34,7 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const memoData = { title: inputTitle, note: inputNote, user_id: user.id };
+      const memoData = { title: inputTitle, note: inputNote, user_id: user };
       let savedMemo;
 
       if (editingMemo) {
