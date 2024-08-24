@@ -28,12 +28,14 @@ class ScheduleMemoController extends Controller
 {
     // バリデーションを行い、入力データを取得
     $inputs = $request->validate([
+        'title' => 'required|string',
         'note' => 'required|string',
         'user_id' => 'required|integer|exists:users,id',
     ]);
 
     // ScheduleMemoモデルを作成してデータを保存
     $scheduleMemo = new ScheduleMemo();
+    $scheduleMemo->title = $inputs['title'];
     $scheduleMemo->note = $inputs['note'];
      // フロントエンドから送信されたユーザーIDを使用(整数にキャスト)
     $scheduleMemo->user_id = (int) $inputs['user_id'];
@@ -60,6 +62,7 @@ class ScheduleMemoController extends Controller
         if(!$scheduleMemo) {
             return response()->json(['message' => 'Not found'], 404);
         }
+        $scheduleMemo->title = $request->input('title');
         $scheduleMemo->note = $request->input('note');
         $scheduleMemo->save();
 
