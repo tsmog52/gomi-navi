@@ -60,39 +60,26 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
         <div
           className="bg-white p-4 sm:p-8 rounded-lg shadow-lg max-w-xs sm:max-w-md w-full"
         >
-          {/* <form onSubmit={handleSubmit}>
-              <CloseButton
-                onClose={onClose}
-              />
-              <h2 className='text-center text-lg text-black'>{title}</h2>
+          <form onSubmit={handleSubmit}>
+            <AiOutlineClose onClose={onClose}/>
+            <h2 className="md:text-xl font-semibold text-gray-800">{title}</h2>
+            <p>タイトル</p>
             <input
               type="text"
               onChange={onChange}
               value={inputText}
-              placeholder='タイトルを入力してください'
-              className='block border-2 p-2 w-60 mt-2'
+              placeholder="タイトルを入力してください"
+              className="block w-full p-3 mt-4 border rounded-md focus:ring-2 focus:ring-blue-500"
               ref={inputRef}
-              />
-            <div className='flex justify-center mt-4'>
-              <button
-                type='submit'
-                className="bg-green-500 hover:bg-green-600 text-white py-2 px-2 rounded border mx-auto text-white"
-              >
-                {text}
-              </button>
-            </div>
-          </form> */}
-          <form onSubmit={handleSubmit}>
-            <AiOutlineClose onClose={onClose}/>
-            <h2 className="md:text-xl font-semibold text-gray-800">{title}</h2>
-          <input
-            type="text"
-            onChange={onChange}
-            value={inputText}
-            placeholder="タイトルを入力してください"
-            className="block w-full p-3 mt-4 border rounded-md focus:ring-2 focus:ring-blue-500"
-            ref={inputRef}
-          />
+            />
+            <p>メモの内容</p>
+            <textarea
+              type="text"
+              onChange={onChange}
+              value={inputText}
+              placeholder="内容を入力してください"
+              className="block w-full p-3 mt-4 border rounded-md focus:ring-2"
+            />
           <div className="flex justify-center mt-6">
             <button
               type="submit"
