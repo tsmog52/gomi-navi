@@ -25,17 +25,6 @@ import { memoState } from '../states/memoState';
     getMemoData();
   }, [setMemos]);
 
-  //メモの更新処理
-  // const handleUpdate = async (updatedMemo) => {
-  //   try {
-  //     await updateMemo(updatedMemo);
-  //     setMemos(memos.map(memo => memo.id === updatedMemo.id ? updatedMemo : memo));
-  //     handleCloseEdit();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   //編集モーダルを閉じる
   const handleCloseEdit = () => {
     setIsEditing(false);
@@ -63,7 +52,7 @@ import { memoState } from '../states/memoState';
             {memos.map((memo) => (
               <div key={memo.id} className="flex items-center justify-between p-2 border-b border-gray-200 relative">
                 <li className="flex-grow text-gray-800">
-                  <a href="#" className="hover:underline">{memo.note}</a>
+                  <a href="#" className="hover:underline">{memo.title}</a>
                 </li>
                 <div className="relative">
                   <button
