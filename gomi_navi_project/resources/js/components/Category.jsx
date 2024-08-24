@@ -7,7 +7,7 @@ import Footer from './Footer.jsx';
 
 const Category = () => {
   const [guides, setGuides] = useState([]);
-  const {isAccordion, toggleAccordion} = useAccordion(null);
+  const { isAccordion, toggleAccordion } = useAccordion(null);
 
   useEffect(() => {
     const getGuidesData = async () => {
@@ -37,7 +37,9 @@ const Category = () => {
                   <MdOutlineKeyboardArrowRight
                     size={30}
                     className={`transition-transform duration-300 ${
-                      isAccordion === index ? 'rotate-90' : 'rotate-0'
+                      isAccordion === index
+                        ? 'rotate-90 md:rotate-180'
+                        : 'rotate-0'
                     }`}
                   />
                 </button>
@@ -87,4 +89,5 @@ const Category = () => {
 };
 
 export default Category;
+
 
