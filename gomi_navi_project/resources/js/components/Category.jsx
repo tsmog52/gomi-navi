@@ -25,7 +25,7 @@ const Category = () => {
     <>
       <Header />
       <div className='w-full md:flex'>
-        <div className='w-full md:w-2/5'>
+        <div className='w-full md:w-2/5 bg-item'>
           <ul>
             {guides.map((guide, index) => (
               <li key={index}>
@@ -45,10 +45,10 @@ const Category = () => {
                 </button>
                 <div className='border-b-2'></div>
                 {isAccordion === index && (
-                  <div className='block md:hidden p-4'>
+                  <div className='block md:hidden p-4 bg-white'>
                     <div className='md:border-2 p-2'>
-                      <p className='text-3xl pb-2'>出し方</p>
-                      <div className='text-2xl pl-4'>
+                      <p className='text-xl font-bold pb-2'>出し方</p>
+                      <div className='text-lg pl-4'>
                         {guide.instructions}
                       </div>
                     </div>
