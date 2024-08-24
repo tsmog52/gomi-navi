@@ -8,7 +8,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
   const [inputTitle, setInputTitle] = useState('');
-  const [inputText, setInputText] = useState('');
+  const [inputNote, setInputNote] = useState('');
   const user = useRecoilValue(loginState);
   const inputRef = useRef(null);
   const [memos, setMemos] = useRecoilState(memoState);
@@ -19,7 +19,8 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
 
   useEffect(() => {
     if (editingMemo) {
-      setInputText(editingMemo.note);
+      setInputTitle(editingMemo.title)
+      setInputNote(editingMemo.note);
     }
   }, [editingMemo]);
 
@@ -27,14 +28,14 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
     setInputTitle(e.target.value);
   }
 
-  const onChangeText = (e) => {
-    setInputText(e.target.value);
+  const onChangeNote = (e) => {
+    setInputNote(e.target.value);
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const memoData = { title: inputTitle, note: inputText, user_id: user };
+      const memoData = { title: inputTitle, note: inputNote, user_id: user.id };
       let savedMemo;
 
       if (editingMemo) {
@@ -49,7 +50,7 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
         setMemos(response.memos || []);
       }
 
-      setInputText('');
+      setInputNote('');
       onSave(savedMemo);
       onClose();
     } catch (error) {
@@ -81,8 +82,8 @@ const MemoModal = ({ text, onClose, onSave, editingMemo, title }) => {
             <p className='text-gray-600 font-bold block flex justify-start pt-2'>メモの内容</p>
             <textarea
               type="text"
-              onChange={onChangeText}
-              value={inputText}
+              onChange={onChangeNote}
+              value={inputNote}
               placeholder="内容を入力してください"
               className="block w-full p-3 mt-2 border rounded-md text-gray-600"
             />
