@@ -77,6 +77,7 @@
 
 // export default ItemFilter
 
+
 import React, { useState, useEffect } from 'react';
 import { FaFilter } from "react-icons/fa";
 import axios from 'axios';
@@ -123,7 +124,11 @@ const ItemFilter = ({ onItemsFetched }) => {
           <button
             key={category}
             onClick={() => handleFilter(category)}
-            className='bg-white border m-1 px-5 py-1 rounded-xl hover:bg-gray-300'
+            className={`m-1 px-5 py-1 rounded-xl ${
+              selectedCategory === category
+                ? 'bg-gray-300'
+                : 'bg-white border hover:bg-gray-300'
+            }`}
           >
             {category}
           </button>
@@ -134,4 +139,5 @@ const ItemFilter = ({ onItemsFetched }) => {
 };
 
 export default ItemFilter;
+
 
