@@ -15,7 +15,7 @@ const LoginModal = ({ title, onClose, google, line }) => {
             <p className='text-sm md:text-base pb-2'>
               LINEアカウントでリマインダー通知を<br />受け取ることができます。
             </p>
-            <LineButton text={line} socialLink={'/auth/line/callback'} />
+            <LineButton text={line} socialLink={'/auth/line'} />
           </div>
         </div>
       </div>
