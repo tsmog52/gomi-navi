@@ -116,7 +116,7 @@ const Item = () => {
               ) : (
                 filteredValue.map((item, index) => (
                   <>
-                    <div className='border-b-2'></div>
+                    <div className='border-b'></div>
                     <li key={index}>
                       <button
                         onClick={() => toggleAccordion(index)}
@@ -131,7 +131,7 @@ const Item = () => {
                         />
                       </button>
                       {/* モバイル版 */}
-                      <div className='border-b-2'></div>
+                      <div className='border-b'></div>
                       {isAccordion === index && (
                         <div className='block md:hidden p-4'>
                           <div className='w-96 border-2 p-1 mb-6'>
@@ -167,7 +167,7 @@ const Item = () => {
                       }`}
                     />
                   </button>
-                  <div className='border-b-2'></div>
+                  <div className='border-b'></div>
                   {isAccordion === index && (
                     <div className='block md:hidden p-4 bg-white'>
                       <div className='md:w-96 md:mb-6 mb-3'>
@@ -201,14 +201,14 @@ const Item = () => {
                     <p className='text-lg md:text-3xl font-normal pb-4 text-center'>{item.item_name}</p>
                     <ul>
                       <li className='text-lg'>
-                        <div className='w-96 border-2 p-1 mb-6'>
+                        <div className='w-96 border p-1 mb-6'>
                           <p className='mr-4'>分類</p>
                           <div className='text-3xl text-center'>
                             {item.category_name}
                           </div>
                         </div>
                         {item.item_memo !== null ? (
-                          <div className='w-96 border-2 p-2'>
+                          <div className='w-96 border p-2'>
                             <p className='text-2xl font-normal pb-2'>出し方</p>
                             {item.item_memo}
                           </div>
