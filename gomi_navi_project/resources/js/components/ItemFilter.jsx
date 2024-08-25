@@ -20,7 +20,6 @@ const ItemFilter = ({ onItemsFetched }) => {
       try {
         const response = await axios.get('/api/items/all');
         const items = response.data.data;
-        // カテゴリーごとにアイテムをフィルタリング
         const categorizedItems = categories.reduce((acc, category) => {
           acc[category] = items.filter(item => item.category_name === category);
           return acc;
