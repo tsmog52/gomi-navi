@@ -6,7 +6,7 @@ import LineButton from '../Button/LineButton';
 import AlertModal from './AlertModal';
 import { LuMapPin } from "react-icons/lu";
 import { useRecoilValue } from 'recoil';
-import { loginState } from '../states/loginState';
+import { loginState } from '../../states/loginState';
 
 const SettingModal = ({onClose }) => {
   const regions = ['川崎区', '中原区', '高津区', '宮前区', '多摩区', '麻生区', '幸区'];

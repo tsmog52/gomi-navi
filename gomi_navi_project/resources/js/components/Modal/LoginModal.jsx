@@ -2,7 +2,7 @@ import React from 'react';
 import CloseButton from '../Button/CloseButton';
 import LineButton from '../Button/LineButton';
 import { useRecoilValue } from 'recoil';
-import { loginState } from '../states/loginState';
+import { loginState } from '../../states/loginState';
 
 const LoginModal = ({ title, onClose, google, line }) => {
   const user = useRecoilValue(loginState);
