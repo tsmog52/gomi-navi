@@ -14,9 +14,17 @@ const MemoDetailModal = ({ memo, onClose }) => {
           />
         </div>
         <p className="text-xl font-bold mb-2">タイトル</p>
-        <p className='text-gray-600 font-bold block flex justify-start ml-4 bg-gray-200 p-2'>{memo.title}</p>
-        <p className="text-xl font-bold mb-2">内容</p>
-        <p className="text-gray-600 font-bold block flex justify-start ml-4 bg-gray-200 p-2">{memo.note}</p>
+        <p
+          className='text-gray-600 font-bold block flex justify-start ml-4 bg-gray-100 p-2 border-gray-100 rounded-lg'
+        >
+          {memo.title}
+        </p>
+        <p className="text-xl font-bold m-2 ">内容</p>
+        <p
+          className="text-gray-600 font-bold block flex justify-start ml-4 bg-gray-100 border-gray-100 rounded-lg p-2 mb-2"
+        >
+          {memo.note}
+        </p>
       </div>
     </div>
   );
