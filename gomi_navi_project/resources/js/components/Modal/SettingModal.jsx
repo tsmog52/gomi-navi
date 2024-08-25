@@ -28,7 +28,6 @@ const SettingModal = ({onClose }) => {
   };
 
   const user = useRecoilValue(loginState);
-  const isLoggedIn = !!user;
 
   return (
     <>
@@ -71,7 +70,7 @@ const SettingModal = ({onClose }) => {
             <LineButton
               text='LINEと連携する'
               socialLink={"/auth/line"}
-              disabled={isLoggedIn}
+              disabled={user !== null}
             />
           </div>
           <div>
