@@ -5,6 +5,8 @@ import CloseButton from '../Button/CloseButton';
 import LineButton from '../Button/LineButton';
 import AlertModal from './AlertModal';
 import { LuMapPin } from "react-icons/lu";
+import { useRecoilValue } from 'recoil';
+import { loginState } from '../states/loginState';
 
 const SettingModal = ({onClose }) => {
   const regions = ['川崎区', '中原区', '高津区', '宮前区', '多摩区', '麻生区', '幸区'];
@@ -24,6 +26,9 @@ const SettingModal = ({onClose }) => {
   const closeAlert = () => {
     setShowAlert(false);
   };
+
+  const user = useRecoilValue(loginState);
+  const isLoggedIn = !!user;
 
   return (
     <>
@@ -66,19 +71,11 @@ const SettingModal = ({onClose }) => {
             <LineButton
               text='LINEと連携する'
               socialLink={"/auth/line"}
+              disabled={isLoggedIn}
             />
           </div>
           <div>
             <ul className='flex flex-col mb-2 pt-2'>
-              <li className='border-t border-gray-300 py-2 flex items-center justify-between md:hidden'>
-                <Link
-                  to="/auth/line"
-                  className='text-gray-600 hover:text-gray-400 transition-colors duration-300 text-lg font-medium'
-                >
-                  LINEと連携する
-                </Link>
-                <MdOutlineKeyboardArrowRight className='text-gray-600' />
-              </li>
               <li className='border-t border-gray-300 py-2 flex items-center justify-between'>
                 <Link
                   to="/terms"
