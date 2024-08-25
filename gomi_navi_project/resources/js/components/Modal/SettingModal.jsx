@@ -28,6 +28,7 @@ const SettingModal = ({onClose }) => {
   };
 
   const user = useRecoilValue(loginState);
+  console.log(user);
 
   return (
     <>
