@@ -93,7 +93,6 @@ const Item = () => {
   const handleItemsFetched = (items) => {
     setFilteredValue(items);
     setShowDetailSearch(true);
-    setCurrentItemName(null);
   };
 
   return (
@@ -224,20 +223,19 @@ const Item = () => {
           </div>
         </div>
       </div>
-      <div className='md:w-2/5'>
+      {/* <div className='md:w-2/5'>
         <ArrowButton
-            nextPage={handleNextPage}
-            twoPagesAhead={handleTwoPagesAhead}
-            prevPage={handlePrevPage}
-            twoPagesBack={handleTwoPagesBack}
-            currentPage={pagination.current_page}
-            totalPages={pagination.last_page}
+          nextPage={handleNextPage}
+          twoPagesAhead={handleTwoPagesAhead}
+          prevPage={handlePrevPage}
+          twoPagesBack={handleTwoPagesBack}
+          currentPage={pagination.current_page}
+          totalPages={pagination.last_page}
         />
-      </div>
+      </div> */}
       <Footer />
     </>
   );
 };
 
 export default Item;
-

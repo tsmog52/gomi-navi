@@ -70,7 +70,6 @@ const SettingModal = ({onClose }) => {
                 <LineButton
                   text='LINEと連携する'
                   socialLink={"/auth/line"}
-                  disabled={user !== null}
                 />
               </div>
             )}
