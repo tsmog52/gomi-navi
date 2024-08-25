@@ -3,6 +3,7 @@ import { getMemos, updateMemo } from '../api';
 import MemoModal from './Modal/MemoModal';
 import { AiOutlineEllipsis } from "react-icons/ai";
 import { useRecoilState } from 'recoil';
+import MemoDetailModal from './Modal/MemoDetailModal';
 import { memoState } from '../states/memoState';
 
   const MemoList = ({ handleDelete, handleEdit, isEditing, editingMemo, setIsEditing, setEditingMemo, onSave }) => {
@@ -11,6 +12,7 @@ import { memoState } from '../states/memoState';
   // 現在選択されているメモを管理するための状態
   const [selectedMemo, setSelectedMemo] = useState(null);
   const [memos, setMemos] = useRecoilState(memoState);
+  const [showDetailModal, setShowDetailModal] = useState(false);
 
   //メモデータの取得
   useEffect(() => {
@@ -52,7 +54,12 @@ import { memoState } from '../states/memoState';
             {memos.map((memo) => (
               <div key={memo.id} className="flex items-center justify-between p-2 border-b border-gray-200 relative">
                 <li className="flex-grow text-gray-800">
-                  <a href="#" className="hover:underline">{memo.title}</a>
+                  <button
+                  className="hover:underline"
+                  onClick={() => handleMemoClick(memo)}
+                  >
+                    {memo.title}
+                  </button>
                 </li>
                 <div className="relative">
                   <button
@@ -98,6 +105,12 @@ import { memoState } from '../states/memoState';
           onClose={handleCloseEdit}
           onSave={onSave}
           editingMemo={editingMemo}
+        />
+      )}
+      {showDetailModal && (
+        <MemoDetailModal
+          memo={selectedMemo}
+          onClose={() => setShowDetailModal(false)}
         />
       )}
     </>
