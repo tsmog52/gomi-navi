@@ -269,11 +269,6 @@ class ItemsSeeder extends Seeder
                 'item_name' => 'ゴムボール',
             ],
             [
-                'category_id' => '1',
-                'item_name' => 'カーペット',
-                'item_memo' => '切断し最長辺50cm未満のものは普通ゴミとして出すことができます。最長辺50cm以上は粗大ゴミとして出してください。'
-            ],
-            [
                 'category_id' => '9',
                 'item_name' => 'ゴルフクラブ',
                 'item_memo' => 'ゴルフバッグとゴルフクラブ、ゴルフクラブのセット(14本まで)を1個の粗大ゴミとして出すことができます。'
@@ -295,20 +290,6 @@ class ItemsSeeder extends Seeder
                 'category_id' => '9',
                 'item_name' => 'サーフボード',
                 'item_memo' => '概ね2mを超えるものは市では回収できません。(販売店等に相談してください。)'
-            ],
-            [
-                'category_id' => '1',
-                'item_name' => 'カーペット',
-                'item_memo' => '切断し最長辺50cm未満のものは普通ゴミとして出すことができます。最長辺50cm以上は粗大ゴミとして出してください。'
-            ],
-            [
-                'category_id' => '7',
-                'item_name' => 'サーモマグ',
-            ],
-            [
-                'category_id' => '1',
-                'item_name' => 'カーペット',
-                'item_memo' => '切断し最長辺50cm未満のものは普通ゴミとして出すことができます。最長辺50cm以上は粗大ゴミとして出してください。'
             ],
             [
                 'category_id' => '9',
