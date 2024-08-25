@@ -6,7 +6,7 @@ import { loginState } from '../../states/loginState';
 
 const LoginModal = ({ title, onClose, google, line }) => {
   const user = useRecoilValue(loginState);
-  const isLoggedIn = !!user;
+  console.log(user);
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 md:p-4">
@@ -22,7 +22,7 @@ const LoginModal = ({ title, onClose, google, line }) => {
             <LineButton
               text={line}
               socialLink={'/auth/line'}
-              disabled={isLoggedIn}
+              disabled={user != null}
             />
           </div>
         </div>
