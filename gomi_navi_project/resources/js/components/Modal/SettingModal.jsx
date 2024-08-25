@@ -27,9 +27,7 @@ const SettingModal = ({onClose }) => {
     setShowAlert(false);
   };
 
-  const user = useRecoilValue(loginState);
-  console.log(user);
-
+  const isLoggedIn = useRecoilValue(loginState);
   return (
     <>
       {showAlert && (
@@ -66,14 +64,16 @@ const SettingModal = ({onClose }) => {
           >
             地域を保存
           </button>
-          <div className='hidden md:block'>
-            <p className='text-center font-bold text-lg md:text-xl p-2 md:p-2'>外部リマインダー連携</p>
-            <LineButton
-              text='LINEと連携する'
-              socialLink={"/auth/line"}
-              disabled={user !== null}
-            />
-          </div>
+            {!isLoggedIn && (
+              <div className='hidden md:block'>
+                <p className='text-center font-bold text-lg md:text-xl p-2 md:p-2'>外部リマインダー連携</p>
+                <LineButton
+                  text='LINEと連携する'
+                  socialLink={"/auth/line"}
+                  disabled={user !== null}
+                />
+              </div>
+            )}
           <div>
             <ul className='flex flex-col mb-2 pt-2'>
               <li className='border-t border-gray-300 py-2 flex items-center justify-between'>
