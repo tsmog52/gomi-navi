@@ -10,19 +10,19 @@ import ItemFilter from './ItemFilter';
 
 const Item = () => {
   const { currentItemName, toggleAccordion } = useItemAccordion(null);
-  const [items, setItems] = useState([]);
-  const [allItems, setAllItems] = useState([]);
-  const [inputValue, setInputValue] = useState("");
-  const [filteredValue, setFilteredValue] = useState([]);
-  const [showDetailSearch, setShowDetailSearch] = useState(false);
-  const [pagination, setPagination] = useState({
+  const [items, setItems] = React.useState([]);
+  const [allItems, setAllItems] = React.useState([]);
+  const [inputValue, setInputValue] = React.useState("");
+  const [filteredValue, setFilteredValue] = React.useState([]);
+  const [showDetailSearch, setShowDetailSearch] = React.useState(false);
+  const [pagination, setPagination] = React.useState({
     current_page: 1,
     last_page: null,
     next_page_url: null,
     prev_page_url: null,
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const getItemsData = async (page = 1) => {
       try {
         const response = await axios.get(`/api/items?page=${page}`);
@@ -98,8 +98,8 @@ const Item = () => {
   return (
     <>
       <Header />
-      <div className='w-full md:flex'>
-        <div className='w-full md:w-2/5'>
+      <div className='min-h-screen flex justify-center sm:px-2'>
+        <div className='w-full max-w-md'>
           <InputField
             value={inputValue}
             onChange={handleChange}
@@ -107,132 +107,95 @@ const Item = () => {
             onClick={handleClick}
           />
           <ItemFilter onItemsFetched={handleItemsFetched} />
-          <ul>
-            {showDetailSearch ? (
-              filteredValue.length === 0 ? (
-                <div className="p-4 text-center text-lg text-gray-600">
-                  検索結果がありません。<br />再度条件を変更してお試しください。
-                </div>
+          <div className='w-full'>
+            <ul>
+              {showDetailSearch ? (
+                filteredValue.length === 0 ? (
+                  <div className="p-4 text-center text-lg text-gray-600">
+                    検索結果がありません。<br />再度条件を変更してお試しください。
+                  </div>
+                ) : (
+                  filteredValue.map((item) => (
+                    <li key={item.item_name} className='w-full'>
+                      <button
+                        onClick={() => toggleAccordion(item.item_name)}
+                        className='flex justify-between items-center p-4 text-xl w-full'
+                      >
+                        <span>{item.item_name}</span>
+                        <MdOutlineKeyboardArrowRight
+                          size={30}
+                          className={`transition-transform duration-300 ${
+                            currentItemName === item.item_name ? 'rotate-90' : 'rotate-0'
+                          }`}
+                        />
+                      </button>
+                      <div className='border-b'></div>
+                      {currentItemName === item.item_name && (
+                        <div className='block p-4 bg-white w-full overflow-x-auto'>
+                          <p className='font-bold text-lg sm:text-base pb-2'>分類</p>
+                          <div className='text-base sm:text-sm pl-4'>
+                            {item.category_name}
+                          </div>
+                          {item.item_memo !== null && (
+                            <>
+                              <p className='text-lg py-2 font-bold'>出し方</p>
+                              <div className='text-base sm:text-sm pl-4 overflow-x-auto'>
+                                {item.item_memo}
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      )}
+                    </li>
+                  ))
+                )
               ) : (
-                filteredValue.map((item) => (
-                  <li key={item.item_name}>
+                items.map((item) => (
+                  <li key={item.item_name} className='w-full'>
                     <button
                       onClick={() => toggleAccordion(item.item_name)}
-                      className='flex justify-between w-full p-4 text-2xl'
+                      className='flex justify-between items-center p-4 text-xl w-full'
                     >
-                      {item.item_name}
+                      <span>{item.item_name}</span>
                       <MdOutlineKeyboardArrowRight
                         size={30}
                         className={`transition-transform duration-300 ${
-                          currentItemName === item.item_name
-                            ? 'rotate-90'
-                            : 'rotate-0'
+                          currentItemName === item.item_name ? 'rotate-90' : 'rotate-0'
                         }`}
                       />
                     </button>
                     <div className='border-b'></div>
                     {currentItemName === item.item_name && (
-                      <div className='block md:hidden p-4 bg-white'>
-                        <div className='md:w-96 md:mb-6 mb-3'>
-                          <p className='font-bold text-xl pb-2'>分類</p>
-                          <div className='text-lg md:text-3xl pl-4'>
-                            {item.category_name}
-                          </div>
+                      <div className='block p-4 bg-white w-full overflow-x-auto'>
+                        <p className='font-bold text-lg sm:text-base pb-2'>分類</p>
+                        <div className='text-base sm:text-sm pl-4'>
+                          {item.category_name}
                         </div>
-                        {item.item_memo !== null ? (
+                        {item.item_memo !== null && (
                           <>
-                            <p className='text-xl pb-2 font-bold'>出し方</p>
-                            <div className='text-lg md:text-3xl pl-4'>
+                            <p className='text-lg py-2 font-bold'>出し方</p>
+                            <div className='text-base sm:text-sm pl-4 overflow-x-auto'>
                               {item.item_memo}
                             </div>
                           </>
-                        ) : null}
+                        )}
                       </div>
                     )}
                   </li>
                 ))
-              )
-            ) : (
-              items.map((item) => (
-                <li key={item.item_name}>
-                  <button
-                    onClick={() => toggleAccordion(item.item_name)}
-                    className='flex justify-between w-full p-4 text-2xl'
-                  >
-                    {item.item_name}
-                    <MdOutlineKeyboardArrowRight
-                      size={30}
-                      className={`transition-transform duration-300 ${
-                        currentItemName === item.item_name
-                          ? 'rotate-90'
-                          : 'rotate-0'
-                      }`}
-                    />
-                  </button>
-                  <div className='border-b'></div>
-                  {currentItemName === item.item_name && (
-                    <div className='block md:hidden p-4 bg-white'>
-                      <div className='md:w-96 md:mb-6 mb-3'>
-                        <p className='font-bold text-xl pb-2'>分類</p>
-                        <div className='text-lg md:text-3xl pl-4'>
-                          {item.category_name}
-                        </div>
-                      </div>
-                      {item.item_memo !== null ? (
-                        <>
-                          <p className='text-xl pb-2 font-bold'>出し方</p>
-                          <div className='text-lg md:text-3xl pl-4'>
-                            {item.item_memo}
-                          </div>
-                        </>
-                      ) : null}
-                    </div>
-                  )}
-                </li>
-              ))
-            )}
-          </ul>
-        </div>
-        <div className='hidden md:w-3/5 md:block flex justify-center items-center'>
-          <div className='flex items-center justify-center right-panel h-full overflow-auto'>
-            {items.map((item) => (
-              currentItemName === item.item_name && (
-                <div className='w-112 bg-white rounded-lg p-4 mb-4' key={item.item_name}>
-                  <div className='p-4'>
-                    <p className='text-lg md:text-3xl font-normal pb-4 text-center'>{item.item_name}</p>
-                    <ul>
-                      <li className='text-lg'>
-                        <div className='w-96 border p-1 mb-6'>
-                          <p className='mr-4'>分類</p>
-                          <div className='text-3xl text-center'>
-                            {item.category_name}
-                          </div>
-                        </div>
-                        {item.item_memo !== null ? (
-                          <div className='w-96 border p-2'>
-                            <p className='text-2xl font-normal pb-2'>出し方</p>
-                            {item.item_memo}
-                          </div>
-                        ) : null}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              )
-            ))}
+              )}
+            </ul>
           </div>
         </div>
       </div>
-      {/* <div className='md:w-2/5'>
-        <ArrowButton
-          nextPage={handleNextPage}
-          twoPagesAhead={handleTwoPagesAhead}
-          prevPage={handlePrevPage}
-          twoPagesBack={handleTwoPagesBack}
-          currentPage={pagination.current_page}
-          totalPages={pagination.last_page}
-        />
-      </div> */}
+      <ArrowButton
+        nextPage={handleNextPage}
+        twoPagesAhead={handleTwoPagesAhead}
+        prevPage={handlePrevPage}
+        twoPagesBack={handleTwoPagesBack}
+        currentPage={pagination.current_page}
+        totalPages={pagination.last_page}
+      />
       <Footer />
     </>
   );
