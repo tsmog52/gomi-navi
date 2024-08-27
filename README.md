@@ -14,12 +14,12 @@ gomi-naviは、「ゴミの捨て忘れを防止したい」という想いか�
 
 | トップ画面ページ |　ログイン画面ページ |
 | ---- | ---- |
-| ![Top画面](docs/app-view:main-page.png%20.png) | ![ログイン画面](docs/app-view:login-page.png) |
+| ![Top画面](docs/app-view:top-page.png%20.png) | ![ログイン画面](docs/app-view:login-page.png) |
 | 会員登録をしなくてもメモ機能以外の部分は使えるようになっています。 | LINEを使用した認証機能を実装しました。<br /> ユーザーIDや表示名、メールアドレス等の個人情報は取得しません。 |
 
 | 今日のゴミ回収ページ |　ゴミの分別検索ページ |
 | ---- | ---- |
-| ![今日のゴミ回収モーダル](docs/app-view:pickup-page.png) | ![　ゴミの分別検索](docs/app-view:item-page.png) |
+| ![今日のゴミ回収モーダル](docs/app-view:pick-up-page.png) | ![　ゴミの分別検索](docs/app-view:item-page.png) |
 | 今日のゴミ回収項目を確認することができます。 | アイテム別に捨て方を検索できる機能を実装しました。フィルター機能によりカテゴリー別での検索、ワード検索ができます。 |
 
 | カレンダーページ |　ゴミの捨て方ページ |
