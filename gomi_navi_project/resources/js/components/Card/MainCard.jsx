@@ -12,7 +12,7 @@ const MainCard = ({ text, icon: Icon, link, onClick }) => {
         <a href={link} className="flex w-full sm:flex-col relative z-10">
           <div className="w-1/3 flex items-center justify-start pl-2 sm:w-full sm:justify-center">
             <Icon
-              size={26}
+              size={30}
               className="sm:size-14 text-gray-700"
             />
           </div>
