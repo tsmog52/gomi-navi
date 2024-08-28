@@ -119,7 +119,7 @@ const Item = () => {
                     <li key={item.item_name} className='w-full'>
                       <button
                         onClick={() => toggleAccordion(item.item_name)}
-                        className='flex justify-between items-center p-4 text-xl w-full'
+                        className='flex font-medium justify-between items-center p-4 text-xl w-full'
                       >
                         <span>{item.item_name}</span>
                         <MdOutlineKeyboardArrowRight
@@ -132,14 +132,14 @@ const Item = () => {
                       <div className='border-b'></div>
                       {currentItemName === item.item_name && (
                         <div className='block p-4 bg-white w-full overflow-x-auto'>
-                          <p className='font-bold text-lg sm:text-base pb-2'>分類</p>
-                          <div className='text-base sm:text-sm pl-4'>
+                          <p className='text-xl font-bold pb-2'>分類</p>
+                          <div className='pl-4 text-lg'>
                             {item.category_name}
                           </div>
                           {item.item_memo !== null && (
                             <>
-                              <p className='text-lg py-2 font-bold'>出し方</p>
-                              <div className='text-base sm:text-sm pl-4 overflow-x-auto'>
+                              <p className='text-xl py-2 font-bold'>出し方</p>
+                              <div className='text-lg pl-4 overflow-x-auto'>
                                 {item.item_memo}
                               </div>
                             </>
@@ -154,7 +154,7 @@ const Item = () => {
                   <li key={item.item_name} className='w-full'>
                     <button
                       onClick={() => toggleAccordion(item.item_name)}
-                      className='flex justify-between items-center p-4 text-xl w-full'
+                      className='flex justify-between items-center p-4 text-xl w-full font-medium'
                     >
                       <span>{item.item_name}</span>
                       <MdOutlineKeyboardArrowRight
@@ -167,14 +167,14 @@ const Item = () => {
                     <div className='border-b'></div>
                     {currentItemName === item.item_name && (
                       <div className='block p-4 bg-white w-full overflow-x-auto'>
-                        <p className='font-bold text-lg sm:text-xl pb-2'>分類</p>
-                        <div className='sm:text-lg pl-4'>
+                        <p className='font-bold text-xl sm:text-xl pb-2'>分類</p>
+                        <div className='text-lg pl-4'>
                           {item.category_name}
                         </div>
                         {item.item_memo !== null && (
                           <>
-                            <p className='text-lg sm:text-xl py-2 font-bold'>出し方</p>
-                            <div className='sm:text-lg pl-4 overflow-x-auto'>
+                            <p className='text-xl sm:text-xl py-2 font-bold'>出し方</p>
+                            <div className='text-lg pl-4 overflow-x-auto'>
                               {item.item_memo}
                             </div>
                           </>
