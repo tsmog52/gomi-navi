@@ -39,7 +39,7 @@ gomi-naviは、「ゴミの捨て忘れを防止したい」という想いか�
 
 | お問い合わせページ | 設定ページ | メモの新規作成 |
 | ---- | ---- | ----|
-| ![お問い合わせ](docs/app-view:contact-page.png) | ![設定ページ](docs/app-view:setting-page.png) | ![メモの新規作成](docs/app-view:create-memo-page.png) |
+| ![お問い合わせ](docs/app-view:contact-page.png) | ![設定ページ](docs/app-view:setting-page.png) | ![メモの新規作成](docs/app-view:create-memo.png) |
 | <ul><li>ゴミの分別や収集に関するお問い合わせ一覧を確認できます。</li></ul> | <ul><li>地域設定の登録や利用規約、プライバシーポリシーを見ることができます。</li></ul> | <ul><li>ログインされている方のみメモ機能を利用することができます。</li><li>タイトルと内容を入れ、メモを作成することができます。</li></ul> |
 
 
