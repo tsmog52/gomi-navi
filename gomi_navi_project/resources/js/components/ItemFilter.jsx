@@ -45,7 +45,7 @@ const ItemFilter = ({ onItemsFetched }) => {
             onClick={() => handleFilter(category)}
             className={`m-1 px-4 py-2 rounded-xl transition-colors duration-200 ${
               selectedCategory === category
-                ? 'bg-gray-300 text-gray-700'
+                ? 'bg-gray-300 text-gray-800 text-lg'
                 : 'bg-white border border-gray-300 hover:bg-gray-100'
             }`}
           >
