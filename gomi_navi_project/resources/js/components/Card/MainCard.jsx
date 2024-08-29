@@ -5,7 +5,8 @@ const MainCard = ({ text, icon: Icon, link, onClick }) => {
     <>
       <button
         className="relative border-2 border-black sm:rounded-lg w-80 h-20 sm:w-60 sm:h-40
-                              flex items-center justify-between sm:justify-center px-4 sm:mt-4 sm:flex-col"
+                              flex items-center justify-between sm:justify-center px-4 sm:mt-4 sm:flex-col shadow-lg
+                              transform transition-transform duration-200 hover:scale-105"
         onClick={onClick}
       >
         <div className="absolute left-0 top-0 w-1/4 h-full bg-gray-300 sm:bg-transparent"></div>
