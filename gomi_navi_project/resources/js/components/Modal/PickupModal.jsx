@@ -26,7 +26,7 @@ const PickupModal = ({ onClose }) => {
           <CloseButton onClose={onClose} />
           <div className='text-center'>
             <p
-              className='pb-4'
+              className='pb-4 font-medium'
             >
               今日の回収は
               <span
@@ -36,7 +36,7 @@ const PickupModal = ({ onClose }) => {
               </span>
               です。
             </p>
-            <p className='text-sm sm:text-base pb-2'>
+            <p className='font-medium pb-2'>
               収集当日の朝8時までに出してください。<br />
               <span className='text-red-500 font-bold'>祝日も回収します。</span>
             </p>
