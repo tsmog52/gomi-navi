@@ -31,7 +31,7 @@ class LineController extends Controller
         $scope = "&scope=openid%20profile%20add_friend";
         $prompt = "&prompt=consent";
         $nonce_uri = "&nonce=" . $nonce;
-        $bot_prompt = "&bot_prompt=normal";
+        $bot_prompt = "&bot_prompt=aggressive";
 
         $uri = $uri . $response_type . $client_id . $redirect_uri . $state_uri . $scope . $prompt . $nonce_uri . $bot_prompt;
 
@@ -127,6 +127,11 @@ class LineController extends Controller
     public function callback(Request $request)
     {
         try {
+            //キャンセルされた場合はtopへ
+            if($request->has('error')) {
+                return redirect('https://gomi-navi.net/');
+            }
+
             // アクセストークンを取得
             $tokenData = $this->getAccessToken($request);
 
