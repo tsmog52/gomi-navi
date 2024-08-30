@@ -23,19 +23,32 @@ class LineController extends Controller
         $state = Str::random(32);
         $nonce = Str::random(32);
 
-        $uri = "https://access.line.me/oauth2/v2.1/authorize?";
-        $response_type = "response_type=code";
-        $client_id = "&client_id=" . config('services.line.client_id');
-        $redirect_uri = "&redirect_uri=" . urlencode(config('services.line.redirect'));
-        $state_uri = "&state=" . $state;
-        $scope = "&scope=openid%20profile%20add_friend";
-        $prompt = "&prompt=consent";
-        $nonce_uri = "&nonce=" . $nonce;
-        $bot_prompt = "&bot_prompt=aggressive";
+        // $uri = "https://access.line.me/oauth2/v2.1/authorize?";
+        // $response_type = "response_type=code";
+        // $client_id = "&client_id=" . config('services.line.client_id');
+        // $redirect_uri = "&redirect_uri=" . urlencode(config('services.line.redirect'));
+        // $state_uri = "&state=" . $state;
+        // $scope = "&scope=openid%20profile%20add_friend";
+        // $prompt = "&prompt=consent";
+        // $nonce_uri = "&nonce=" . $nonce;
+        // $bot_prompt = "&bot_prompt=aggressive";
+        $uri = "https://access.line.me/oauth2/v2.1/authorize";
+        $queryParams = http_build_query([
+            'response_type' => 'code',
+            'client_id' => config('services.line.client_id'),
+            'redirect_uri' => config('services.line.redirect'),
+            'state' => $state,
+            'scope' => 'openid profile add_friend',
+            'prompt' => 'consent',
+            'nonce' => $nonce,
+            'bot_prompt' => 'aggressive'
+        ]);
 
-        $uri = $uri . $response_type . $client_id . $redirect_uri . $state_uri . $scope . $prompt . $nonce_uri . $bot_prompt;
+        // $uri = $uri . $response_type . $client_id . $redirect_uri . $state_uri . $scope . $prompt . $nonce_uri . $bot_prompt;
 
-        return redirect($uri);
+        $fullUri = $uri . '?' . $queryParams;
+        return redirect($fullUri);
+        // return redirect($uri);
     }
 
     public function getAccessToken(Request $request)
