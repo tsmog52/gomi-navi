@@ -28,7 +28,7 @@ class LineController extends Controller
         $client_id = "&client_id=" . config('services.line.client_id');
         $redirect_uri = "&redirect_uri=" . urlencode(config('services.line.redirect'));
         $state_uri = "&state=" . $state;
-        $scope = "&scope=openid%20profile";
+        $scope = "&scope=openid%20profile%20add_friend";
         $prompt = "&prompt=consent";
         $nonce_uri = "&nonce=" . $nonce;
         $bot_prompt = "&bot_prompt=normal";
