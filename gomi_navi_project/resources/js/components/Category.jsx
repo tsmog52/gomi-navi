@@ -22,108 +22,45 @@ const Category = () => {
   }, []);
 
   return (
-    // <>
-    //   <Header />
-    //   <div className='max-w-96 flex items-center justify-center'>
-    //     <div className='w-full bg-item'>
-    //       <ul>
-    //         {guides.map((guide, index) => (
-    //           <li key={index}>
-    //             <button
-    //               onClick={() => toggleAccordion(index)}
-    //               className='flex justify-between w-full p-4 text-2xl'
-    //             >
-    //               {guide.category_name}
-    //               <MdOutlineKeyboardArrowRight
-    //                 size={30}
-    //                 className={`transition-transform duration-300 ${
-    //                   isAccordion === index
-    //                     ? 'rotate-90 md:rotate-180'
-    //                     : 'rotate-0'
-    //                 }`}
-    //               />
-    //             </button>
-    //             <div className='border-b-2'></div>
-    //             {isAccordion === index && (
-    //               <div className='block p-4 bg-white'>
-    //                 <div className='p-2'>
-    //                   <p className='text-xl font-bold pb-2'>出し方</p>
-    //                   <div className='text-lg pl-4'>
-    //                     {guide.instructions}
-    //                   </div>
-    //                 </div>
-    //               </div>
-    //             )}
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     </div>
-    //     {/* <div className='hidden md:w-3/5 md:flex bg-gray-100 justify-center items-center'>
-    //       <div className='md:w-96 bg-white flex justify-center items-center'>
-    //         {guides.map((guide, index) => (
-    //           isAccordion === index && (
-    //           <div key={index} className='w-112 h-128 bg-white rounded-lg p-4'>
-    //             <div className='flex justify-center items-center p-4'>
-    //               <ul>
-    //                 <li>
-    //                   <div className='w-96 p-2 mb-3 text-center text-3xl font-normal p-3'>
-    //                     {guide.category_name}
-    //                   </div>
-    //                   <div className='border-2 p-2'>
-    //                     <p className='text-3xl pb-2'>出し方</p>
-    //                     <div className='text-xl pl-4'>
-    //                       {guide.instructions}
-    //                     </div>
-    //                   </div>
-    //                 </li>
-    //               </ul>
-    //             </div>
-    //           </div>
-    //         )))}
-    //       </div>
-    //     </div> */}
-    //   </div>
-    //   <Footer />
-    // </>
     <>
-  <Header />
-  <div className='flex justify-center'>
-    <div className='w-full max-w-3xl bg-item'>
-      <ul>
-        {guides.map((guide, index) => (
-          <li key={index}>
-            <button
-              onClick={() => toggleAccordion(index)}
-              className='flex justify-between w-full p-4 text-2xl'
-            >
-              {guide.category_name}
-              <MdOutlineKeyboardArrowRight
-                size={30}
-                className={`transition-transform duration-300 ${
-                  isAccordion === index
-                    ? 'rotate-90 md:rotate-180'
-                    : 'rotate-0'
-                }`}
-              />
-            </button>
-            <div className='border-b-2'></div>
-            {isAccordion === index && (
-              <div className='block p-4 bg-white'>
-                <div className='p-2'>
-                  <p className='text-xl font-bold pb-2'>出し方</p>
-                  <div className='text-lg pl-4'>
-                    {guide.instructions}
+    <Header />
+    <div className='flex justify-center'>
+      <div className='w-full max-w-3xl bg-item'>
+        <ul>
+          {guides.map((guide, index) => (
+            <li key={index}>
+              <button
+                onClick={() => toggleAccordion(index)}
+                className='flex justify-between w-full p-4 text-2xl font-medium'
+              >
+                {guide.category_name}
+                <MdOutlineKeyboardArrowRight
+                  size={30}
+                  className={`transition-transform duration-300 ${
+                    isAccordion === index
+                      ? 'rotate-90 md:rotate-180'
+                      : 'rotate-0'
+                  }`}
+                />
+              </button>
+              <div className='border-b-2'></div>
+              {isAccordion === index && (
+                <div className='block p-4 bg-white'>
+                  <div className='p-2'>
+                    <p className='text-xl font-bold pb-2'>出し方</p>
+                    <div className='text-lg pl-4'>
+                      {guide.instructions}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
-  </div>
-  <Footer />
-</>
+    <Footer />
+  </>
 
   );
 };
