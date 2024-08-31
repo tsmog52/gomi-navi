@@ -30,18 +30,18 @@ gomi-naviは、「ゴミの捨て忘れを防止したい」という想いか�
 
 ![ER diagram](docs/ER%20diagram.png)
 
-### 使用技術一覧
+## 使用技術一覧
 
 | カテゴリー  | 使用技術                              |
 | --------------- | ------------------------------------- |
 | **バックエンド** | PHP: 8.2  Laravel: 11.9         |
 | **フロントエンド** | - React: 18.3.1  Tailwind CSS    |
 | **データベース** | MySQL:8.0.35   |
-| **インフラ**    | AWS (Route53 / Certificate Manager / VPC / EC2 / RDS MySQL)  Apache |
+| **インフラ**    | AWS (Route53 / Certificate Manager/ ELB( Application Load Balancer ) / VPC / EC2 / RDS MySQL)  Apache |
 | **デザイン** | miro  Figma    |
 
 
-### 機能一覧
+## 機能一覧
 
 | トップ画面ページ |　ログイン画面ページ |　今日のゴミ回収ページ|
 | ---- | ---- | ----|
