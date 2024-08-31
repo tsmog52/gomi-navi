@@ -8,8 +8,8 @@ gomi-naviは、「ゴミの捨て忘れを防止したい」という想いか�
 
 ### サービスのURL
 
-  [https://gomi-navi.net/](https://gomi-navi.net/)　　
-  ログインしなくてもメモ機能以外の操作が使用可能です。　　
+  [https://gomi-navi.net/](https://gomi-navi.net/)<br>
+  ログインしなくてもメモ機能以外の操作が使用可能です。<br>　　
   レスポンシブ対応済みのため、PCとスマートフォンどちらでも利用可能です。
 
 ### テーマ
