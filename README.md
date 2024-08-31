@@ -10,6 +10,37 @@ gomi-naviは、「ゴミの捨て忘れを防止したい」という想いか�
 
 ログインしなくてもメモ機能以外の操作が使用可能です。  [https://gomi-navi.net/](https://gomi-navi.net/)
 
+### テーマ
+
+[テーマはこちら](documents/THEMA.md)
+
+### 要件定義
+
+[要件定義はこちら](documents/REQUIREMENT_DEFINITION.md)
+
+### 業務フローチャート
+
+[業務フローチャートはこちら](documents/業務フローチャート.png)
+
+## 画面遷移図
+
+![Screen Transition Diagram](docs/screen-transition-diagram.png)
+
+## ER図
+
+![ER diagram](docs/ER%20diagram.png)
+
+### 使用技術一覧
+
+| カテゴリー  | 使用技術                              |
+| --------------- | ------------------------------------- |
+| **バックエンド** | PHP: 8.2  Laravel: 11.9         |
+| **フロントエンド** | - React: 18.3.1  Tailwind CSS    |
+| **データベース** | MySQL:8.0.35   |
+| **インフラ**    | AWS (Route53 / Certificate Manager / VPC / EC2 / RDS MySQL)  Apache |
+| **デザイン** | miro  Figma    |
+
+
 ### 機能一覧
 
 | トップ画面ページ |　ログイン画面ページ |　今日のゴミ回収ページ|
@@ -27,24 +58,11 @@ gomi-naviは、「ゴミの捨て忘れを防止したい」という想いか�
 | ![お問い合わせ](docs/app-view:contact-page.png) | ![設定ページ](docs/app-view:setting-page.png) | ![メモの新規作成](docs/app-view:create-memo.png) |
 | <ul><li>ゴミの分別や収集に関するお問い合わせ一覧を確認できます。</li></ul> | <ul><li>地域設定の登録や利用規約、プライバシーポリシーを見ることができます。</li></ul> | <ul><li>ログインされている方のみメモ機能を利用することができます。</li><li>タイトルと内容を入れ、メモを作成することができます。</li></ul> |
 
-
-### 使用技術一覧
-
-| カテゴリー  | 使用技術                              |
-| --------------- | ------------------------------------- |
-| **バックエンド** | PHP: 8.2  Laravel: 11.9         |
-| **フロントエンド** | - React: 18.3.1  Tailwind CSS    |
-| **データベース** | MySQL:8.0.35   |
-| **インフラ**    | AWS (Route53 / Certificate Manager / VPC / EC2 / RDS MySQL)  Apache |
-| **デザイン** | miro  Figma    |
-
 ## インフラ構成図
 
 ![Gomi Navi](docs/gomi-navi.drawio.png)
 
-## ER図
-![ER diagram](docs/ER%20diagram.png)
-
 
 ## 今後の展望
+
 現在はデフォルトの地域のみで開発を行っています。今後川崎市全区を対象にサービスを拡大していきたいと考えています。
