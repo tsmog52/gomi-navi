@@ -29,12 +29,11 @@ class LineController extends Controller
             'client_id' => config('services.line.client_id'),
             'redirect_uri' => config('services.line.redirect'),
             'state' => $state,
+            'bot_prompt' => 'aggressive',
             'scope' => 'openid profile add_friend',
-            'prompt' => 'consent',
             'nonce' => $nonce,
-            'bot_prompt' => 'aggressive'
-        ], '', '&', PHP_QUERY_RFC3986);
-
+            'prompt' => 'consent'
+        ]);
         $fullUri = $uri . '?' . $queryParams;
         return redirect($fullUri);
     }
