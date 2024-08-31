@@ -2,7 +2,7 @@
 現在README.mdを作成中です。
 
 
-### サービスの概要
+## サービスの概要
 
 gomi-naviは、「ゴミの捨て忘れを防止したい」という想いから作成された、無料のゴミ分別アプリです。  ユーザーはLINEでログインし、公式アカウントを友だち追加することで、リマインダー通知をLINEで受け取ることができます。  ログインを行わなくてもゴミの種類別の捨て方、地域別の本日の回収項目、ゴミの捨て方検索、1週間のゴミ回収スケジュール機能を利用することができます。  モバイルでの利用も想定し対応しています。
 
@@ -32,13 +32,56 @@ gomi-naviは、「ゴミの捨て忘れを防止したい」という想いか�
 
 ## 使用技術一覧
 
-| カテゴリー  | 使用技術                              |
-| --------------- | ------------------------------------- |
-| **バックエンド** | PHP: 8.2  Laravel: 11.9         |
-| **フロントエンド** | React: 18.3.1  Tailwind CSS    |
-| **データベース** | MySQL:8.0.35   |
-| **インフラ**    | AWS (Route53 / Certificate Manager/ ELB( Application Load Balancer ) / VPC / EC2 / RDS MySQL)  Apache |
-| **デザイン** | miro  Figma    |
+### フロントエンド
+
+- React: 18.3.1
+
+### バックエンド
+
+- PHP: 8.2
+- Laravel: 11.9
+
+
+### ライブラリ
+
+#### ビルドツール
+
+- vite: ^5.0
+- laravel-vite-plugin: ^1.0
+
+#### データフェッチ関連
+
+- Axios: ^1.7.2
+
+#### UI関連
+
+- tailwindcss: ^3.4.4
+- react-icons: ^5.2.1
+- preline: ^2.3.0
+
+#### 認証関連
+
+- js-cookie: ^3.0.5
+- laravel/sanctum: ^4.0
+- laravel/socialite: ^5.15
+- socialiteproviders/line: ^4.1
+
+#### LINE関連
+
+- linecorp/line-bot-sdk: ^9.9
+
+#### データベース
+
+- MySQL:8.0.35
+
+
+#### インフラ
+
+- AWS (Route53 / Certificate Manager/ ELB( Application Load Balancer ) / VPC / EC2 / RDS MySQL)  / Apache
+
+### バージョン管理
+
+- Git/GitHub
 
 
 ## 機能一覧
