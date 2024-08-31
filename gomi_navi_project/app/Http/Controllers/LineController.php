@@ -33,7 +33,7 @@ class LineController extends Controller
             'prompt' => 'consent',
             'nonce' => $nonce,
             'bot_prompt' => 'aggressive'
-        ]);
+        ], '', '&', PHP_QUERY_RFC3986);
 
         $fullUri = $uri . '?' . $queryParams;
         return redirect($fullUri);
