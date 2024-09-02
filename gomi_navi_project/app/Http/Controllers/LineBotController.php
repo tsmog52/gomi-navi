@@ -59,6 +59,16 @@ class LineBotController extends Controller
 
                 // テキストメッセージを取得
                 $eventMessageText = $eventMessage->getText();
+                $region = ['川崎区', '幸区', '中原区', '宮前区', '高津区', '多摩区', '麻生区'];
+
+                if (in_array($eventMessageText, $region)) {
+                $setRegion = new TextMessage([
+                    'type' => 'text',
+                    'text' => '地区を設定しました。',
+                ]);
+            } else {
+                $setRegion = null;
+            }
 
                 // 応答メッセージを作成
                 $message = new TextMessage([
@@ -69,7 +79,7 @@ class LineBotController extends Controller
                 // 応答リクエストを作成
                 $request = new ReplyMessageRequest([
                     'replyToken' => $event->getReplyToken(),
-                    'messages' => [$message],
+                    'messages' => [$setRegion ?? $message],
                 ]);
 
                 // 応答リクエストを送信する
