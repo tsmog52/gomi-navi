@@ -13,6 +13,9 @@ const ItemFilter = ({ onItemsFetched }) => {
     if (onItemsFetched) {
       onItemsFetched(itemsByCategory[category] || []);
     }
+    if (onFilterActive) {
+      onFilterActive(true);
+    }
   };
 
   useEffect(() => {

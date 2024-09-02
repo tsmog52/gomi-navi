@@ -21,8 +21,9 @@ const Item = () => {
     next_page_url: null,
     prev_page_url: null,
   });
+  const [filterActive, setFilterActive] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getItemsData = async (page = 1) => {
       try {
         const response = await axios.get(`/api/items?page=${page}`);
@@ -57,13 +58,9 @@ const Item = () => {
 
   const handleClick = () => {
     const filteredItems = allItems.filter((item) => item.item_name.includes(inputValue));
-    if (filteredItems.length === 0) {
-      setFilteredValue([]);
-      setShowDetailSearch(true);
-      return;
-    }
     setFilteredValue(filteredItems);
     setShowDetailSearch(true);
+    setFilterActive(filteredItems.length > 0);
   };
 
   const handleNextPage = () => {
@@ -93,6 +90,7 @@ const Item = () => {
   const handleItemsFetched = (items) => {
     setFilteredValue(items);
     setShowDetailSearch(true);
+    setFilterActive(items.length > 0);
   };
 
   return (
@@ -106,7 +104,10 @@ const Item = () => {
             placeholder="検索"
             onClick={handleClick}
           />
-          <ItemFilter onItemsFetched={handleItemsFetched} />
+          <ItemFilter
+            onItemsFetched={handleItemsFetched}
+            onFilterActive={setFilterActive}
+          />
           <div className='w-full'>
             <ul>
               {showDetailSearch ? (
@@ -185,20 +186,23 @@ const Item = () => {
                 ))
               )}
             </ul>
+            {!filterActive && (
+              <ArrowButton
+                nextPage={handleNextPage}
+                twoPagesAhead={handleTwoPagesAhead}
+                prevPage={handlePrevPage}
+                twoPagesBack={handleTwoPagesBack}
+                currentPage={pagination.current_page}
+                totalPages={pagination.last_page}
+              />
+            )}
           </div>
         </div>
       </div>
-      <ArrowButton
-        nextPage={handleNextPage}
-        twoPagesAhead={handleTwoPagesAhead}
-        prevPage={handlePrevPage}
-        twoPagesBack={handleTwoPagesBack}
-        currentPage={pagination.current_page}
-        totalPages={pagination.last_page}
-      />
       <Footer />
     </>
   );
 };
 
 export default Item;
+
