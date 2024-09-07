@@ -114,4 +114,4 @@ gomi-naviは、「ゴミの捨て忘れを防止したい」という想いか�
 実装予定の機能
 
 - Googleログイン、Googleカレンダーとの連携
-- TypeScriptへの変換
+- TypeScriptでの実装
